@@ -48,15 +48,12 @@
         body { font-family: 'Inter', sans-serif; background-color: #fbfbfa; overflow-x: hidden; }
         h1, h2, h3, h4, .font-serif { font-family: 'Playfair Display', serif; }
         
-        /* Language Active State */
         .lang-btn.active { color: #cfa832; border-bottom: 2px solid #cfa832; text-shadow: 0 0 10px rgba(207,168,50,0.3); }
 
-        /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: #05101e; }
         ::-webkit-scrollbar-thumb { background: #cfa832; border-radius: 3px; }
 
-        /* Before/After Slider */
         .slider-container { --pos: 50%; position: relative; width: 100%; height: 100%; cursor: ew-resize; touch-action: pan-y; }
         .image-before { clip-path: polygon(0 0, var(--pos) 0, var(--pos) 100%, 0 100%); }
         .slider-line { left: var(--pos); transform: translateX(-50%); }
@@ -161,8 +158,7 @@
 
     <section class="relative h-screen flex items-center justify-center bg-navy overflow-hidden">
         <div class="absolute inset-0 z-0">
-            <video playsinline autoplay muted loop poster="https://images.unsplash.com/photo-1600170311833-c2cf5280ce49?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" class="w-full h-full object-cover opacity-20 mix-blend-luminosity">
-                </video>
+            <img src="https://images.unsplash.com/photo-1600170311833-c2cf5280ce49?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" alt="Clinic Ambience" class="w-full h-full object-cover opacity-20 mix-blend-luminosity">
             <div class="absolute inset-0 bg-gradient-to-b from-navy/90 via-navy/50 to-navy"></div>
         </div>
         <div class="relative z-10 text-center w-full max-w-5xl mx-auto px-4 mt-10 md:mt-20">
@@ -270,7 +266,7 @@
             <div class="md:hidden flex flex-col space-y-4" id="shop-mobile-accordion">
                 </div>
 
-            <div class="hidden md:grid grid-cols-2 lg:grid-cols-4 gap-8" id="shop-desktop-grid">
+            <div class="hidden md:grid grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-8" id="shop-desktop-grid">
                 </div>
         </div>
     </section>
@@ -339,13 +335,13 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col lg:grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
                 
-                <div class="w-full bg-navy/95 p-8 md:p-12 rounded-[2rem] shadow-[0_20px_50px_rgba(5,16,30,0.15)] relative overflow-hidden ring-1 ring-white/10 order-2 lg:order-1 mt-8 lg:mt-0">
+                <div class="w-full bg-navy/95 p-8 md:p-12 rounded-[2rem] md:rounded-[3rem] shadow-[0_20px_50px_rgba(5,16,30,0.15)] relative overflow-hidden ring-1 ring-white/10 order-2 lg:order-1 mt-8 lg:mt-0">
                     <div class="absolute -top-24 -left-24 w-64 h-64 bg-gold/10 rounded-full blur-3xl pointer-events-none"></div>
                     
                     <h3 class="text-3xl font-serif text-white mb-2 relative z-10" data-i18n="form_title">VIP Consultation</h3>
                     <p class="text-gold mb-8 text-sm font-medium relative z-10" data-i18n="form_sub">Priority booking for international patients.</p>
                     
-                    <form id="contact-form" class="space-y-5 relative z-10">
+                    <form id="contact-form" onsubmit="handleForm(event)" class="space-y-5 relative z-10">
                         <div>
                             <label class="block text-sm font-medium text-gray-200 mb-1.5 ml-1" data-i18n="form_name_lbl">Full Legal Name</label>
                             <input type="text" required placeholder="John Doe" class="w-full bg-white/5 border border-white/10 text-white rounded-2xl py-4 px-5 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gold/50 focus:border-gold transition-all duration-300 shadow-inner">
@@ -374,7 +370,7 @@
                         <button type="submit" class="w-full bg-gold text-navy font-bold uppercase tracking-widest py-4 md:py-5 rounded-2xl md:hover:bg-white md:hover:scale-[1.015] active:scale-95 transition-all duration-500 shadow-[0_10px_20px_rgba(207,168,50,0.3)] mt-4" data-i18n="form_btn">Request Private Callback</button>
                     </form>
 
-                    <div id="form-success" class="absolute inset-0 bg-navy/95 backdrop-blur-sm z-20 hidden flex-col items-center justify-center p-8 text-center opacity-0 transition-opacity duration-500 rounded-[2rem]">
+                    <div id="form-success" class="absolute inset-0 bg-navy/95 backdrop-blur-sm z-20 hidden flex-col items-center justify-center p-8 text-center opacity-0 transition-opacity duration-500 rounded-[2rem] md:rounded-[3rem]">
                         <div class="w-20 h-20 bg-green-500/20 rounded-full flex items-center justify-center mb-6">
                             <div class="w-14 h-14 bg-green-500 rounded-full flex items-center justify-center text-white shadow-[0_0_20px_rgba(34,197,94,0.5)]">
                                 <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
@@ -404,7 +400,7 @@
                         </ul>
                     </div>
                     <div class="w-full h-64 md:h-80 bg-gray-200 rounded-3xl overflow-hidden border border-gold/30 shadow-[0_10px_30px_rgba(5,16,30,0.1)] relative filter sepia-[0.2] grayscale-[0.5] md:hover:grayscale-0 transition-all duration-700">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15259.088152538183!2d-96.7328905!3d17.0604652!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85c7223b9d0b5df9%3A0xc3f1737e4fb442f4!2sOaxaca%2C%20Oax.%2C%20Mexico!5e0!3m2!1sen!2scz!4v1700000000000!5m2!1sen!2scz" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        <iframe src="maps.google.com" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                 </div>
             </div>
@@ -471,7 +467,7 @@
             { id: 5, icon: 'M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5', en: { title: "Clear Aligner Therapy", short: "Invisalign Elite orthodontic care.", desc: "Discreet structural alignment using top-tier customized aligners monitored remotely via ClinCheck AI.", journey: "<li>Digital Arch Laser Scanning</li><li>ClinCheck AI Tooth Vector Logic</li><li>Direct Door Aligner Dispatch</li>", time: "1 Visit / Remote", price: "$4,500 - $7,000" }, es: { title: "Ortodoncia Invisible", short: "Tratamiento Invisalign Elite IA.", desc: "Alineación estructural discreta mediante dlahs personalizadas con monitoreo remoto vía ClinCheck IA.", journey: "<li>Escaneo Láser de Arcada</li><li>Lógica de Vectores Dentales IA</li><li>Envío Directo de Kits</li>", time: "1 Visita / Remoto", price: "$4,500 - $7,000" }, fr: { title: "Gouttières Invisibles", short: "Alignement Invisalign Elite IA.", desc: "Alignement structurel discret via des gouttières personnalisées suivies à distance par l'IA ClinCheck.", journey: "<li>Scan Laser des Arcades</li><li>Logique de Vecteurs Dentaires IA</li><li>Expédition Directe des Kits</li>", time: "1 Visite / À distance", price: "$4,500 - $7,000" } },
             { id: 6, icon: 'M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z', en: { title: "Microscopic Endodontics", short: "Zeiss magnified micro-surgery.", desc: "Magnified root canal therapy under Zeiss optics maximizing successful interior structural saving over 95%.", journey: "<li>High-Res 3D Target Isolation</li><li>Rubber Dam Complete Shielding</li><li>Laser Chemical Canal Decontamination</li>", time: "2-3 Hours", price: "$900 - $1,600" }, es: { title: "Endodoncia Microscópica", short: "Microcirugía magnificada Zeiss.", desc: "Terapia de conductos radiculares bajo ópticas Zeiss maximizando el salvamento estructural interior sobre el 95%.", journey: "<li>Aislamiento de Objetivo 3D</li><li>Blindaje con Dique de Goma</li><li>Descontaminación Química Láser</li>", time: "2-3 Horas", price: "$900 - $1,600" }, fr: { title: "Endodontie Microscopique", short: "Micro-chirurgie magnifiée Zeiss.", desc: "Traitements de canaux sous optiques Zeiss pour maximiser le sauvetage structurel interne au-delà de 95%.", journey: "<li>Isolation de Cible 3D</li><li>Protection par Digue en Caoutchouc</li><li>Décontamination Chimique Laser</li>", time: "2-3 Heures", price: "$900 - $1,600" } },
             { id: 7, icon: 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z', en: { title: "Laser Periodontics", short: "WaterLase non-contact treatment.", desc: "Advanced laser intervention for gum contouring and tissue stabilization with zero structural incisions.", journey: "<li>Laser Pocket Sterilization</li><li>Tissue Biostimulation Repair</li><li>Micro-Laser Gum Level Contouring</li>", time: "1-2 Hours", price: "$800 - $3,000" }, es: { title: "Periodoncia Láser", short: "Contorneado WaterLase.", desc: "Intervención láser avanzada para remodelación gingival y estabilización de tejidos sin incisiones estructurales.", journey: "<li>Esterilización de Bolsas Láser</li><li>Reparación por Bioestimulación</li><li>Contorneado Gingival con Micro-Láser</li>", time: "1-2 Horas", price: "$800 - $3,000" }, fr: { title: "Parodontie Laser", short: "Remodelage WaterLase.", desc: "Intervention laser avancée pour le remodelage gingival et la stabilisation des tissus sans incisions.", journey: "<li>Stérilisation des Poches au Laser</li><li>Réparation par Biostimulation</li><li>Remodelage Gingival au Micro-Laser</li>", time: "1-2 Heures", price: "$800 - $3,000" } },
-            { id: 8, icon: 'M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z', en: { title: "Executive Sedation", short: "Stress-free complex dental sleep.", desc: "Intravenous sedation managed by certified medical anesthesiologists for full-comfort multi-treatment blocks.", journey: "<li>Anesthesiology Panel Clearance</li><li>Intravenous Continuous Sedation</li><li>Multi-procedure Execution While Asleep</li>", time: "Procedure + 1h Bed Rest", price: "$600 / hour" }, es: { title: "Sedación Ejecutiva", short: "Tratamiento sin estrés en sueño.", desc: "Sedación intravenosa controlada por anestesiólogos certificados para bloques de múltiples tratamientos en confort.", journey: "<li>Aprobación de Panel de Anestesia</li><li>Sedación Intravenosa Continua</li><li>Ejecución de Tratamientos en Sueño</li>", time: "Procedimiento + 1h", price: "$600 / hora" }, fr: { title: "Sédation Exécutive", short: "Soins intensifs sous sommeil.", desc: "Sédation intraveineuse gérée par des anesthésistes certifiés pour des blocs de soins en tout confort.", journey: "<li>Validation du Panel d'Anesthésie</li><li>Sédation Intraveineuse Continue</li><li>Soins Multi-procédures sous Sommeil</li>", time: "Soins + 1h", price: "$600 / heure" } },
+            { id: 8, icon: 'M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z', en: { title: "Executive Sedation", short: "Stress-free complex dental sleep.", desc: "Intravenous sedation managed by certified medical anesthesiologists for full-comfort multi-treatment blocks.", journey: "<li>Anesthesiology Panel Clearance</li><li>Intravenous Continuous Sedation</li><li>Multi-procedure Execution While Asleep</li>", time: "Procedure + 1h Bed Rest", price: "$600 / hour" }, es: { title: "Sedación Ejecutiva", short: "Tratamiento sin estrés en sueño.", desc: "Sedación intravenosa controlada por anestesiólogos certificados para bloques de múltiples tratamientos en confort.", journey: "<li>Aprobación de Panel de Anestesia</li><li>Sedación Intravenosa Continua</li><li>Ejecución de Tratamientos en Sueño</li>", time: "Procedimiento + 1h", price: "$600 / hora" }, fr: { title: "Sédation Exécutive", short: "Soins intensifs sous sommeil.", desc: "Sédation intraveineuse gérée par des anesthésistes certifiés pour des blocs de soins en tout confort.", journey: "<li>Validation du Panel d'Anesthésie</li><li>Sédation Intraveineuse Continue</li><li>Soins Multi-procédures sous Sommeil</li>", time: "Soins + 1h de Repos", price: "$600 / heure" } },
             { id: 9, icon: 'M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z', en: { title: "Holistic Preventive", short: "Swiss GBT protocol maintenance.", desc: "Biofilm hygiene therapy featuring Swiss warm-water erythritol air polishers for comfortable enamel preservation.", journey: "<li>Bacterial Biofilm Staining</li><li>Warm Airflow Erythritol Polish</li><li>Pain-Free Piezon De-scaling</li><li>Hydroxyapatite Enamel Shield</li>", time: "1 Hour", price: "$250 - $400" }, es: { title: "Preventiva Holística", short: "Higiene protocolo suizo GBT.", desc: "Terapia de higiene biológica con pulidores de eritritol y agua tibia para preservación del esmalte sin dolor.", journey: "<li>Tinción de Biofilm Bacteriano</li><li>Pulido Airflow de Eritritol Tibio</li><li>Eliminación de Sarro Piezon</li><li>Escudo de Hidroxiapatita</li>", time: "1 Hora", price: "$250 - $400" }, fr: { title: "Préventive Holistique", short: "Hygiène protocole suisse GBT.", desc: "Thérapie d'hygiène biologique avec aéropolisseurs à l'érythritol et eau tiède pour préserver l'émail.", journey: "<li>Coloration du Biofilm Bactérien</li><li>Polissage Airflow Érythritol Tiède</li><li>Détartrage Piezon sans Douleur</li><li>Bouclier d'Hydroxyapatite</li>", time: "1 Heure", price: "$250 - $400" } }
         ];
 
@@ -485,14 +481,16 @@
         const boutiqueData = [
             { id: 201, cat: 'sonic', name: "Sonicare DiamondClean Prestige 9900", brand: "Philips", price: 399, img: "https://images.unsplash.com/photo-1559837139-44eb183d2918?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80", desc: {en:"SenseIQ AI posture sensing.",es:"Detección de postura SenseIQ IA.",fr:"Capteur de posture IA SenseIQ."} },
             { id: 202, cat: 'sonic', name: "Hydrosonic Black Is White", brand: "Curaprox", price: 229, img: "https://images.unsplash.com/photo-1605027628030-9bb6f83535e6?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80", desc: {en:"Matte black charcoal ultrasonic.",es:"Ultrasónico negro mate con carbón.",fr:"Ultrasonique noir mat au charbon."} },
+            { id: 209, cat: 'sonic', name: "Clean Sonic by Dr. Apa", brand: "Apa Beauty", price: 250, img: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80", desc: {en:"Veneer-safe 40k oscillation polishing.",es:"Pulido seguro 40k oscilaciones.",fr:"Polissage 40k oscillations."} },
+            
             { id: 203, cat: 'luxury', name: "Luxury Oral Curation Set", brand: "Selahatin", price: 85, img: "https://images.unsplash.com/photo-1620916297397-a4a5402a3c6c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80", desc: {en:"Organic Swedish whitening paste trio.",es:"Trío de pasta sueca blanqueadora orgánica.",fr:"Trio pâte suédoise blanchissante bio."} },
-            { id: 204, cat: 'ortho', name: "Premium Aligner Care Suite", brand: "Invisalign", price: 120, img: "https://images.unsplash.com/photo-1598463994354-913346b7fc62?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80", desc: {en:"Ultrasonic bath & crystal cleansers.",es:"Baño ultrasónico y limpiadores.",fr:"Bain ultrasonique & cristaux."} },
-            { id: 205, cat: 'ortho', name: "Aquarius Professional Onyx & Gold", brand: "Waterpik", price: 149, img: "https://images.unsplash.com/photo-1549576490-b0b4831ef60a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80", desc: {en:"Pulse modulation flossing tech.",es:"Tecnología de modulación de pulso.",fr:"Technologie de modulation de pouls."} },
             { id: 206, cat: 'luxury', name: "Enamel Science Advanced Kit", brand: "Regenerate", price: 95, img: "https://images.unsplash.com/photo-1608248597481-496100c8c836?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80", desc: {en:"NR5 mineral enamel regeneration.",es:"Regeneración mineral del esmalte NR5.",fr:"Régénération minérale de l'émail."} },
             { id: 207, cat: 'luxury', name: "v34 Colour Corrector Serum Pro", brand: "Hismile", price: 49, img: "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80", desc: {en:"Violet tone optical corrector.",es:"Corrector óptico de tono violeta.",fr:"Correcteur optique de ton violet."} },
             { id: 208, cat: 'luxury', name: "Seven Flavors Royal Velvet Box", brand: "Marvis", price: 65, img: "https://images.unsplash.com/photo-1527689368864-3a821dbccc34?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80", desc: {en:"Italian toothpaste curation collection.",es:"Colección italiana de pastas de lujo.",fr:"Collection italienne de dentifrices."} },
-            { id: 209, cat: 'luxury', name: "Luxury Mouthwash Trio", brand: "Selahatin", price: 75, img: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80", desc: {en:"Haute couture anti-inflammatory rinses.",es:"Enjuagues de alta costura antiinflamatorios.",fr:"Bains de bouche haute couture."} },
-            { id: 210, cat: 'luxury', name: "Organic Luxury Le White", brand: "Lebon", price: 35, img: "https://images.unsplash.com/photo-1601049676099-e7ed07d825b0?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80", desc: {en:"Bio certified sweet mint & green tea.",es:"Pasta bio certificada menta y té verde.",fr:"Dentifrice bio certifié menthe/thé vert."} }
+            { id: 210, cat: 'luxury', name: "Organic Luxury Le White", brand: "Lebon", price: 35, img: "https://images.unsplash.com/photo-1601049676099-e7ed07d825b0?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80", desc: {en:"Bio certified sweet mint & green tea.",es:"Pasta bio certificada menta y té verde.",fr:"Dentifrice bio certifié menthe/thé vert."} },
+            
+            { id: 204, cat: 'ortho', name: "Premium Aligner Care Suite", brand: "Invisalign", price: 120, img: "https://images.unsplash.com/photo-1598463994354-913346b7fc62?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80", desc: {en:"Ultrasonic bath & crystal cleansers.",es:"Baño ultrasónico y limpiadores.",fr:"Bain ultrasonique & cristaux."} },
+            { id: 205, cat: 'ortho', name: "Aquarius Professional Onyx & Gold", brand: "Waterpik", price: 149, img: "https://images.unsplash.com/photo-1549576490-b0b4831ef60a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80", desc: {en:"Pulse modulation flossing tech.",es:"Tecnología de modulación de pulso.",fr:"Technologie de modulation de pouls."} }
         ];
 
         /* --- DATA: HERITAGE TIMELINE --- */
@@ -516,7 +514,7 @@
                 nav_services: "Services", nav_heritage: "Our Heritage", nav_boutique: "Boutique", nav_gallery: "Gallery", nav_reviews: "Reviews", nav_contact: "Contact", nav_book: "Book VIP Suite",
                 hero_title: "The Future of Your Smile, <br><span class='text-gold italic'>Engineered in Digital 3D.</span>", hero_subtitle: "The Ritz-Carlton of dentistry. Uncompromising aesthetics and pain-free precision for North America's most demanding clientele.",
                 stat_1: "Perfect Smiles", stat_2: "Years Mastery", stat_3: "Pain Guarantee",
-                srv_title: "Executive Dental Architecture", srv_btn: "Explore Procedure →",
+                srv_title: "Executive Dental Architecture", srv_btn: "Explore Procedure",
                 mod_badge: "Procedure Detail", mod_journey: "The Patient Journey", mod_time_lbl: "Time Required", mod_price_lbl: "Est. Investment", mod_book: "Book This Procedure",
                 her_badge: "Our Heritage", her_title: "A Legacy of Precision & Artistry.", her_p1: "Founded by visionary specialists in Oaxaca, our clinic has evolved into a global center for digital dentistry, strictly dedicated to high-end, painless procedures for the North American elite.", her_p2: "Combining 3D CAD/CAM technology with Swiss engineering and a Ritz-Carlton approach to patient comfort.", her_btn: "Read Full History", her_mod_title: "Evolution of Excellence",
                 shop_title: "DSD Boutique", shop_sub: "Premium Oral Curations", shop_add: "Add to Collection",
@@ -530,7 +528,7 @@
                 nav_services: "Servicios", nav_heritage: "Nuestra Herencia", nav_boutique: "Boutique", nav_gallery: "Galería", nav_reviews: "Reseñas", nav_contact: "Contacto", nav_book: "Reserva VIP",
                 hero_title: "El Futuro de Tu Sonrisa, <br><span class='text-gold italic'>Diseñado en 3D Digital.</span>", hero_subtitle: "El Ritz-Carlton de la odontología. Estética sin concesiones y precisión sin dolor para la clientela más exigente.",
                 stat_1: "Sonrisas", stat_2: "Años Maestría", stat_3: "Sin Dolor",
-                srv_title: "Arquitectura Dental Ejecutiva", srv_btn: "Explorar Procedimiento →",
+                srv_title: "Arquitectura Dental Ejecutiva", srv_btn: "Explorar Procedimiento",
                 mod_badge: "Detalle del Procedimiento", mod_journey: "El Viaje del Paciente", mod_time_lbl: "Tiempo Requerido", mod_price_lbl: "Inversión Est.", mod_book: "Reservar Procedimiento",
                 her_badge: "Nuestra Herencia", her_title: "Un Legado de Precisión y Arte.", her_p1: "Fundada por especialistas visionarios en Oaxaca, nuestra clínica ha evolucionado hasta convertirse en un centro mundial de odontología digital, dedicado estrictamente a procedimientos indoloros de alta gama para la élite norteamericana.", her_p2: "Combinando tecnología 3D CAD/CAM con ingeniería suiza y un enfoque Ritz-Carlton para la comodidad del paciente.", her_btn: "Leer Historia Completa", her_mod_title: "Evolución de Excelencia",
                 shop_title: "DSD Boutique", shop_sub: "Curaciones Orales Premium", shop_add: "Añadir a la Colección",
@@ -544,7 +542,7 @@
                 nav_services: "Services", nav_heritage: "Notre Héritage", nav_boutique: "Boutique", nav_gallery: "Galerie", nav_reviews: "Avis", nav_contact: "Contact", nav_book: "Réserver VIP",
                 hero_title: "L'Avenir de Votre Sourire, <br><span class='text-gold italic'>Conçu en 3D Numérique.</span>", hero_subtitle: "Le Ritz-Carlton de la dentisterie. Esthétique et précision sans douleur pour la clientèle la plus exigeante.",
                 stat_1: "Sourires", stat_2: "Années Maîtrise", stat_3: "Sans Douleur",
-                srv_title: "Architecture Dentaire", srv_btn: "Explorer la Procédure →",
+                srv_title: "Architecture Dentaire", srv_btn: "Explorer la Procédure",
                 mod_badge: "Détail Procédure", mod_journey: "Le Parcours du Patient", mod_time_lbl: "Temps Requis", mod_price_lbl: "Investissement", mod_book: "Réserver Cette Procédure",
                 her_badge: "Notre Héritage", her_title: "Un Héritage de Précision et d'Art.", her_p1: "Fondée par des spécialistes visionnaires à Oaxaca, notre clinique a évolué pour devenir un centre mondial de dentisterie numérique, strictement dédié aux procédures indolores haut de gamme pour l'élite nord-américaine.", her_p2: "Alliant technologie 3D CAO/FAO, ingénierie suisse et une approche Ritz-Carlton du confort des patients.", her_btn: "Lire l'Histoire Complète", her_mod_title: "Évolution de l'Excellence",
                 shop_title: "Boutique DSD", shop_sub: "Soins Oraux Premium", shop_add: "Ajouter à la Collection",
@@ -571,23 +569,22 @@
             servicesData.forEach(srv => {
                 const langData = srv[currentLang];
                 grid.innerHTML += `
-                    <div onclick="openServiceModal(${srv.id})" class="cursor-pointer bg-white p-8 md:p-10 shadow-xl hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(5,16,30,0.08)] active:scale-95 transition-all duration-500 border border-gray-100 group flex flex-col justify-between rounded-2xl relative overflow-hidden">
+                    <div onclick="openServiceModal(${srv.id})" class="cursor-pointer bg-white p-8 md:p-10 shadow-xl hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(5,16,30,0.08)] active:scale-[0.98] transition-all duration-500 border border-gray-100 group flex flex-col justify-between rounded-2xl relative overflow-hidden h-full">
                         <div class="absolute inset-0 bg-gradient-to-br from-gold/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
-                        <div class="relative z-10">
+                        <div class="relative z-10 flex-1">
                             <svg class="w-12 h-12 text-gold mb-8 md:group-hover:scale-110 md:group-hover:rotate-3 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2" d="${srv.icon}"></path></svg>
                             <h3 class="text-2xl md:text-3xl font-serif text-navy mb-4 leading-snug">${langData.title}</h3>
                             <p class="text-gray-500 mb-8 text-sm leading-relaxed">${langData.short}</p>
                         </div>
-                        <div class="text-gold font-bold uppercase tracking-widest text-[10px] md:group-hover:text-navy transition-colors text-left flex items-center gap-1 relative z-10">${i18n[currentLang].srv_btn}</div>
+                        <div class="mt-auto text-gold font-bold uppercase tracking-widest text-[10px] md:group-hover:text-navy transition-colors text-left flex items-center gap-1 relative z-10">${i18n[currentLang].srv_btn}</div>
                     </div>`;
                 select.innerHTML += `<option value="${srv.id}">${langData.title}</option>`;
             });
         }
 
-        // GENERATE SINGLE PRODUCT CARD HTML
         function generateProductHTML(item) {
             return `
-                <div class="group bg-white p-6 md:p-8 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgba(207,168,50,0.08)] md:hover:-translate-y-1 transition-all duration-500 flex flex-col justify-between h-full">
+                <div class="group bg-white p-6 md:p-8 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] md:hover:shadow-[0_20px_40px_rgba(207,168,50,0.08)] md:hover:-translate-y-1 transition-all duration-500 flex flex-col justify-between h-full">
                     <div>
                         <div class="overflow-hidden mb-6 bg-cream flex items-center justify-center h-56 rounded-2xl border border-gray-100 p-4">
                             <img src="${item.img}" class="h-full w-full object-cover md:group-hover:scale-105 transition-transform duration-700 mix-blend-multiply rounded-xl" alt="${item.name}">
@@ -598,7 +595,7 @@
                     </div>
                     <div class="mt-auto pt-4 flex flex-col">
                         <span class="font-bold text-navy text-2xl mb-4">$${item.price}</span>
-                        <button onclick="addToCart(${item.id})" class="w-full bg-navy text-white text-xs uppercase tracking-widest py-3.5 rounded-xl hover:bg-gold hover:text-navy active:scale-95 transition-all duration-300 font-bold shadow-md min-h-[48px]">${i18n[currentLang].shop_add}</button>
+                        <button onclick="addToCart(${item.id})" class="w-full bg-navy text-white text-xs uppercase tracking-widest py-4 rounded-xl md:hover:bg-gold md:hover:text-navy active:scale-[0.98] transition-all duration-300 font-bold shadow-md min-h-[48px]">${i18n[currentLang].shop_add}</button>
                     </div>
                 </div>`;
         }
@@ -610,17 +607,16 @@
             boutiqueCategories.forEach((cat, index) => {
                 const items = boutiqueData.filter(i => i.cat === cat.id);
                 const itemsHTML = items.map(generateProductHTML).join('');
-                // First category open by default on mobile
                 const isHidden = index === 0 ? '' : 'hidden';
                 const rotate = index === 0 ? 'rotate-180' : '';
                 
                 acc.innerHTML += `
                     <div class="border border-gray-200 rounded-2xl bg-white overflow-hidden shadow-sm">
                         <button onclick="toggleAccordion('cat-items-${cat.id}', 'cat-arrow-${cat.id}')" class="w-full flex justify-between items-center p-6 bg-cream active:bg-gray-50 transition-colors min-h-[60px]">
-                            <span class="font-serif text-navy text-lg font-bold">${cat.name[currentLang]}</span>
-                            <svg id="cat-arrow-${cat.id}" class="w-5 h-5 text-gold transform ${rotate} transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            <span class="font-serif text-navy text-lg font-bold text-left">${cat.name[currentLang]}</span>
+                            <svg id="cat-arrow-${cat.id}" class="w-5 h-5 text-gold transform ${rotate} transition-transform duration-300 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                         </button>
-                        <div id="cat-items-${cat.id}" class="${isHidden} p-4 space-y-6 bg-white/50">
+                        <div id="cat-items-${cat.id}" class="${isHidden} p-4 space-y-6 bg-gray-50/50">
                             ${itemsHTML}
                         </div>
                     </div>
@@ -692,14 +688,13 @@
             setTimeout(() => {
                 elTxt.innerText = reviewData[rIdx][currentLang];
                 document.getElementById('review-author').innerText = reviewData[rIdx].author;
-                document.getElementById('review-loc').innerHTML = `<span class="text-green-500 mr-1 font-bold">✓</span> Verified Patient - ${reviewData[rIdx].loc}`;
+                document.getElementById('review-loc').innerHTML = `<span class="text-green-500 mr-1 font-bold">✓</span> ${reviewData[rIdx].loc}`;
                 elTxt.style.opacity = 1;
                 meta.style.opacity = 1;
             }, 400);
         }
 
         function changeReview(dir) {
-            // Seamless rotation logic with overflow protection
             rIdx = (rIdx + dir + reviewData.length) % reviewData.length;
             renderReview();
         }
@@ -721,7 +716,6 @@
         function changeLang(lang) {
             currentLang = lang;
             document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-            // Set active class on all buttons of the selected lang
             document.querySelectorAll(`.lang-btn`).forEach(btn => {
                 if(btn.innerText.toLowerCase() === lang.toLowerCase()) btn.classList.add('active');
             });
