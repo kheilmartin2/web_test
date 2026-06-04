@@ -2,9 +2,13 @@
 <html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>DSD Clinic & Boutique | The Pinnacle of Digital Dentistry</title>
+    
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
     
     <script>
@@ -39,31 +43,42 @@
             }
         }
     </script>
+    
     <style>
         body { font-family: 'Inter', sans-serif; background-color: #fbfbfa; overflow-x: hidden; }
         h1, h2, h3, h4, .font-serif { font-family: 'Playfair Display', serif; }
         
+        /* Language Active State */
         .lang-btn.active { color: #cfa832; border-bottom: 2px solid #cfa832; text-shadow: 0 0 10px rgba(207,168,50,0.3); }
 
+        /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: #05101e; }
         ::-webkit-scrollbar-thumb { background: #cfa832; border-radius: 3px; }
 
-        .slider-container { --pos: 50%; position: relative; width: 100%; height: 100%; cursor: ew-resize; }
+        /* Before/After Slider */
+        .slider-container { --pos: 50%; position: relative; width: 100%; height: 100%; cursor: ew-resize; touch-action: pan-y; }
         .image-before { clip-path: polygon(0 0, var(--pos) 0, var(--pos) 100%, 0 100%); }
         .slider-line { left: var(--pos); transform: translateX(-50%); }
-        input[type=range]::-webkit-slider-thumb { appearance: none; width: 40px; height: 40px; background: transparent; cursor: ew-resize; }
+        input[type=range]::-webkit-slider-thumb { appearance: none; width: 48px; height: 48px; background: transparent; cursor: ew-resize; }
+        
+        /* Hamburger Morph */
+        .hamburger span { transition: all 0.4s ease-in-out; }
+        .hamburger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+        .hamburger.open span:nth-child(2) { opacity: 0; transform: translateX(10px); }
+        .hamburger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
-        .fade-transition { transition: opacity 0.4s ease-in-out; }
+        .fade-transition { transition: opacity 0.5s ease-in-out; }
     </style>
 </head>
 <body class="text-gray-800 antialiased selection:bg-gold selection:text-navy">
 
-    <header class="fixed w-full top-0 z-40 backdrop-blur-lg bg-navy/85 border-b border-white/5 transition-all duration-500">
+    <header class="fixed w-full top-0 z-50 backdrop-blur-lg bg-navy/85 border-b border-white/5 transition-all duration-500">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
-                <a href="#" class="flex items-center gap-3 group hover:scale-[1.015] transition-transform duration-500">
-                    <svg class="w-8 h-8 text-gold group-hover:rotate-180 transition-transform duration-700" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                
+                <a href="#" class="flex items-center gap-3 group z-50 relative">
+                    <svg class="w-8 h-8 text-gold md:group-hover:rotate-180 transition-transform duration-700" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M50 5L90 30V70L50 95L10 70V30L50 5Z" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
                         <path d="M50 5V95M10 30L90 70M10 70L90 30" stroke="currentColor" stroke-width="1.5" opacity="0.6"/>
                         <circle cx="50" cy="50" r="12" fill="currentColor"/>
@@ -75,34 +90,61 @@
                 </a>
 
                 <nav class="hidden lg:flex space-x-6 text-xs font-semibold text-gray-300 uppercase tracking-widest">
-                    <a href="#services" class="hover:text-gold hover:scale-[1.015] transition-all duration-500" data-i18n="nav_services">Services</a>
-                    <a href="#heritage" class="hover:text-gold hover:scale-[1.015] transition-all duration-500" data-i18n="nav_heritage">Our Heritage</a>
-                    <a href="#boutique" class="hover:text-gold hover:scale-[1.015] transition-all duration-500" data-i18n="nav_boutique">Boutique</a>
-                    <a href="#gallery" class="hover:text-gold hover:scale-[1.015] transition-all duration-500" data-i18n="nav_gallery">Gallery</a>
-                    <a href="#reviews" class="hover:text-gold hover:scale-[1.015] transition-all duration-500" data-i18n="nav_reviews">Reviews</a>
-                    <a href="#contact" class="hover:text-gold hover:scale-[1.015] transition-all duration-500" data-i18n="nav_contact">Contact</a>
+                    <a href="#services" class="hover:text-gold md:hover:scale-[1.015] transition-all duration-300" data-i18n="nav_services">Services</a>
+                    <a href="#heritage" class="hover:text-gold md:hover:scale-[1.015] transition-all duration-300" data-i18n="nav_heritage">Our Heritage</a>
+                    <a href="#boutique" class="hover:text-gold md:hover:scale-[1.015] transition-all duration-300" data-i18n="nav_boutique">Boutique</a>
+                    <a href="#gallery" class="hover:text-gold md:hover:scale-[1.015] transition-all duration-300" data-i18n="nav_gallery">Gallery</a>
+                    <a href="#reviews" class="hover:text-gold md:hover:scale-[1.015] transition-all duration-300" data-i18n="nav_reviews">Reviews</a>
+                    <a href="#contact" class="hover:text-gold md:hover:scale-[1.015] transition-all duration-300" data-i18n="nav_contact">Contact</a>
                 </nav>
 
-                <div class="flex items-center space-x-6">
-                    <div class="flex space-x-3 text-xs font-bold text-gray-400">
-                        <button onclick="changeLang('en')" class="lang-btn active hover:text-gold transition-colors duration-300">EN</button><span>|</span>
-                        <button onclick="changeLang('es')" class="lang-btn hover:text-gold transition-colors duration-300">ES</button><span>|</span>
-                        <button onclick="changeLang('fr')" class="lang-btn hover:text-gold transition-colors duration-300">FR</button>
+                <div class="flex items-center space-x-2 md:space-x-6 relative z-50">
+                    <div class="hidden sm:flex space-x-3 text-xs font-bold text-gray-400 mr-2">
+                        <button onclick="changeLang('en')" class="lang-btn active hover:text-gold transition-colors duration-300 min-h-[48px] px-1">EN</button>
+                        <span class="flex items-center">|</span>
+                        <button onclick="changeLang('es')" class="lang-btn hover:text-gold transition-colors duration-300 min-h-[48px] px-1">ES</button>
+                        <span class="flex items-center">|</span>
+                        <button onclick="changeLang('fr')" class="lang-btn hover:text-gold transition-colors duration-300 min-h-[48px] px-1">FR</button>
                     </div>
-                    <button onclick="toggleCart()" class="relative text-white hover:text-gold transition-colors duration-500 hover:scale-[1.015]">
+                    
+                    <button onclick="toggleCart()" class="relative text-white hover:text-gold transition-colors duration-300 w-12 h-12 flex items-center justify-center">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
-                        <span id="cart-badge" class="absolute -top-2 -right-2 bg-gold text-navy text-[10px] font-bold px-1.5 py-0.5 rounded-full shadow-lg border border-navy">0</span>
+                        <span id="cart-badge" class="absolute top-2 right-1 bg-gold text-navy text-[10px] font-bold px-1.5 py-0.5 rounded-full shadow-lg border border-navy">0</span>
                     </button>
-                    <a href="#contact" class="hidden md:inline-flex bg-gold text-navy font-bold text-xs uppercase tracking-widest px-6 py-2.5 rounded-full hover:bg-white hover:scale-[1.02] transition-all duration-500 animate-pulse-glow" data-i18n="nav_book">Book VIP Suite</a>
+                    
+                    <a href="#contact" class="hidden lg:inline-flex bg-gold text-navy font-bold text-xs uppercase tracking-widest px-6 py-3 rounded-full hover:bg-white md:hover:scale-[1.02] transition-all duration-500 animate-pulse-glow" data-i18n="nav_book">Book VIP Suite</a>
+                    
+                    <button id="hamburger-btn" onclick="toggleMobileMenu()" class="lg:hidden hamburger w-12 h-12 flex flex-col justify-center items-center gap-1.5 focus:outline-none">
+                        <span class="w-6 h-0.5 bg-white block rounded-full"></span>
+                        <span class="w-6 h-0.5 bg-white block rounded-full"></span>
+                        <span class="w-6 h-0.5 bg-white block rounded-full"></span>
+                    </button>
                 </div>
             </div>
         </div>
     </header>
 
+    <div id="mobile-menu" class="fixed inset-0 bg-navy/95 backdrop-blur-xl z-40 transform -translate-y-full transition-transform duration-500 ease-in-out flex flex-col justify-center items-center p-8">
+        <nav class="flex flex-col space-y-8 text-center text-2xl font-serif text-white tracking-wider mb-12">
+            <a href="#services" onclick="toggleMobileMenu()" class="active:scale-95 transition-transform" data-i18n="nav_services">Services</a>
+            <a href="#heritage" onclick="toggleMobileMenu()" class="active:scale-95 transition-transform" data-i18n="nav_heritage">Our Heritage</a>
+            <a href="#boutique" onclick="toggleMobileMenu()" class="active:scale-95 transition-transform" data-i18n="nav_boutique">Boutique</a>
+            <a href="#gallery" onclick="toggleMobileMenu()" class="active:scale-95 transition-transform" data-i18n="nav_gallery">Gallery</a>
+            <a href="#reviews" onclick="toggleMobileMenu()" class="active:scale-95 transition-transform" data-i18n="nav_reviews">Reviews</a>
+            <a href="#contact" onclick="toggleMobileMenu()" class="active:scale-95 transition-transform" data-i18n="nav_contact">Contact</a>
+        </nav>
+        <div class="flex space-x-8 text-base font-bold text-gray-400 mb-10">
+            <button onclick="changeLang('en'); toggleMobileMenu();" class="lang-btn active">EN</button>
+            <button onclick="changeLang('es'); toggleMobileMenu();" class="lang-btn">ES</button>
+            <button onclick="changeLang('fr'); toggleMobileMenu();" class="lang-btn">FR</button>
+        </div>
+        <a href="#contact" onclick="toggleMobileMenu()" class="w-full text-center bg-gold text-navy font-bold text-sm uppercase tracking-widest px-8 py-4 rounded-full active:scale-95 transition-transform shadow-lg" data-i18n="nav_book">Book VIP Suite</a>
+    </div>
+
     <div id="cart-drawer" class="fixed inset-y-0 right-0 z-50 w-full md:w-[420px] bg-cream shadow-2xl transform translate-x-full transition-transform duration-500 ease-in-out flex flex-col border-l border-gray-200">
-        <div class="p-6 bg-navy text-white flex justify-between items-center">
+        <div class="p-6 bg-navy text-white flex justify-between items-center h-20">
             <h3 class="font-serif text-xl text-gold" data-i18n="cart_title">Your Collection</h3>
-            <button onclick="toggleCart()" class="text-gray-400 hover:text-white text-3xl transition-colors">×</button>
+            <button onclick="toggleCart()" class="w-12 h-12 flex items-center justify-end text-gray-400 active:scale-95 transition-transform text-3xl">×</button>
         </div>
         <div id="cart-items" class="flex-1 overflow-y-auto p-6 space-y-4">
             <p class="text-gray-500 text-center mt-10 text-sm font-medium" data-i18n="cart_empty">Your cart is empty.</p>
@@ -112,118 +154,123 @@
                 <span data-i18n="cart_total">Total:</span>
                 <span id="cart-total">$0</span>
             </div>
-            <button onclick="checkout()" class="w-full bg-gold text-navy font-bold uppercase tracking-widest py-4 rounded-xl hover:bg-navy hover:text-white hover:scale-[1.015] transition-all duration-500 shadow-md" data-i18n="cart_checkout">Proceed to Checkout</button>
+            <button onclick="checkout()" class="w-full bg-gold text-navy font-bold uppercase tracking-widest py-4 rounded-xl md:hover:bg-navy md:hover:text-white md:hover:scale-[1.015] active:scale-95 transition-all duration-300 shadow-md" data-i18n="cart_checkout">Proceed to Checkout</button>
         </div>
     </div>
     <div id="cart-overlay" onclick="toggleCart()" class="fixed inset-0 bg-navy/60 backdrop-blur-sm z-40 hidden opacity-0 transition-opacity duration-500"></div>
 
     <section class="relative h-screen flex items-center justify-center bg-navy overflow-hidden">
         <div class="absolute inset-0 z-0">
-            <img src="https://images.unsplash.com/photo-1600170311833-c2cf5280ce49?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" alt="Clinic Ambience" class="w-full h-full object-cover opacity-20 mix-blend-luminosity">
+            <video playsinline autoplay muted loop poster="https://images.unsplash.com/photo-1600170311833-c2cf5280ce49?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" class="w-full h-full object-cover opacity-20 mix-blend-luminosity">
+                </video>
             <div class="absolute inset-0 bg-gradient-to-b from-navy/90 via-navy/50 to-navy"></div>
         </div>
-        <div class="relative z-10 text-center max-w-4xl mx-auto px-4 mt-20">
-            <h1 class="text-5xl md:text-7xl font-serif text-white mb-6 leading-tight drop-shadow-2xl" data-i18n="hero_title">The Future of Your Smile, <br><span class="text-gold italic">Engineered in Digital 3D.</span></h1>
-            <p class="text-lg text-gray-300 mb-10 font-light max-w-2xl mx-auto leading-relaxed" data-i18n="hero_subtitle">The Ritz-Carlton of dentistry. Uncompromising aesthetics and pain-free precision for North America's most demanding clientele.</p>
+        <div class="relative z-10 text-center w-full max-w-5xl mx-auto px-4 mt-10 md:mt-20">
+            <h1 class="text-4xl sm:text-5xl md:text-7xl font-serif text-white mb-6 leading-tight drop-shadow-2xl px-2" data-i18n="hero_title">The Future of Your Smile, <br><span class="text-gold italic">Engineered in Digital 3D.</span></h1>
+            <p class="text-base md:text-lg text-gray-300 mb-10 font-light max-w-2xl mx-auto leading-relaxed px-4" data-i18n="hero_subtitle">The Ritz-Carlton of dentistry. Uncompromising aesthetics and pain-free precision for North America's most demanding clientele.</p>
         </div>
-        <div class="absolute bottom-0 w-full bg-white/5 backdrop-blur-md border-t border-white/10 py-8 z-20">
-            <div class="max-w-7xl mx-auto px-4 grid grid-cols-3 gap-4 text-center divide-x divide-white/10">
-                <div>
-                    <div class="text-2xl md:text-4xl font-serif text-gold mb-1"><span class="counter" data-target="15000">0</span>+</div>
+        
+        <div class="absolute bottom-0 w-full bg-white/5 backdrop-blur-md border-t border-white/10 py-6 md:py-8 z-20">
+            <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-around items-center space-y-4 md:space-y-0 md:divide-x divide-white/10 text-center">
+                <div class="w-full">
+                    <div class="text-3xl md:text-4xl font-serif text-gold mb-1"><span class="counter" data-target="15000">0</span>+</div>
                     <div class="text-[10px] md:text-xs text-gray-400 uppercase tracking-widest font-semibold" data-i18n="stat_1">Perfect Smiles</div>
                 </div>
-                <div>
-                    <div class="text-2xl md:text-4xl font-serif text-gold mb-1"><span class="counter" data-target="25">0</span>+</div>
+                <div class="w-full pt-4 md:pt-0 border-t border-white/10 md:border-t-0">
+                    <div class="text-3xl md:text-4xl font-serif text-gold mb-1"><span class="counter" data-target="25">0</span>+</div>
                     <div class="text-[10px] md:text-xs text-gray-400 uppercase tracking-widest font-semibold" data-i18n="stat_2">Years Mastery</div>
                 </div>
-                <div>
-                    <div class="text-2xl md:text-4xl font-serif text-gold mb-1">0%</div>
+                <div class="w-full pt-4 md:pt-0 border-t border-white/10 md:border-t-0">
+                    <div class="text-3xl md:text-4xl font-serif text-gold mb-1">0%</div>
                     <div class="text-[10px] md:text-xs text-gray-400 uppercase tracking-widest font-semibold" data-i18n="stat_3">Pain Guarantee</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="services" class="py-24 bg-cream relative">
+    <section id="services" class="py-20 md:py-28 bg-cream relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-serif text-navy mb-4" data-i18n="srv_title">Executive Dental Architecture</h2>
+            <div class="text-center mb-12 md:mb-20">
+                <h2 class="text-4xl md:text-5xl font-serif text-navy mb-5" data-i18n="srv_title">Executive Dental Architecture</h2>
                 <div class="w-16 h-1 bg-gold mx-auto"></div>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="services-grid">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8" id="services-grid">
                 </div>
         </div>
     </section>
 
     <div id="service-modal" class="fixed inset-0 z-[60] bg-navy/95 backdrop-blur-md hidden items-center justify-center p-4 opacity-0 transition-opacity duration-500">
-        <div class="bg-white max-w-3xl w-full max-h-[90vh] overflow-y-auto relative transform scale-95 transition-transform duration-500 shadow-2xl rounded-2xl">
-            <button onclick="closeModal('service-modal')" class="absolute top-6 right-6 text-gray-400 hover:text-navy text-4xl leading-none z-10 transition-colors">×</button>
-            <div class="p-8 md:p-12">
-                <span class="text-gold text-xs font-bold uppercase tracking-widest mb-2 block" data-i18n="mod_badge">Procedure Detail</span>
-                <h3 class="text-3xl md:text-4xl font-serif text-navy mb-6" id="mod-title">Title</h3>
-                <p class="text-gray-600 mb-8 leading-relaxed text-lg" id="mod-desc">Description</p>
+        <div class="bg-white w-full max-w-3xl max-h-[90vh] overflow-y-auto relative transform scale-95 transition-transform duration-500 shadow-2xl rounded-3xl">
+            <button onclick="closeModal('service-modal')" class="absolute top-4 right-4 w-12 h-12 flex items-center justify-center text-gray-400 hover:text-navy active:scale-90 text-4xl leading-none z-10 transition-all">×</button>
+            <div class="p-6 md:p-14">
+                <span class="text-gold text-[10px] font-bold uppercase tracking-widest mb-3 block" data-i18n="mod_badge">Procedure Detail</span>
+                <h3 class="text-3xl md:text-4xl font-serif text-navy mb-6 leading-snug" id="mod-title">Title</h3>
+                <p class="text-gray-600 mb-8 leading-relaxed text-base md:text-lg" id="mod-desc">Description</p>
                 
-                <div class="bg-cream p-8 border border-gray-100 mb-8 shadow-sm rounded-xl">
+                <div class="bg-cream p-6 md:p-8 border border-gray-100 mb-8 shadow-sm rounded-2xl">
                     <h4 class="font-serif text-xl text-navy mb-4 border-b border-gray-200 pb-3" data-i18n="mod_journey">The Patient Journey</h4>
-                    <ol class="list-decimal list-inside text-gray-600 space-y-3 text-sm font-medium" id="mod-journey"></ol>
+                    <ol class="list-decimal list-inside text-gray-600 space-y-3 text-sm md:text-base font-medium" id="mod-journey"></ol>
                 </div>
 
-                <div class="grid grid-cols-2 gap-4 mb-10">
-                    <div class="p-5 bg-navy text-white text-center rounded-xl">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+                    <div class="p-5 bg-navy text-white text-center rounded-2xl shadow-inner">
                         <span class="block text-gold text-[10px] uppercase tracking-widest mb-2" data-i18n="mod_time_lbl">Time Required</span>
                         <span class="font-bold text-sm md:text-base" id="mod-time">Time</span>
                     </div>
-                    <div class="p-5 bg-navy text-white text-center border-l border-white/10 rounded-xl">
+                    <div class="p-5 bg-navy text-white text-center rounded-2xl shadow-inner sm:border-l border-white/10">
                         <span class="block text-gold text-[10px] uppercase tracking-widest mb-2" data-i18n="mod_price_lbl">Est. Investment</span>
                         <span class="font-bold text-sm md:text-base" id="mod-price">Price</span>
                     </div>
                 </div>
-                <button id="book-procedure-btn" class="block w-full text-center bg-gold text-navy font-bold uppercase tracking-widest py-5 rounded-xl hover:bg-navy hover:text-white hover:scale-[1.015] transition-all duration-500 shadow-lg" data-i18n="mod_book">Book This Procedure</button>
+                <button id="book-procedure-btn" class="w-full text-center bg-gold text-navy font-bold uppercase tracking-widest py-4 md:py-5 rounded-xl md:hover:bg-navy md:hover:text-white md:hover:scale-[1.015] active:scale-95 transition-all duration-300 shadow-[0_10px_20px_rgba(207,168,50,0.2)]" data-i18n="mod_book">Book This Procedure</button>
             </div>
         </div>
     </div>
 
-    <section id="heritage" class="py-24 bg-white border-t border-gray-100">
+    <section id="heritage" class="py-20 md:py-28 bg-white border-t border-gray-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                <div>
-                    <span class="text-gold text-xs font-bold uppercase tracking-widest mb-4 block" data-i18n="her_badge">Our Heritage</span>
+            <div class="flex flex-col-reverse lg:grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                <div class="w-full text-center lg:text-left mt-8 lg:mt-0">
+                    <span class="text-gold text-[10px] md:text-xs font-bold uppercase tracking-widest mb-4 block" data-i18n="her_badge">Our Heritage</span>
                     <h2 class="text-4xl md:text-5xl font-serif text-navy mb-6 leading-tight" data-i18n="her_title">A Legacy of Precision & Artistry.</h2>
-                    <p class="text-gray-600 text-lg mb-6 leading-relaxed font-light" data-i18n="her_p1">Founded by visionary specialists in Oaxaca, our clinic has evolved into a global center for digital dentistry, strictly dedicated to high-end, painless procedures for the North American elite.</p>
-                    <p class="text-gray-600 text-lg mb-10 leading-relaxed font-light" data-i18n="her_p2">Combining 3D CAD/CAM technology with Swiss engineering and a Ritz-Carlton approach to patient comfort.</p>
-                    <button onclick="openModal('heritage-modal')" class="inline-flex items-center gap-2 text-navy hover:text-gold font-bold uppercase tracking-widest text-xs transition-colors duration-300 group">
+                    <p class="text-gray-600 text-base md:text-lg mb-6 leading-relaxed font-light" data-i18n="her_p1">Founded by visionary specialists in Oaxaca, our clinic has evolved into a global center for digital dentistry, strictly dedicated to high-end, painless procedures for the North American elite.</p>
+                    <p class="text-gray-600 text-base md:text-lg mb-10 leading-relaxed font-light" data-i18n="her_p2">Combining 3D CAD/CAM technology with Swiss engineering and a Ritz-Carlton approach to patient comfort.</p>
+                    <button onclick="openModal('heritage-modal')" class="inline-flex items-center justify-center lg:justify-start gap-2 text-navy hover:text-gold active:scale-95 font-bold uppercase tracking-widest text-xs transition-all duration-300 group h-12 px-4">
                         <span data-i18n="her_btn">Read Full History</span>
-                        <span class="group-hover:translate-x-1 transition-transform">→</span>
+                        <span class="md:group-hover:translate-x-1 transition-transform">→</span>
                     </button>
                 </div>
-                <div class="relative h-[500px] rounded-2xl overflow-hidden shadow-[0_20px_40px_rgba(5,16,30,0.1)] group cursor-pointer hover:scale-[1.015] transition-all duration-500" onclick="openModal('heritage-modal')">
-                    <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Clinic Heritage" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000">
-                    <div class="absolute inset-0 bg-navy/10 group-hover:bg-transparent transition-colors duration-1000"></div>
+                <div class="relative w-full h-[350px] md:h-[500px] rounded-3xl overflow-hidden shadow-[0_20px_40px_rgba(5,16,30,0.1)] group cursor-pointer md:hover:scale-[1.015] active:scale-[0.98] transition-all duration-500" onclick="openModal('heritage-modal')">
+                    <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Clinic Heritage" class="w-full h-full object-cover md:group-hover:scale-105 transition-transform duration-1000">
+                    <div class="absolute inset-0 bg-navy/10 md:group-hover:bg-transparent transition-colors duration-1000"></div>
                 </div>
             </div>
         </div>
     </section>
 
     <div id="heritage-modal" class="fixed inset-0 z-[60] bg-navy/95 backdrop-blur-md hidden items-center justify-center p-4 opacity-0 transition-opacity duration-500">
-        <div class="bg-cream max-w-3xl w-full max-h-[90vh] overflow-y-auto relative transform scale-95 transition-transform duration-500 shadow-2xl rounded-2xl">
-            <button onclick="closeModal('heritage-modal')" class="absolute top-6 right-6 text-gray-400 hover:text-navy text-4xl leading-none z-10 transition-colors">×</button>
-            <div class="p-8 md:p-14">
+        <div class="bg-cream w-full max-w-3xl max-h-[90vh] overflow-y-auto relative transform scale-95 transition-transform duration-500 shadow-2xl rounded-3xl">
+            <button onclick="closeModal('heritage-modal')" class="absolute top-4 right-4 w-12 h-12 flex items-center justify-center text-gray-400 hover:text-navy active:scale-90 text-4xl leading-none z-10 transition-all">×</button>
+            <div class="p-6 md:p-14">
                 <h3 class="text-3xl md:text-4xl font-serif text-navy mb-12 text-center" data-i18n="her_mod_title">Evolution of Excellence</h3>
-                <div class="space-y-10 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-gold before:via-gold/50 before:to-transparent" id="timeline-container">
+                <div class="space-y-10 relative before:absolute before:inset-0 before:ml-[1.15rem] md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-gold before:via-gold/50 before:to-transparent" id="timeline-container">
                     </div>
             </div>
         </div>
     </div>
 
-    <section id="boutique" class="py-24 bg-cream border-t border-gray-100">
+    <section id="boutique" class="py-20 md:py-28 bg-cream border-t border-gray-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
+            <div class="text-center mb-12 md:mb-20">
                 <h2 class="text-4xl md:text-5xl font-serif text-navy mb-4" data-i18n="shop_title">DSD Boutique</h2>
                 <div class="w-16 h-1 bg-gold mx-auto mb-6"></div>
-                <p class="text-gray-500 uppercase tracking-widest text-xs font-bold" data-i18n="shop_sub">Premium Oral Curations</p>
+                <p class="text-gray-500 uppercase tracking-widest text-[10px] md:text-xs font-bold" data-i18n="shop_sub">Premium Oral Curations</p>
             </div>
             
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8" id="shop-grid">
+            <div class="md:hidden flex flex-col space-y-4" id="shop-mobile-accordion">
+                </div>
+
+            <div class="hidden md:grid grid-cols-2 lg:grid-cols-4 gap-8" id="shop-desktop-grid">
                 </div>
         </div>
     </section>
@@ -235,98 +282,99 @@
         </div>
     </section>
 
-    <section id="gallery" class="py-24 bg-white">
+    <section id="gallery" class="py-20 md:py-28 bg-white">
         <div class="max-w-6xl mx-auto px-4">
             <div class="text-center mb-12">
                 <h2 class="text-4xl md:text-5xl font-serif text-navy mb-4" data-i18n="gal_title">The Art of Transformation</h2>
-                <p class="text-gray-500 font-medium" data-i18n="gal_sub">Interact to reveal the precision.</p>
+                <p class="text-gray-500 font-medium text-sm md:text-base" data-i18n="gal_sub">Interact to reveal the precision.</p>
             </div>
-            <div class="relative h-[400px] md:h-[600px] max-w-4xl mx-auto shadow-2xl overflow-hidden rounded-2xl border border-gray-100">
+            <div class="relative h-[300px] sm:h-[400px] md:h-[600px] max-w-4xl mx-auto shadow-[0_20px_50px_rgba(5,16,30,0.1)] overflow-hidden rounded-3xl border border-gray-100">
                 <div class="slider-container" id="ba-slider">
                     <img src="https://images.unsplash.com/photo-1590625686001-f11181f08726?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80" class="absolute inset-0 w-full h-full object-cover select-none pointer-events-none" alt="After">
                     <img src="https://images.unsplash.com/photo-1609840114035-3c981b782dfe?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80" class="image-before absolute inset-0 w-full h-full object-cover select-none pointer-events-none filter grayscale contrast-125" alt="Before">
                     <div class="slider-line absolute top-0 bottom-0 w-1 bg-gold pointer-events-none shadow-[0_0_15px_rgba(207,168,50,0.8)] z-10">
-                        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full flex items-center justify-center text-gold shadow-lg border border-gold">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l4-4 4 4m0 6l-4 4-4-4"></path></svg>
+                        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-white rounded-full flex items-center justify-center text-gold shadow-xl border border-gold">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M8 9l4-4 4 4m0 6l-4 4-4-4"></path></svg>
                         </div>
                     </div>
-                    <input type="range" min="0" max="100" value="50" class="absolute inset-0 w-full h-full opacity-0 z-20 cursor-ew-resize" oninput="document.getElementById('ba-slider').style.setProperty('--pos', this.value + '%')">
+                    <input type="range" min="0" max="100" value="50" class="absolute inset-0 w-full h-full opacity-0 z-20 cursor-ew-resize touch-pan-y" oninput="document.getElementById('ba-slider').style.setProperty('--pos', this.value + '%')">
                 </div>
             </div>
         </div>
     </section>
     
-    <section id="reviews" class="py-24 bg-cream">
+    <section id="reviews" class="py-20 md:py-28 bg-cream">
         <div class="max-w-4xl mx-auto px-4 text-center relative">
-            <svg class="absolute top-0 left-4 md:left-10 w-24 h-24 text-gray-200 -z-10" fill="currentColor" viewBox="0 0 32 32"><path d="M10 8c-4.4 0-8 3.6-8 8s3.6 8 8 8c1.5 0 2.9-.4 4.1-1.1L12.5 26h4.8l2.6-4.6c.1-.5.1-.9.1-1.4 0-4.4-3.6-8-8-8zm14 0c-4.4 0-8 3.6-8 8s3.6 8 8 8c1.5 0 2.9-.4 4.1-1.1L26.5 26h4.8l2.6-4.6c.1-.5.1-.9.1-1.4 0-4.4-3.6-8-8-8z"/></svg>
+            <svg class="absolute top-0 left-2 md:left-10 w-16 h-16 md:w-24 md:h-24 text-gray-200 -z-10 opacity-60" fill="currentColor" viewBox="0 0 32 32"><path d="M10 8c-4.4 0-8 3.6-8 8s3.6 8 8 8c1.5 0 2.9-.4 4.1-1.1L12.5 26h4.8l2.6-4.6c.1-.5.1-.9.1-1.4 0-4.4-3.6-8-8-8zm14 0c-4.4 0-8 3.6-8 8s3.6 8 8 8c1.5 0 2.9-.4 4.1-1.1L26.5 26h4.8l2.6-4.6c.1-.5.1-.9.1-1.4 0-4.4-3.6-8-8-8z"/></svg>
+            
             <div class="flex justify-center text-gold mb-8 space-x-1">
-                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                <svg class="w-5 h-5 md:w-6 md:h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                <svg class="w-5 h-5 md:w-6 md:h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                <svg class="w-5 h-5 md:w-6 md:h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                <svg class="w-5 h-5 md:w-6 md:h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                <svg class="w-5 h-5 md:w-6 md:h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
             </div>
             
-            <div class="min-h-[140px] flex items-center justify-center mb-8">
+            <div class="min-h-[160px] flex items-center justify-center mb-8 px-2">
                 <p id="review-text" class="text-xl md:text-3xl font-serif text-navy fade-transition leading-relaxed italic">...</p>
             </div>
             
             <div id="review-meta" class="mb-10 fade-transition">
-                <strong id="review-author" class="block text-navy font-bold text-lg mb-1">...</strong>
-                <span id="review-loc" class="text-sm text-gray-500 font-medium">...</span>
+                <strong id="review-author" class="block text-navy font-bold text-base md:text-lg mb-1">...</strong>
+                <span id="review-loc" class="text-xs md:text-sm text-gray-500 font-medium">...</span>
             </div>
             
-            <div class="flex justify-center gap-4">
-                <button onclick="changeReview(-1)" class="w-12 h-12 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gold hover:text-white hover:border-gold hover:scale-[1.05] transition-all duration-300 shadow-sm">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+            <div class="flex justify-center gap-6">
+                <button onclick="changeReview(-1)" class="w-14 h-14 rounded-full border border-gray-300 flex items-center justify-center text-gray-500 hover:bg-gold hover:text-white hover:border-gold md:hover:scale-[1.05] active:scale-95 transition-all duration-300 shadow-sm focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
                 </button>
-                <button onclick="changeReview(1)" class="w-12 h-12 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gold hover:text-white hover:border-gold hover:scale-[1.05] transition-all duration-300 shadow-sm">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                <button onclick="changeReview(1)" class="w-14 h-14 rounded-full border border-gray-300 flex items-center justify-center text-gray-500 hover:bg-gold hover:text-white hover:border-gold md:hover:scale-[1.05] active:scale-95 transition-all duration-300 shadow-sm focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                 </button>
             </div>
         </div>
     </section>
 
-    <section id="contact" class="py-24 bg-white border-t border-gray-100">
+    <section id="contact" class="py-20 md:py-28 bg-white border-t border-gray-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div class="flex flex-col lg:grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
                 
-                <div class="bg-navy/95 p-10 md:p-12 rounded-3xl shadow-[0_20px_50px_rgba(5,16,30,0.15)] relative overflow-hidden ring-1 ring-white/10">
-                    <div class="absolute -top-20 -left-20 w-64 h-64 bg-gold/10 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="w-full bg-navy/95 p-8 md:p-12 rounded-[2rem] shadow-[0_20px_50px_rgba(5,16,30,0.15)] relative overflow-hidden ring-1 ring-white/10 order-2 lg:order-1 mt-8 lg:mt-0">
+                    <div class="absolute -top-24 -left-24 w-64 h-64 bg-gold/10 rounded-full blur-3xl pointer-events-none"></div>
                     
                     <h3 class="text-3xl font-serif text-white mb-2 relative z-10" data-i18n="form_title">VIP Consultation</h3>
                     <p class="text-gold mb-8 text-sm font-medium relative z-10" data-i18n="form_sub">Priority booking for international patients.</p>
                     
-                    <form id="contact-form" onsubmit="handleForm(event)" class="space-y-5 relative z-10">
+                    <form id="contact-form" class="space-y-5 relative z-10">
                         <div>
                             <label class="block text-sm font-medium text-gray-200 mb-1.5 ml-1" data-i18n="form_name_lbl">Full Legal Name</label>
-                            <input type="text" required placeholder="John Doe" class="w-full bg-white/5 border border-white/10 text-white rounded-xl py-3.5 px-5 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gold/50 focus:border-gold transition-all duration-300 shadow-inner">
+                            <input type="text" required placeholder="John Doe" class="w-full bg-white/5 border border-white/10 text-white rounded-2xl py-4 px-5 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gold/50 focus:border-gold transition-all duration-300 shadow-inner">
                         </div>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
                             <div>
                                 <label class="block text-sm font-medium text-gray-200 mb-1.5 ml-1" data-i18n="form_email_lbl">Email Address</label>
-                                <input type="email" id="form-email" required placeholder="john@example.com" class="w-full bg-white/5 border border-white/10 text-white rounded-xl py-3.5 px-5 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gold/50 focus:border-gold transition-all duration-300 shadow-inner">
+                                <input type="email" id="form-email" required placeholder="john@example.com" class="w-full bg-white/5 border border-white/10 text-white rounded-2xl py-4 px-5 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gold/50 focus:border-gold transition-all duration-300 shadow-inner">
                                 <p id="email-err" class="text-red-400 text-xs mt-1.5 ml-1 hidden" data-i18n="form_err">Invalid email format.</p>
                             </div>
                             <div>
                                 <label class="block text-sm font-medium text-gray-200 mb-1.5 ml-1" data-i18n="form_phone_lbl">Phone Number</label>
-                                <input type="tel" required placeholder="+1 (555) 000-0000" class="w-full bg-white/5 border border-white/10 text-white rounded-xl py-3.5 px-5 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gold/50 focus:border-gold transition-all duration-300 shadow-inner">
+                                <input type="tel" required placeholder="+1 (555) 000-0000" class="w-full bg-white/5 border border-white/10 text-white rounded-2xl py-4 px-5 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gold/50 focus:border-gold transition-all duration-300 shadow-inner">
                             </div>
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-200 mb-1.5 ml-1" data-i18n="form_sel_lbl">Service of Interest</label>
-                            <select class="w-full bg-[#0a182b] border border-white/10 text-white rounded-xl py-3.5 px-5 focus:outline-none focus:ring-2 focus:ring-gold/50 focus:border-gold transition-all duration-300 shadow-inner appearance-none cursor-pointer" id="form-service-select">
+                            <select class="w-full bg-[#0a182b] border border-white/10 text-white rounded-2xl py-4 px-5 focus:outline-none focus:ring-2 focus:ring-gold/50 focus:border-gold transition-all duration-300 shadow-inner appearance-none cursor-pointer" id="form-service-select">
                                 <option value="" disabled selected data-i18n="form_sel">Select a Service...</option>
                                 </select>
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-200 mb-1.5 ml-1" data-i18n="form_msg_lbl">Special Requirements</label>
-                            <textarea rows="3" placeholder="Tell us about your needs..." class="w-full bg-white/5 border border-white/10 text-white rounded-xl py-3.5 px-5 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gold/50 focus:border-gold transition-all duration-300 resize-none shadow-inner" data-i18n-ph="form_msg_ph"></textarea>
+                            <textarea rows="3" placeholder="Tell us about your needs..." class="w-full bg-white/5 border border-white/10 text-white rounded-2xl py-4 px-5 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gold/50 focus:border-gold transition-all duration-300 resize-none shadow-inner" data-i18n-ph="form_msg_ph"></textarea>
                         </div>
-                        <button type="submit" class="w-full bg-gold text-navy font-bold uppercase tracking-widest py-4 rounded-xl hover:bg-white hover:scale-[1.015] transition-all duration-500 shadow-[0_10px_20px_rgba(207,168,50,0.3)] mt-2" data-i18n="form_btn">Request Private Callback</button>
+                        <button type="submit" class="w-full bg-gold text-navy font-bold uppercase tracking-widest py-4 md:py-5 rounded-2xl md:hover:bg-white md:hover:scale-[1.015] active:scale-95 transition-all duration-500 shadow-[0_10px_20px_rgba(207,168,50,0.3)] mt-4" data-i18n="form_btn">Request Private Callback</button>
                     </form>
 
-                    <div id="form-success" class="absolute inset-0 bg-navy/95 backdrop-blur-sm z-20 hidden flex-col items-center justify-center p-8 text-center opacity-0 transition-opacity duration-500 rounded-3xl">
+                    <div id="form-success" class="absolute inset-0 bg-navy/95 backdrop-blur-sm z-20 hidden flex-col items-center justify-center p-8 text-center opacity-0 transition-opacity duration-500 rounded-[2rem]">
                         <div class="w-20 h-20 bg-green-500/20 rounded-full flex items-center justify-center mb-6">
                             <div class="w-14 h-14 bg-green-500 rounded-full flex items-center justify-center text-white shadow-[0_0_20px_rgba(34,197,94,0.5)]">
                                 <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
@@ -337,25 +385,25 @@
                     </div>
                 </div>
 
-                <div class="flex flex-col space-y-10 justify-between">
+                <div class="w-full flex flex-col space-y-10 justify-between order-1 lg:order-2">
                     <div>
-                        <h3 class="text-3xl font-serif text-navy mb-8" data-i18n="contact_title">International Hub</h3>
+                        <h3 class="text-4xl md:text-5xl font-serif text-navy mb-8" data-i18n="contact_title">International Hub</h3>
                         <ul class="space-y-6 text-gray-600">
-                            <li class="flex items-center gap-5 group">
-                                <div class="w-12 h-12 rounded-full bg-cream border border-gray-100 flex items-center justify-center text-gold text-xl shadow-sm group-hover:scale-110 transition-transform duration-300">📞</div>
-                                <div><strong class="block text-navy font-bold text-sm uppercase tracking-wider" data-i18n="contact_tf">Toll-Free USA/CA</strong><span class="text-lg">+1 (800) 555-0198</span></div>
+                            <li class="flex items-center gap-5 md:group cursor-default">
+                                <div class="w-12 h-12 md:w-14 md:h-14 rounded-full bg-cream border border-gray-100 flex items-center justify-center text-gold text-xl shadow-sm md:group-hover:scale-110 transition-transform duration-300">📞</div>
+                                <div><strong class="block text-navy font-bold text-xs md:text-sm uppercase tracking-wider" data-i18n="contact_tf">Toll-Free USA/CA</strong><span class="text-lg md:text-xl font-medium">+1 (800) 555-0198</span></div>
                             </li>
-                            <li class="flex items-center gap-5 group">
-                                <div class="w-12 h-12 rounded-full bg-cream border border-gray-100 flex items-center justify-center text-gold text-xl shadow-sm group-hover:scale-110 transition-transform duration-300">✉️</div>
-                                <div><strong class="block text-navy font-bold text-sm uppercase tracking-wider" data-i18n="contact_email">Encrypted Concierge Email</strong><span class="text-lg">vip@dsdclinic.com</span></div>
+                            <li class="flex items-center gap-5 md:group cursor-default">
+                                <div class="w-12 h-12 md:w-14 md:h-14 rounded-full bg-cream border border-gray-100 flex items-center justify-center text-gold text-xl shadow-sm md:group-hover:scale-110 transition-transform duration-300">✉️</div>
+                                <div><strong class="block text-navy font-bold text-xs md:text-sm uppercase tracking-wider" data-i18n="contact_email">Encrypted Concierge Email</strong><span class="text-lg md:text-xl font-medium">vip@dsdclinic.com</span></div>
                             </li>
-                            <li class="flex items-center gap-5 group">
-                                <div class="w-12 h-12 rounded-full bg-cream border border-gray-100 flex items-center justify-center text-gold text-xl shadow-sm group-hover:scale-110 transition-transform duration-300">📍</div>
-                                <div><strong class="block text-navy font-bold text-sm uppercase tracking-wider" data-i18n="contact_loc">Premium Location</strong><span class="text-lg">Oaxaca Medical Tower, MX</span></div>
+                            <li class="flex items-center gap-5 md:group cursor-default">
+                                <div class="w-12 h-12 md:w-14 md:h-14 rounded-full bg-cream border border-gray-100 flex items-center justify-center text-gold text-xl shadow-sm md:group-hover:scale-110 transition-transform duration-300">📍</div>
+                                <div><strong class="block text-navy font-bold text-xs md:text-sm uppercase tracking-wider" data-i18n="contact_loc">Premium Location</strong><span class="text-lg md:text-xl font-medium">Oaxaca Medical Tower, MX</span></div>
                             </li>
                         </ul>
                     </div>
-                    <div class="w-full h-72 bg-gray-200 rounded-3xl overflow-hidden border border-gold/30 shadow-[0_10px_30px_rgba(5,16,30,0.1)] relative filter sepia-[0.2] grayscale-[0.5] hover:grayscale-0 transition-all duration-700">
+                    <div class="w-full h-64 md:h-80 bg-gray-200 rounded-3xl overflow-hidden border border-gold/30 shadow-[0_10px_30px_rgba(5,16,30,0.1)] relative filter sepia-[0.2] grayscale-[0.5] md:hover:grayscale-0 transition-all duration-700">
                         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15259.088152538183!2d-96.7328905!3d17.0604652!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85c7223b9d0b5df9%3A0xc3f1737e4fb442f4!2sOaxaca%2C%20Oax.%2C%20Mexico!5e0!3m2!1sen!2scz!4v1700000000000!5m2!1sen!2scz" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                 </div>
@@ -364,20 +412,20 @@
     </section>
 
     <footer class="bg-navy text-white pt-20 pb-10 border-t border-white/5">
-        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
             <div>
                 <div class="flex items-center gap-2 mb-5">
                     <svg class="w-6 h-6 text-gold" viewBox="0 0 100 100" fill="none"><path d="M50 5L90 30V70L50 95L10 70V30L50 5Z" stroke="currentColor" stroke-width="4"/></svg>
                     <span class="font-serif text-lg font-bold tracking-widest uppercase">DSD<span class="text-gold font-light">Clinic</span></span>
                 </div>
-                <p class="text-gray-400 text-sm mb-6 leading-relaxed" data-i18n="foot_motto">Redefining the standards of luxury dentistry for the modern international patient.</p>
+                <p class="text-gray-400 text-sm mb-6 leading-relaxed max-w-xs" data-i18n="foot_motto">Redefining the standards of luxury dentistry for the modern international patient.</p>
                 <div class="flex gap-4">
-                    <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:bg-gold hover:text-navy hover:scale-110 transition-all duration-300"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+                    <a href="#" class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:bg-gold hover:text-navy active:scale-95 md:hover:scale-110 transition-all duration-300"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
                 </div>
             </div>
             <div>
                 <h4 class="font-bold uppercase tracking-widest text-xs mb-5 text-gray-300" data-i18n="foot_links">Quick Links</h4>
-                <ul class="space-y-3 text-sm text-gray-500">
+                <ul class="space-y-4 text-sm text-gray-500">
                     <li><a href="#services" class="hover:text-gold transition">Services</a></li>
                     <li><a href="#heritage" class="hover:text-gold transition">Our Heritage</a></li>
                     <li><a href="#boutique" class="hover:text-gold transition">Boutique</a></li>
@@ -386,14 +434,14 @@
             </div>
             <div>
                 <h4 class="font-bold uppercase tracking-widest text-xs mb-5 text-gray-300" data-i18n="foot_acc">Accreditation</h4>
-                <div class="text-sm text-gray-500 flex items-center gap-3">
+                <div class="text-sm text-gray-400 flex items-center gap-4 bg-white/5 p-4 rounded-2xl border border-white/10">
                     <span class="text-gold text-3xl">🛡️</span> 
-                    <span data-i18n="foot_jci">Joint Commission International (JCI)<br>Certified Facility</span>
+                    <span data-i18n="foot_jci" class="leading-relaxed">Joint Commission International (JCI)<br>Certified Facility</span>
                 </div>
             </div>
         </div>
-        <div class="max-w-7xl mx-auto px-4 border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center text-[10px] text-gray-600 uppercase tracking-widest">
-            <p class="mb-4 md:mb-0" data-i18n="foot_copy">© 2026 DSD Clinic. All rights reserved.</p>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center text-[10px] text-gray-600 uppercase tracking-widest text-center md:text-left gap-4">
+            <p data-i18n="foot_copy">© 2026 DSD Clinic. All rights reserved.</p>
             <div class="flex space-x-6">
                 <a href="#" class="hover:text-gray-300 transition-colors">Privacy Policy</a>
                 <a href="#" class="hover:text-gray-300 transition-colors">Terms of Service</a>
@@ -423,22 +471,28 @@
             { id: 5, icon: 'M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5', en: { title: "Clear Aligner Therapy", short: "Invisalign Elite orthodontic care.", desc: "Discreet structural alignment using top-tier customized aligners monitored remotely via ClinCheck AI.", journey: "<li>Digital Arch Laser Scanning</li><li>ClinCheck AI Tooth Vector Logic</li><li>Direct Door Aligner Dispatch</li>", time: "1 Visit / Remote", price: "$4,500 - $7,000" }, es: { title: "Ortodoncia Invisible", short: "Tratamiento Invisalign Elite IA.", desc: "Alineación estructural discreta mediante dlahs personalizadas con monitoreo remoto vía ClinCheck IA.", journey: "<li>Escaneo Láser de Arcada</li><li>Lógica de Vectores Dentales IA</li><li>Envío Directo de Kits</li>", time: "1 Visita / Remoto", price: "$4,500 - $7,000" }, fr: { title: "Gouttières Invisibles", short: "Alignement Invisalign Elite IA.", desc: "Alignement structurel discret via des gouttières personnalisées suivies à distance par l'IA ClinCheck.", journey: "<li>Scan Laser des Arcades</li><li>Logique de Vecteurs Dentaires IA</li><li>Expédition Directe des Kits</li>", time: "1 Visite / À distance", price: "$4,500 - $7,000" } },
             { id: 6, icon: 'M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z', en: { title: "Microscopic Endodontics", short: "Zeiss magnified micro-surgery.", desc: "Magnified root canal therapy under Zeiss optics maximizing successful interior structural saving over 95%.", journey: "<li>High-Res 3D Target Isolation</li><li>Rubber Dam Complete Shielding</li><li>Laser Chemical Canal Decontamination</li>", time: "2-3 Hours", price: "$900 - $1,600" }, es: { title: "Endodoncia Microscópica", short: "Microcirugía magnificada Zeiss.", desc: "Terapia de conductos radiculares bajo ópticas Zeiss maximizando el salvamento estructural interior sobre el 95%.", journey: "<li>Aislamiento de Objetivo 3D</li><li>Blindaje con Dique de Goma</li><li>Descontaminación Química Láser</li>", time: "2-3 Horas", price: "$900 - $1,600" }, fr: { title: "Endodontie Microscopique", short: "Micro-chirurgie magnifiée Zeiss.", desc: "Traitements de canaux sous optiques Zeiss pour maximiser le sauvetage structurel interne au-delà de 95%.", journey: "<li>Isolation de Cible 3D</li><li>Protection par Digue en Caoutchouc</li><li>Décontamination Chimique Laser</li>", time: "2-3 Heures", price: "$900 - $1,600" } },
             { id: 7, icon: 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z', en: { title: "Laser Periodontics", short: "WaterLase non-contact treatment.", desc: "Advanced laser intervention for gum contouring and tissue stabilization with zero structural incisions.", journey: "<li>Laser Pocket Sterilization</li><li>Tissue Biostimulation Repair</li><li>Micro-Laser Gum Level Contouring</li>", time: "1-2 Hours", price: "$800 - $3,000" }, es: { title: "Periodoncia Láser", short: "Contorneado WaterLase.", desc: "Intervención láser avanzada para remodelación gingival y estabilización de tejidos sin incisiones estructurales.", journey: "<li>Esterilización de Bolsas Láser</li><li>Reparación por Bioestimulación</li><li>Contorneado Gingival con Micro-Láser</li>", time: "1-2 Horas", price: "$800 - $3,000" }, fr: { title: "Parodontie Laser", short: "Remodelage WaterLase.", desc: "Intervention laser avancée pour le remodelage gingival et la stabilisation des tissus sans incisions.", journey: "<li>Stérilisation des Poches au Laser</li><li>Réparation par Biostimulation</li><li>Remodelage Gingival au Micro-Laser</li>", time: "1-2 Heures", price: "$800 - $3,000" } },
-            { id: 8, icon: 'M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z', en: { title: "Executive Sedation", short: "Stress-free complex dental sleep.", desc: "Intravenous sedation managed by certified medical anesthesiologists for full-comfort multi-treatment blocks.", journey: "<li>Anesthesiology Panel Clearance</li><li>Intravenous Continuous Sedation</li><li>Multi-procedure Execution While Asleep</li>", time: "Procedure + 1h Bed Rest", price: "$600 / hour" }, es: { title: "Sedación Ejecutiva", short: "Tratamiento sin estrés en sueño.", desc: "Sedación intravenosa controlada por anestesiólogos certificados para bloques de múltiples tratamientos en confort.", journey: "<li>Aprobación de Panel de Anestesia</li><li>Sedación Intravenosa Continua</li><li>Ejecución de Tratamientos en Sueño</li>", time: "Procedimiento + 1h", price: "$600 / hora" }, fr: { title: "Sédation Exécutive", short: "Soins intensifs sous sommeil.", desc: "Sédation intraveineuse gérée par des anesthésistes certifiés pour des blocs de soins en tout confort.", journey: "<li>Validation du Panel d'Anesthésie</li><li>Sédation Intraveineuse Continue</li><li>Soins Multi-procédures sous Sommeil</li>", time: "Soins + 1h de Repos", price: "$600 / heure" } },
+            { id: 8, icon: 'M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z', en: { title: "Executive Sedation", short: "Stress-free complex dental sleep.", desc: "Intravenous sedation managed by certified medical anesthesiologists for full-comfort multi-treatment blocks.", journey: "<li>Anesthesiology Panel Clearance</li><li>Intravenous Continuous Sedation</li><li>Multi-procedure Execution While Asleep</li>", time: "Procedure + 1h Bed Rest", price: "$600 / hour" }, es: { title: "Sedación Ejecutiva", short: "Tratamiento sin estrés en sueño.", desc: "Sedación intravenosa controlada por anestesiólogos certificados para bloques de múltiples tratamientos en confort.", journey: "<li>Aprobación de Panel de Anestesia</li><li>Sedación Intravenosa Continua</li><li>Ejecución de Tratamientos en Sueño</li>", time: "Procedimiento + 1h", price: "$600 / hora" }, fr: { title: "Sédation Exécutive", short: "Soins intensifs sous sommeil.", desc: "Sédation intraveineuse gérée par des anesthésistes certifiés pour des blocs de soins en tout confort.", journey: "<li>Validation du Panel d'Anesthésie</li><li>Sédation Intraveineuse Continue</li><li>Soins Multi-procédures sous Sommeil</li>", time: "Soins + 1h", price: "$600 / heure" } },
             { id: 9, icon: 'M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z', en: { title: "Holistic Preventive", short: "Swiss GBT protocol maintenance.", desc: "Biofilm hygiene therapy featuring Swiss warm-water erythritol air polishers for comfortable enamel preservation.", journey: "<li>Bacterial Biofilm Staining</li><li>Warm Airflow Erythritol Polish</li><li>Pain-Free Piezon De-scaling</li><li>Hydroxyapatite Enamel Shield</li>", time: "1 Hour", price: "$250 - $400" }, es: { title: "Preventiva Holística", short: "Higiene protocolo suizo GBT.", desc: "Terapia de higiene biológica con pulidores de eritritol y agua tibia para preservación del esmalte sin dolor.", journey: "<li>Tinción de Biofilm Bacteriano</li><li>Pulido Airflow de Eritritol Tibio</li><li>Eliminación de Sarro Piezon</li><li>Escudo de Hidroxiapatita</li>", time: "1 Hora", price: "$250 - $400" }, fr: { title: "Préventive Holistique", short: "Hygiène protocole suisse GBT.", desc: "Thérapie d'hygiène biologique avec aéropolisseurs à l'érythritol et eau tiède pour préserver l'émail.", journey: "<li>Coloration du Biofilm Bactérien</li><li>Polissage Airflow Érythritol Tiède</li><li>Détartrage Piezon sans Douleur</li><li>Bouclier d'Hydroxyapatite</li>", time: "1 Heure", price: "$250 - $400" } }
         ];
 
-        /* --- DATA: BOUTIQUE (10) --- */
+        /* --- DATA: BOUTIQUE CATEGORIES & PRODUCTS (10) --- */
+        const boutiqueCategories = [
+            { id: 'sonic', name: {en: "1. Sonic Technology", es: "1. Tecnología Sónica", fr: "1. Technologie Sonique"} },
+            { id: 'luxury', name: {en: "2. Luxury Formulations", es: "2. Fórmulas de Lujo", fr: "2. Formules de Luxe"} },
+            { id: 'ortho', name: {en: "3. Orthodontic Suite", es: "3. Suite de Ortodoncia", fr: "3. Suite Orthodontique"} }
+        ];
+
         const boutiqueData = [
-            { id: 201, name: "Sonicare DiamondClean Prestige 9900", brand: "Philips", price: 399, img: "https://images.unsplash.com/photo-1559837139-44eb183d2918?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80", desc: {en:"SenseIQ AI posture sensing.",es:"Detección de postura SenseIQ IA.",fr:"Capteur de posture IA SenseIQ."} },
-            { id: 202, name: "Hydrosonic Black Is White", brand: "Curaprox", price: 229, img: "https://images.unsplash.com/photo-1605027628030-9bb6f83535e6?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80", desc: {en:"Matte black charcoal ultrasonic.",es:"Ultrasónico negro mate con carbón.",fr:"Ultrasonique noir mat au charbon."} },
-            { id: 203, name: "Luxury Oral Curation Set", brand: "Selahatin", price: 85, img: "https://images.unsplash.com/photo-1620916297397-a4a5402a3c6c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80", desc: {en:"Organic Swedish whitening paste trio.",es:"Trío de pasta sueca blanqueadora orgánica.",fr:"Trio pâte suédoise blanchissante bio."} },
-            { id: 204, name: "Premium Aligner Care Suite", brand: "Invisalign", price: 120, img: "https://images.unsplash.com/photo-1598463994354-913346b7fc62?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80", desc: {en:"Ultrasonic bath & crystal cleansers.",es:"Baño ultrasónico y limpiadores.",fr:"Bain ultrasonique & cristaux."} },
-            { id: 205, name: "Aquarius Professional Onyx & Gold", brand: "Waterpik", price: 149, img: "https://images.unsplash.com/photo-1549576490-b0b4831ef60a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80", desc: {en:"Pulse modulation limited flosser.",es:"Hilo dental edición limitada.",fr:"Jet dentaire édition limitée."} },
-            { id: 206, name: "Enamel Science Advanced Kit", brand: "Regenerate", price: 95, img: "https://images.unsplash.com/photo-1608248597481-496100c8c836?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80", desc: {en:"NR5 mineral enamel regeneration.",es:"Regeneración mineral del esmalte NR5.",fr:"Régénération minérale de l'émail."} },
-            { id: 207, name: "v34 Colour Corrector Serum Pro", brand: "Hismile", price: 49, img: "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80", desc: {en:"Violet tone optical corrector.",es:"Corrector óptico de tono violeta.",fr:"Correcteur optique de ton violet."} },
-            { id: 208, name: "Seven Flavors Royal Velvet Box", brand: "Marvis", price: 65, img: "https://images.unsplash.com/photo-1527689368864-3a821dbccc34?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80", desc: {en:"Italian toothpaste curation collection.",es:"Colección italiana de pastas de lujo.",fr:"Collection italienne de dentifrices."} },
-            { id: 209, name: "Clean Sonic by Dr. Apa", brand: "Apa Beauty", price: 250, img: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80", desc: {en:"Veneer-safe 40k oscillation polishing.",es:"Pulido seguro 40k oscilaciones.",fr:"Polissage 40k oscillations."} },
-            { id: 210, name: "Organic Luxury Le White", brand: "Lebon", price: 35, img: "https://images.unsplash.com/photo-1601049676099-e7ed07d825b0?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80", desc: {en:"Bio certified sweet mint & green tea.",es:"Pasta bio certificada menta y té verde.",fr:"Dentifrice bio certifié menthe/thé vert."} }
+            { id: 201, cat: 'sonic', name: "Sonicare DiamondClean Prestige 9900", brand: "Philips", price: 399, img: "https://images.unsplash.com/photo-1559837139-44eb183d2918?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80", desc: {en:"SenseIQ AI posture sensing.",es:"Detección de postura SenseIQ IA.",fr:"Capteur de posture IA SenseIQ."} },
+            { id: 202, cat: 'sonic', name: "Hydrosonic Black Is White", brand: "Curaprox", price: 229, img: "https://images.unsplash.com/photo-1605027628030-9bb6f83535e6?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80", desc: {en:"Matte black charcoal ultrasonic.",es:"Ultrasónico negro mate con carbón.",fr:"Ultrasonique noir mat au charbon."} },
+            { id: 203, cat: 'luxury', name: "Luxury Oral Curation Set", brand: "Selahatin", price: 85, img: "https://images.unsplash.com/photo-1620916297397-a4a5402a3c6c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80", desc: {en:"Organic Swedish whitening paste trio.",es:"Trío de pasta sueca blanqueadora orgánica.",fr:"Trio pâte suédoise blanchissante bio."} },
+            { id: 204, cat: 'ortho', name: "Premium Aligner Care Suite", brand: "Invisalign", price: 120, img: "https://images.unsplash.com/photo-1598463994354-913346b7fc62?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80", desc: {en:"Ultrasonic bath & crystal cleansers.",es:"Baño ultrasónico y limpiadores.",fr:"Bain ultrasonique & cristaux."} },
+            { id: 205, cat: 'ortho', name: "Aquarius Professional Onyx & Gold", brand: "Waterpik", price: 149, img: "https://images.unsplash.com/photo-1549576490-b0b4831ef60a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80", desc: {en:"Pulse modulation flossing tech.",es:"Tecnología de modulación de pulso.",fr:"Technologie de modulation de pouls."} },
+            { id: 206, cat: 'luxury', name: "Enamel Science Advanced Kit", brand: "Regenerate", price: 95, img: "https://images.unsplash.com/photo-1608248597481-496100c8c836?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80", desc: {en:"NR5 mineral enamel regeneration.",es:"Regeneración mineral del esmalte NR5.",fr:"Régénération minérale de l'émail."} },
+            { id: 207, cat: 'luxury', name: "v34 Colour Corrector Serum Pro", brand: "Hismile", price: 49, img: "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80", desc: {en:"Violet tone optical corrector.",es:"Corrector óptico de tono violeta.",fr:"Correcteur optique de ton violet."} },
+            { id: 208, cat: 'luxury', name: "Seven Flavors Royal Velvet Box", brand: "Marvis", price: 65, img: "https://images.unsplash.com/photo-1527689368864-3a821dbccc34?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80", desc: {en:"Italian toothpaste curation collection.",es:"Colección italiana de pastas de lujo.",fr:"Collection italienne de dentifrices."} },
+            { id: 209, cat: 'luxury', name: "Luxury Mouthwash Trio", brand: "Selahatin", price: 75, img: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80", desc: {en:"Haute couture anti-inflammatory rinses.",es:"Enjuagues de alta costura antiinflamatorios.",fr:"Bains de bouche haute couture."} },
+            { id: 210, cat: 'luxury', name: "Organic Luxury Le White", brand: "Lebon", price: 35, img: "https://images.unsplash.com/photo-1601049676099-e7ed07d825b0?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80", desc: {en:"Bio certified sweet mint & green tea.",es:"Pasta bio certificada menta y té verde.",fr:"Dentifrice bio certifié menthe/thé vert."} }
         ];
 
         /* --- DATA: HERITAGE TIMELINE --- */
@@ -482,7 +536,7 @@
                 shop_title: "DSD Boutique", shop_sub: "Curaciones Orales Premium", shop_add: "Añadir a la Colección",
                 cart_title: "Tu Colección", cart_empty: "Tu carrito está vacío.", cart_total: "Total:", cart_checkout: "Proceder al Pago",
                 gal_title: "Arte de Transformación", gal_sub: "Interactúa para revelar la precisión.",
-                form_title: "Consulta VIP", form_sub: "Reserva prioritaria para pacientes internacionales.", form_name_lbl: "Nombre Legal Completo", form_email_lbl: "Correo Electrónico", form_phone_lbl: "Número de Teléfono", form_sel_lbl: "Servicio de Interés", form_msg_lbl: "Requisitos Especiales", form_sel: "Seleccione un servicio...", form_btn: "Solicitar Llamada", form_err: "Email inválido.", form_succ_title: "Solicitud Recibida", form_succ_desc: "Su conserje lo contactará en 2 horas.",
+                form_title: "Consulta VIP", form_sub: "Reserva prioritaria para pacientes internacionales.", form_name_lbl: "Nombre Legal Completo", form_email_lbl: "Correo Electrónico", form_phone_lbl: "Número de Teléfono", form_sel_lbl: "Servicio de Interés", form_msg_lbl: "Requisitos Especiales", form_sel: "Seleccione un servicio...", form_btn: "Solicitar Llamada", form_err: "Email inválido.", form_succ_title: "Solicitud Recibida", form_succ_desc: "Su conserje lo contactará en 2 hours.",
                 contact_title: "Centro Internacional", contact_tf: "Gratuito EE.UU/CA", contact_email: "Email Encriptado de Conserje", contact_loc: "Ubicación Premium",
                 foot_motto: "Redefiniendo el estándar de lujo para el paciente internacional moderno.", foot_links: "Enlaces Rápidos", foot_acc: "Acreditación", foot_jci: "Certificación Joint Commission<br>International (JCI)", foot_copy: "© 2026 DSD Clinic. Todos los derechos reservados."
             },
@@ -517,39 +571,77 @@
             servicesData.forEach(srv => {
                 const langData = srv[currentLang];
                 grid.innerHTML += `
-                    <div onclick="openServiceModal(${srv.id})" class="cursor-pointer bg-white p-8 md:p-10 shadow-xl hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(5,16,30,0.08)] transition-all duration-500 border border-gray-100 group flex flex-col justify-between rounded-2xl relative overflow-hidden">
+                    <div onclick="openServiceModal(${srv.id})" class="cursor-pointer bg-white p-8 md:p-10 shadow-xl hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(5,16,30,0.08)] active:scale-95 transition-all duration-500 border border-gray-100 group flex flex-col justify-between rounded-2xl relative overflow-hidden">
                         <div class="absolute inset-0 bg-gradient-to-br from-gold/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
                         <div class="relative z-10">
-                            <svg class="w-12 h-12 text-gold mb-8 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2" d="${srv.icon}"></path></svg>
+                            <svg class="w-12 h-12 text-gold mb-8 md:group-hover:scale-110 md:group-hover:rotate-3 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2" d="${srv.icon}"></path></svg>
                             <h3 class="text-2xl md:text-3xl font-serif text-navy mb-4 leading-snug">${langData.title}</h3>
                             <p class="text-gray-500 mb-8 text-sm leading-relaxed">${langData.short}</p>
                         </div>
-                        <div class="text-gold font-bold uppercase tracking-widest text-[10px] group-hover:text-navy transition-colors text-left flex items-center gap-1 relative z-10">${i18n[currentLang].srv_btn}</div>
+                        <div class="text-gold font-bold uppercase tracking-widest text-[10px] md:group-hover:text-navy transition-colors text-left flex items-center gap-1 relative z-10">${i18n[currentLang].srv_btn}</div>
                     </div>`;
                 select.innerHTML += `<option value="${srv.id}">${langData.title}</option>`;
             });
         }
 
+        // GENERATE SINGLE PRODUCT CARD HTML
+        function generateProductHTML(item) {
+            return `
+                <div class="group bg-white p-6 md:p-8 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgba(207,168,50,0.08)] md:hover:-translate-y-1 transition-all duration-500 flex flex-col justify-between h-full">
+                    <div>
+                        <div class="overflow-hidden mb-6 bg-cream flex items-center justify-center h-56 rounded-2xl border border-gray-100 p-4">
+                            <img src="${item.img}" class="h-full w-full object-cover md:group-hover:scale-105 transition-transform duration-700 mix-blend-multiply rounded-xl" alt="${item.name}">
+                        </div>
+                        <span class="text-gold text-[10px] uppercase tracking-widest font-bold mb-2 block">${item.brand}</span>
+                        <h3 class="font-sans text-navy text-lg font-bold leading-tight mb-3 line-clamp-2">${item.name}</h3>
+                        <p class="text-gray-500 text-sm mb-6 leading-relaxed">${item.desc[currentLang]}</p>
+                    </div>
+                    <div class="mt-auto pt-4 flex flex-col">
+                        <span class="font-bold text-navy text-2xl mb-4">$${item.price}</span>
+                        <button onclick="addToCart(${item.id})" class="w-full bg-navy text-white text-xs uppercase tracking-widest py-3.5 rounded-xl hover:bg-gold hover:text-navy active:scale-95 transition-all duration-300 font-bold shadow-md min-h-[48px]">${i18n[currentLang].shop_add}</button>
+                    </div>
+                </div>`;
+        }
+
         function renderBoutique() {
-            const grid = document.getElementById('shop-grid');
-            grid.innerHTML = '';
-            boutiqueData.forEach(item => {
-                grid.innerHTML += `
-                    <div class="group bg-white p-6 md:p-8 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgba(207,168,50,0.08)] hover:-translate-y-1 border border-gray-50 transition-all duration-500 flex flex-col justify-between">
-                        <div>
-                            <div class="overflow-hidden mb-6 bg-cream flex items-center justify-center h-56 rounded-2xl border border-gray-100 p-4">
-                                <img src="${item.img}" class="h-full w-full object-cover group-hover:scale-105 transition-transform duration-700 mix-blend-multiply rounded-xl" alt="${item.name}">
-                            </div>
-                            <span class="text-gold text-[10px] uppercase tracking-widest font-bold mb-2 block">${item.brand}</span>
-                            <h3 class="font-sans text-navy text-lg font-bold leading-tight mb-3 line-clamp-2">${item.name}</h3>
-                            <p class="text-gray-500 text-sm mb-6 leading-relaxed">${item.desc[currentLang]}</p>
+            // Mobile Accordion
+            const acc = document.getElementById('shop-mobile-accordion');
+            acc.innerHTML = '';
+            boutiqueCategories.forEach((cat, index) => {
+                const items = boutiqueData.filter(i => i.cat === cat.id);
+                const itemsHTML = items.map(generateProductHTML).join('');
+                // First category open by default on mobile
+                const isHidden = index === 0 ? '' : 'hidden';
+                const rotate = index === 0 ? 'rotate-180' : '';
+                
+                acc.innerHTML += `
+                    <div class="border border-gray-200 rounded-2xl bg-white overflow-hidden shadow-sm">
+                        <button onclick="toggleAccordion('cat-items-${cat.id}', 'cat-arrow-${cat.id}')" class="w-full flex justify-between items-center p-6 bg-cream active:bg-gray-50 transition-colors min-h-[60px]">
+                            <span class="font-serif text-navy text-lg font-bold">${cat.name[currentLang]}</span>
+                            <svg id="cat-arrow-${cat.id}" class="w-5 h-5 text-gold transform ${rotate} transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div id="cat-items-${cat.id}" class="${isHidden} p-4 space-y-6 bg-white/50">
+                            ${itemsHTML}
                         </div>
-                        <div class="mt-auto pt-4 flex flex-col">
-                            <span class="font-bold text-navy text-2xl mb-4">$${item.price}</span>
-                            <button onclick="addToCart(${item.id})" class="w-full bg-navy text-white text-xs uppercase tracking-widest py-3.5 rounded-xl hover:bg-gold hover:text-navy hover:scale-[1.02] transition-all duration-300 font-bold shadow-md">${i18n[currentLang].shop_add}</button>
-                        </div>
-                    </div>`;
+                    </div>
+                `;
             });
+
+            // Desktop Grid
+            const grid = document.getElementById('shop-desktop-grid');
+            grid.innerHTML = boutiqueData.map(generateProductHTML).join('');
+        }
+
+        function toggleAccordion(id, arrowId) {
+            const content = document.getElementById(id);
+            const arrow = document.getElementById(arrowId);
+            if(content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+                arrow.classList.add('rotate-180');
+            } else {
+                content.classList.add('hidden');
+                arrow.classList.remove('rotate-180');
+            }
         }
 
         function renderMarquee() {
@@ -562,12 +654,12 @@
                 { name: "Lasak", flag: flags.cz, url: "https://www.lasak.com" },
                 { name: "Kavo", flag: flags.de, url: "https://www.kavo.com" },
                 { name: "GC Dental", flag: flags.jp, url: "https://www.gcdental.com" },
-                { name: "3M ESPE", flag: flags.us, url: "https://www.3m.com" },
+                { name: "Waterpik", flag: flags.us, url: "https://www.waterpik.com" },
                 { name: "MIS", flag: flags.il, url: "https://www.mis-implants.com" }
             ];
             const track = document.getElementById('marquee-track');
             const items = brands.map(b => `
-                <a href="${b.url}" target="_blank" class="inline-flex items-center gap-4 bg-white/5 border border-white/10 px-8 py-4 rounded-full mx-4 hover:border-gold hover:bg-white/10 transition-all duration-300 group">
+                <a href="${b.url}" target="_blank" class="inline-flex items-center gap-4 bg-white/5 border border-white/10 px-8 py-4 rounded-full mx-4 hover:border-gold hover:bg-white/10 active:scale-95 transition-all duration-300 group">
                     ${b.flag}
                     <span class="font-bold text-white text-xs uppercase tracking-widest group-hover:text-gold transition-colors">${b.name}</span>
                 </a>
@@ -579,16 +671,14 @@
             const container = document.getElementById('timeline-container');
             container.innerHTML = '';
             heritageData.forEach((item, index) => {
-                const align = index % 2 === 0 ? 'md:flex-row-reverse' : 'md:flex-row';
                 const textDir = index % 2 === 0 ? 'md:text-left' : 'md:text-right';
                 container.innerHTML += `
                     <div class="relative flex flex-col md:flex-row items-center justify-between w-full">
                         <div class="absolute left-5 md:left-1/2 w-4 h-4 rounded-full bg-gold shadow-[0_0_10px_rgba(207,168,50,0.8)] -translate-x-1.5 md:-translate-x-1/2 z-10 border-4 border-cream"></div>
-                        <div class="w-full md:w-5/12 pl-12 md:pl-0 ${textDir}">
+                        <div class="w-full md:w-5/12 pl-12 md:pl-0 ${textDir} ${index % 2 !== 0 ? 'md:ml-auto' : ''}">
                             <span class="block text-2xl font-serif text-gold mb-2">${item.year}</span>
                             <p class="text-gray-600 text-sm leading-relaxed">${item[currentLang]}</p>
                         </div>
-                        <div class="hidden md:block w-5/12"></div>
                     </div>`;
             });
         }
@@ -602,21 +692,39 @@
             setTimeout(() => {
                 elTxt.innerText = reviewData[rIdx][currentLang];
                 document.getElementById('review-author').innerText = reviewData[rIdx].author;
-                document.getElementById('review-loc').innerHTML = `<span class="text-green-500 mr-1">✓</span> Verified Patient - ${reviewData[rIdx].loc}`;
+                document.getElementById('review-loc').innerHTML = `<span class="text-green-500 mr-1 font-bold">✓</span> Verified Patient - ${reviewData[rIdx].loc}`;
                 elTxt.style.opacity = 1;
                 meta.style.opacity = 1;
             }, 400);
         }
 
         function changeReview(dir) {
+            // Seamless rotation logic with overflow protection
             rIdx = (rIdx + dir + reviewData.length) % reviewData.length;
             renderReview();
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const btn = document.getElementById('hamburger-btn');
+            if(menu.classList.contains('-translate-y-full')) {
+                menu.classList.remove('hidden');
+                setTimeout(() => menu.classList.remove('-translate-y-full'), 10);
+                btn.classList.add('open');
+            } else {
+                menu.classList.add('-translate-y-full');
+                btn.classList.remove('open');
+                setTimeout(() => menu.classList.add('hidden'), 500);
+            }
         }
 
         function changeLang(lang) {
             currentLang = lang;
             document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
+            // Set active class on all buttons of the selected lang
+            document.querySelectorAll(`.lang-btn`).forEach(btn => {
+                if(btn.innerText.toLowerCase() === lang.toLowerCase()) btn.classList.add('active');
+            });
             
             document.querySelectorAll('[data-i18n]').forEach(el => { const key = el.getAttribute('data-i18n'); if (i18n[lang][key]) el.innerHTML = i18n[lang][key]; });
             document.querySelectorAll('[data-i18n-ph]').forEach(el => { const key = el.getAttribute('data-i18n-ph'); if (i18n[lang][key]) el.placeholder = i18n[lang][key]; });
@@ -639,9 +747,7 @@
                 document.getElementById('form-service-select').value = id;
                 setTimeout(() => window.location.href = '#contact', 400);
             };
-            const modal = document.getElementById('service-modal');
-            modal.classList.remove('hidden'); modal.classList.add('flex');
-            setTimeout(() => { modal.classList.remove('opacity-0'); modal.children[0].classList.remove('scale-95'); }, 10);
+            openModal('service-modal');
         }
 
         function openModal(modalId) {
@@ -691,12 +797,12 @@
                 total += item.price * item.qty;
                 itemsContainer.innerHTML += `
                     <div class="flex items-center gap-4 bg-white p-4 border border-gray-100 rounded-2xl shadow-sm">
-                        <img src="${item.img}" class="w-14 h-14 object-cover rounded-xl border border-gray-50 mix-blend-multiply">
+                        <img src="${item.img}" class="w-16 h-16 object-cover rounded-xl border border-gray-50 mix-blend-multiply p-1 bg-cream">
                         <div class="flex-1">
                             <h4 class="text-xs font-bold text-navy line-clamp-1 mb-1">${item.name}</h4>
                             <p class="text-gold text-sm font-bold">$${item.price} <span class="text-gray-400 text-[10px]">x${item.qty}</span></p>
                         </div>
-                        <button onclick="remFromCart(${item.id})" class="w-8 h-8 flex items-center justify-center rounded-full bg-gray-50 text-gray-400 hover:text-red-500 hover:bg-red-50 transition-colors font-bold">×</button>
+                        <button onclick="remFromCart(${item.id})" class="min-w-[48px] h-12 flex items-center justify-center rounded-full bg-gray-50 text-gray-400 hover:text-red-500 hover:bg-red-50 active:scale-90 transition-all font-bold text-xl">×</button>
                     </div>`;
             });
             totalContainer.innerText = `$${total}`;
@@ -704,7 +810,7 @@
 
         function checkout() {
             if(cart.length === 0) return;
-            alert(currentLang === 'en' ? "Simulating Secure Apple Pay / Stripe Checkout..." : (currentLang === 'es' ? "Simulando pago seguro..." : "Simulation de paiement sécurisé..."));
+            alert(currentLang === 'en' ? "Simulating Secure Apple Pay / Stripe Checkout..." : (currentLang === 'es' ? "Simulando pago seguro de Stripe / Apple Pay..." : "Simulation de paiement sécurisé Apple Pay / Stripe..."));
             cart = []; updateCartUI(); toggleCart();
         }
 
