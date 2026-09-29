@@ -131,6 +131,7 @@
   --f-text: "Jost", "Futura", "Century Gothic", "Avenir Next", "Segoe UI", system-ui, sans-serif;
   --wrap: 1180px;
   --bar: 68px;
+  --gut: clamp(16px, 4vw, 40px);
   color-scheme: dark;
 }
 
@@ -151,7 +152,8 @@ button { font: inherit; }
 .skip:focus { top: calc(12px + env(safe-area-inset-top, 0px)); }
 :focus-visible { outline: 2px solid var(--accent, var(--oro)); outline-offset: 3px; }
 
-.wrap { max-width: var(--wrap); margin-inline: auto; padding-inline: clamp(16px, 4vw, 40px); }
+[hidden] { display: none !important; }
+.wrap { max-width: var(--wrap); margin-inline: auto; padding-inline: var(--gut); }
 
 /* Section palettes: every component reads these local tokens */
 .sec { padding-block: clamp(72px, 9vw, 128px); scroll-margin-top: calc(var(--bar) - 4px); }
@@ -530,6 +532,181 @@ h2 em { font-style: italic; color: var(--accent); }
 .wa-float svg { width: 20px; height: 20px; }
 @media (max-width: 560px) { .wa-float .wa-t { display: none; } .wa-float { padding: .95rem; } }
 
+/* ---------- Mobile helpers (hidden on desktop) ---------- */
+.subnav { display: none; position: relative; gap: .35rem; overflow-x: auto; scrollbar-width: none; padding: .5rem var(--gut); border-top: 1px solid var(--linea-o); }
+.subnav::-webkit-scrollbar { display: none; }
+.subnav a { flex: none; font: 500 .64rem/1 var(--f-text); letter-spacing: .14em; text-transform: uppercase; text-decoration: none; color: var(--claro-2); padding: .65em .9em; border: 1px solid var(--linea-o); border-radius: 999px; white-space: nowrap; transition: background-color .2s ease, color .2s ease; }
+.subnav a.is-active { background: var(--oro); border-color: var(--oro); color: var(--noche); }
+.more-btn, .rep-all { display: none; background: none; border: 0; border-bottom: 1px solid currentColor; padding: .35rem 0 .2rem; color: var(--accent); font: 500 .68rem/1.3 var(--f-text); letter-spacing: .18em; text-transform: uppercase; cursor: pointer; align-self: flex-start; }
+.rep-all { margin-top: 1rem; }
+.m-cta { display: none; position: fixed; left: 0; right: 0; bottom: 0; z-index: 45; gap: 10px; padding: 10px var(--gut) calc(10px + env(safe-area-inset-bottom, 0px));
+  background: var(--noche-a); border-top: 1px solid var(--linea-o); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); transition: transform .3s ease;
+  --accent: var(--oro); --on-accent: var(--noche); --accent-h: var(--oro-claro); }
+.m-cta .btn { flex: 1 1 0; padding: 1em .8em; font-size: .7rem; letter-spacing: .14em; }
+.m-cta.is-away { transform: translateY(115%); }
+
+@media (max-width: 760px) {
+  :root { --bar: 56px; }
+  body { font-size: 16px; }
+  .sec { padding-block: 56px; scroll-margin-top: calc(var(--bar) + 42px); }
+  h2 { font-size: clamp(1.9rem, 1.4rem + 2.4vw, 2.3rem); }
+  .lead { font-size: 1rem; }
+  .head-2 { gap: .8rem; }
+  .eyebrow { font-size: .66rem; }
+  .brand { font-size: 1.2rem; }
+  .topbar.is-solid .subnav { display: flex; }
+  .topbar.nav-open .subnav { display: none; }
+
+  /* read more */
+  [data-clamp]:not(.is-open) { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden; }
+  [data-clamp="4"]:not(.is-open) { -webkit-line-clamp: 4; }
+  .more-btn { display: inline-flex; margin-top: .45rem; }
+
+  /* swipe rails */
+  .m-rail { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 12px; margin-inline: calc(-1 * var(--gut)); padding-inline: var(--gut);
+    scroll-padding-inline: var(--gut); scrollbar-width: none; overscroll-behavior-x: contain; }
+  .m-rail::-webkit-scrollbar { display: none; }
+  .m-rail::after { content: ""; flex: 0 0 1px; }
+  .m-rail > * { scroll-snap-align: start; }
+
+  /* hero: full-bleed portrait, text over the photo */
+  .hero-grid { display: block; position: relative; margin-inline: calc(-1 * var(--gut)); padding: 0; }
+  .hero-photo { width: 100%; max-height: none; aspect-ratio: auto; height: min(80vh, 680px); height: min(80svh, 680px); }
+  .hero-photo img { object-position: 50% 8%; }
+  .hero-photo::after { background: linear-gradient(180deg, rgba(21, 13, 14, 0) 30%, rgba(21, 13, 14, .84) 60%, var(--noche) 100%); }
+  .hero-copy { position: absolute; left: var(--gut); right: var(--gut); bottom: 6px; margin: 0; }
+  .hero-name { font-size: clamp(3.2rem, 2rem + 7vw, 4.4rem); margin-top: .35rem; }
+  .hero-tag { margin-top: .7rem; font-size: 1.2rem; }
+  .hero-lead { font-size: .94rem; margin-top: .45rem; }
+  .hero-ctas { margin-top: 1.1rem; gap: .5rem; flex-wrap: nowrap; }
+  .hero-ctas .btn { flex: 1 1 auto; padding: 1em .9em; font-size: .7rem; letter-spacing: .12em; }
+  .hero-genres { display: none; }
+  .proof > div { padding: .9rem .8rem 1rem; }
+  .proof strong { font-size: 1.7rem; }
+  .proof span { font-size: .78rem; margin-top: .35rem; }
+
+  /* about */
+  .about { gap: 26px; }
+  .about-photo { margin: 0; max-width: none; }
+  .about-photo::before { display: none; }
+  .about-photo img { aspect-ratio: 4 / 3; object-position: 50% 26%; }
+  .cap { margin-top: .6rem; }
+  .about-copy { gap: .9rem; }
+  .quote { padding: 1rem 0; margin: .3rem 0 0; font-size: 1.3rem; }
+  .facts dt, .facts dd { padding: .55rem 0; }
+  .facts dt { padding-right: 1.2rem; }
+  .facts dd { font-size: .95rem; }
+
+  /* timeline */
+  .tl { margin-top: 32px; }
+  .tl-year { font-size: 1.65rem; }
+  .tl-when { margin-bottom: .45rem; }
+  .tl-place { margin-top: .4rem; }
+  .tl-body { padding-bottom: 34px; }
+  .tl-body h3 { font-size: 1.32rem; }
+  .tl-body p { font-size: .95rem; margin-top: .45rem; }
+  .tl-body > figure { display: none; }
+  .tl-feature { padding: 22px 18px; outline-offset: 4px; }
+  .tl-feature h3 { font-size: 1.6rem; margin-top: .7rem; }
+  .emb-list { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 14px; margin-top: 1.1rem; }
+  .emb-list li { padding: .7rem 0 .7rem 1.1rem; }
+  .emb-list li::before { top: 1.12rem; width: 6px; height: 6px; }
+  .emb-list strong { font-size: 1rem; }
+  .emb-list span { display: none; }
+  .emb-award { align-items: center; gap: .9rem; margin-top: 1.1rem; padding: .9rem; }
+  .emb-award .seal { width: 50px; height: 50px; font-size: .88rem; margin: 4px; }
+  .emb-award strong { font-size: 1.1rem; }
+  .tl-body .emb-award p { font-size: .84rem; }
+  .emb-photos { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin-top: 1.1rem; }
+  .emb-photos .cap { font-size: .58rem; letter-spacing: .12em; }
+
+  /* references */
+  .awards { margin-top: 26px; gap: 12px; }
+  .award { grid-template-columns: auto minmax(0, 1fr); padding: 18px; gap: 1rem; }
+  .award .seal { width: 48px; height: 48px; font-size: .84rem; }
+  .award h3 { font-size: 1.2rem; }
+  .award p { font-size: .9rem; }
+  .ref-cols { margin-top: 34px; gap: 26px; }
+  .ref-col h3 { padding-bottom: .7rem; }
+  .ref-col li { font-size: 1.06rem; padding: .6rem 0; }
+  .ref-col li small { font-size: .8rem; }
+  .ref-col .ref-chips { display: flex; flex-wrap: wrap; gap: .45rem; padding-top: .9rem; }
+  .ref-col .ref-chips li { border: 1px solid var(--line); border-radius: 999px; padding: .4em .85em; font-size: .98rem; }
+
+  /* live */
+  .videos { margin-top: 26px; gap: 20px; }
+  .vid-v { max-width: 250px; }
+  .gallery { margin-top: 36px; }
+  .gallery > .g-item { flex: 0 0 76%; aspect-ratio: 4 / 5; height: auto; }
+
+  /* services */
+  .svc-top { gap: 26px; }
+  .svc-intro { gap: .85rem; }
+  .svc-list li { padding: 1rem 0 1.05rem; }
+  .svc-list h3 { font-size: 1.28rem; }
+  .svc-list p { font-size: .93rem; margin-top: .3rem; }
+  .svc-list .tag { margin-top: .55rem; font-size: .6rem; }
+  .svc-block { margin-top: 46px; }
+  .block-h + .muted { font-size: .95rem; }
+  .formats { margin-top: 1.2rem; }
+  .formats > .fmt { flex: 0 0 80%; padding: 22px; }
+  .fmt-n { font-size: 3.6rem; }
+  .fmt h3 { font-size: 1.6rem; }
+  .fmt p { font-size: .93rem; }
+  .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px 16px; margin-top: 1.2rem; }
+  .steps li { padding-top: .85rem; }
+  .steps li::before { font-size: 1.5rem; margin-bottom: .4rem; }
+  .steps h4 { font-size: 1.06rem; }
+  .steps p { font-size: .86rem; }
+
+  /* ensemble */
+  .ens { gap: 26px; }
+  .ens-copy { gap: .85rem; }
+  .ens-logo { width: 84px; margin-bottom: 0; }
+  .ens-copy .lead { font-size: 1rem; }
+  .members { margin-top: 34px; }
+  .members > .member { flex: 0 0 44%; }
+  .member.lead-m { grid-column: auto; }
+  .member.lead-m img { aspect-ratio: 4 / 5; }
+  .member h3 { font-size: 1.04rem; margin-top: .6rem; }
+  .member p { font-size: .6rem; }
+
+  /* repertoire */
+  .tabs { margin-top: 22px; margin-inline: calc(-1 * var(--gut)); padding-inline: var(--gut); }
+  .tab { padding: .85rem .75rem; }
+  .songs { margin-top: .6rem; }
+  .songs li { padding: .55rem 0; }
+  .songs .t { font-size: 1rem; }
+  .songs .a { font-size: .8rem; }
+  .songs:not(.show-all) li:nth-child(n+9) { display: none; }
+  .rep-all { display: inline-flex; }
+  .rep-note { margin-top: 1.4rem; }
+
+  /* faq */
+  .faq { gap: 18px; }
+  .faq summary { padding: 1rem 2.2rem 1rem 0; font-size: 1.1rem; }
+  .faq summary::after { top: .78rem; }
+  .faq details p { font-size: .95rem; padding-bottom: 1.1rem; }
+
+  /* booking */
+  .form { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem .8rem; margin-top: 1rem; }
+  .form .field { grid-column: 1 / -1; }
+  .form .field.half { grid-column: auto; }
+  .field input, .field select, .field textarea { padding: .75rem .85rem; }
+  .field textarea { min-height: 100px; }
+  .radios label { padding: .7rem .85rem; }
+  .form-actions .btn { width: 100%; }
+  .contact { padding: 20px; }
+  .c-row { padding: .75rem 0; }
+  .qrs { display: none; }
+
+  /* footer + bottom bar */
+  .foot { padding-block: 40px calc(100px + env(safe-area-inset-bottom, 0px)); }
+  .foot-nav { display: none; }
+  .wa-float { display: none; }
+  .m-cta { display: flex; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
@@ -564,6 +741,17 @@ h2 em { font-style: italic; color: var(--accent); }
       </button>
     </div>
   </div>
+  <nav class="subnav" id="subnav" aria-label="Secciones">
+    <a href="#naomi" data-i18n="nav.naomi">Naomi</a>
+    <a href="#trayectoria" data-i18n="nav.tray">Trayectoria</a>
+    <a href="#referencias" data-i18n="nav.ref">Referencias</a>
+    <a href="#envivo" data-i18n="nav.live">En vivo</a>
+    <a href="#servicios" data-i18n="nav.svc">Servicios</a>
+    <a href="#ensamble" data-i18n="nav.ens">Ensamble</a>
+    <a href="#repertorio" data-i18n="nav.rep">Repertorio</a>
+    <a href="#preguntas" data-i18n="nav.faq">Preguntas</a>
+    <a href="#reservar" data-i18n="nav.book">Reservar</a>
+  </nav>
 </header>
 
 <main id="contenido">
@@ -607,7 +795,7 @@ h2 em { font-style: italic; color: var(--accent); }
       <p class="eyebrow" data-i18n="about.eyebrow">Perfil artístico</p>
       <h2 data-i18n="about.h2">Oaxaca como raíz. <em>Europa como horizonte.</em></h2>
       <p class="lead" data-i18n="about.p1">Naomi Fernanda Villegas Luna, conocida artísticamente como Naomi Luna, es una cantante oaxaqueña de raíces mixtecas. Su voz, de tesitura mixta, encuentra su casa en el bolero y se enriquece con matices de jazz, soul y la técnica del bel canto.</p>
-      <p data-i18n="about.p2">Se formó desde niña entre Oaxaca y la Ciudad de México y continuó su preparación en Lyon, Francia. Durante sus años en Praga cantó en los actos oficiales de la Embajada de México, del Día de la Independencia a recepciones diplomáticas, y llevó la música oaxaqueña a festivales y organizaciones culturales. De regreso en Oaxaca fundó el ensamble Corazón Antequera y hoy canta en bodas, cenas privadas, hoteles y eventos culturales.</p>
+      <p data-i18n="about.p2" data-clamp>Se formó desde niña entre Oaxaca y la Ciudad de México y continuó su preparación en Lyon, Francia. Durante sus años en Praga cantó en los actos oficiales de la Embajada de México, del Día de la Independencia a recepciones diplomáticas, y llevó la música oaxaqueña a festivales y organizaciones culturales. De regreso en Oaxaca fundó el ensamble Corazón Antequera y hoy canta en bodas, cenas privadas, hoteles y eventos culturales.</p>
       <p class="quote" data-i18n="about.quote">La música como territorio de memoria, identidad y comunidad.</p>
       <dl class="facts">
         <dt data-i18n="facts.voz">Voz</dt><dd data-i18n="facts.voz.v">Tesitura mixta</dd>
@@ -636,7 +824,7 @@ h2 em { font-style: italic; color: var(--accent); }
         <div class="tl-when"><span class="tl-year">2026</span><span class="tl-place">Oaxaca</span></div>
         <div class="tl-body">
           <h3 data-i18n="tl.7.h">De vuelta a casa</h3>
-          <p data-i18n="tl.7.p">Funda Corazón Antequera, un quinteto de músicos oaxaqueños que reinterpreta piezas tradicionales del estado con jazz, bossa nova y ritmos latinoamericanos. También forma parte del proyecto escénico Oaxaca Vive, con giras internacionales, principalmente en Estados Unidos y Latinoamérica.</p>
+          <p data-i18n="tl.7.p" data-clamp>Funda Corazón Antequera, un quinteto de músicos oaxaqueños que reinterpreta piezas tradicionales del estado con jazz, bossa nova y ritmos latinoamericanos. También forma parte del proyecto escénico Oaxaca Vive, con giras internacionales, principalmente en Estados Unidos y Latinoamérica.</p>
           <figure>
             <img src="img/ensamble.jpg" width="1248" height="832" loading="lazy" alt="Naomi Luna con los músicos de Corazón Antequera en el escenario" data-i18n-alt="tl.7.alt">
             <figcaption class="cap">Corazón Antequera · Oaxaca</figcaption>
@@ -649,7 +837,7 @@ h2 em { font-style: italic; color: var(--accent); }
           <article class="tl-feature">
             <p class="tl-kicker" data-i18n="tl.emb.k">Colaboración destacada</p>
             <h3 data-i18n="tl.emb.h">Con la <em>Embajada de México</em> en la República Checa</h3>
-            <p data-i18n="tl.emb.p">Durante sus años en Praga, Naomi colaboró con la Embajada de México cantando en sus actos oficiales y celebraciones: las conmemoraciones del Día de la Independencia, aniversarios y fechas patrias, recepciones diplomáticas privadas y eventos abiertos al público. Su voz acompañó a diplomáticos, invitados de honor y a la comunidad mexicana en Europa.</p>
+            <p data-i18n="tl.emb.p" data-clamp="4">Durante sus años en Praga, Naomi colaboró con la Embajada de México cantando en sus actos oficiales y celebraciones: las conmemoraciones del Día de la Independencia, aniversarios y fechas patrias, recepciones diplomáticas privadas y eventos abiertos al público. Su voz acompañó a diplomáticos, invitados de honor y a la comunidad mexicana en Europa.</p>
             <ul class="emb-list">
               <li><strong data-i18n="tl.emb.l1.h">Día de la Independencia</strong><span data-i18n="tl.emb.l1.p">Conmemoraciones oficiales de las fiestas patrias</span></li>
               <li><strong data-i18n="tl.emb.l2.h">Aniversarios y fechas patrias</strong><span data-i18n="tl.emb.l2.p">Actos solemnes de la Embajada</span></li>
@@ -680,7 +868,7 @@ h2 em { font-style: italic; color: var(--accent); }
         <div class="tl-when"><span class="tl-year">2020–2025</span><span class="tl-place" data-i18n="tl.6.pl">Festivales culturales</span></div>
         <div class="tl-body">
           <h3 data-i18n="tl.6.h">México vivo en Europa</h3>
-          <p data-i18n="tl.6.p">Participa de forma constante en La Calle Mexicana y en el Festival de Día de Muertos del Museo Náprstek de las Culturas de Asia, África y América, y promueve la música mexicana y oaxaqueña junto a festivales culturales y organizaciones sin fines de lucro.</p>
+          <p data-i18n="tl.6.p" data-clamp>Participa de forma constante en La Calle Mexicana y en el Festival de Día de Muertos del Museo Náprstek de las Culturas de Asia, África y América, y promueve la música mexicana y oaxaqueña junto a festivales culturales y organizaciones sin fines de lucro.</p>
           <figure>
             <img src="img/dia-de-muertos.jpg" width="1280" height="735" loading="lazy" alt="Desfile de Día de Muertos en la Plaza de la Ciudad Vieja de Praga" data-i18n-alt="tl.6.alt">
             <figcaption class="cap" data-i18n="tl.6.cap">Día de Muertos en Praga</figcaption>
@@ -691,35 +879,35 @@ h2 em { font-style: italic; color: var(--accent); }
         <div class="tl-when"><span class="tl-year">2020–2024</span><span class="tl-place" data-i18n="tl.5.pl">Europa Central y del Este</span></div>
         <div class="tl-body">
           <h3 data-i18n="tl.5.h">Giras con el coro</h3>
-          <p data-i18n="tl.5.p">Con el coro de la Universidad Carlos se presenta en la República Checa y en otros países de Europa del Este.</p>
+          <p data-i18n="tl.5.p" data-clamp>Con el coro de la Universidad Carlos se presenta en la República Checa y en otros países de Europa del Este.</p>
         </div>
       </li>
       <li class="tl-item">
         <div class="tl-when"><span class="tl-year">2019</span><span class="tl-place" data-i18n="tl.4.pl">Praga, República Checa</span></div>
         <div class="tl-body">
           <h3 data-i18n="tl.4.h">Llegada a Praga</h3>
-          <p data-i18n="tl.4.p">Se integra al coro de la Universidad Carlos. Ese mismo año, el Club México CZ reconoce su participación musical en el Sexto Congreso de Asociaciones Mexicanas en Europa.</p>
+          <p data-i18n="tl.4.p" data-clamp>Se integra al coro de la Universidad Carlos. Ese mismo año, el Club México CZ reconoce su participación musical en el Sexto Congreso de Asociaciones Mexicanas en Europa.</p>
         </div>
       </li>
       <li class="tl-item">
         <div class="tl-when"><span class="tl-year" data-i18n="tl.3.y">A los 18 años</span><span class="tl-place" data-i18n="tl.3.pl">Lyon, Francia</span></div>
         <div class="tl-body">
           <h3 data-i18n="tl.3.h">Preparación en Europa</h3>
-          <p data-i18n="tl.3.p">Llega a Lyon con un intercambio cultural, dentro de un programa de preparación para ingresar al Conservatorio Regional de Lyon. Su coach vocal principal es la soprano Isabel Germain.</p>
+          <p data-i18n="tl.3.p" data-clamp>Llega a Lyon con un intercambio cultural, dentro de un programa de preparación para ingresar al Conservatorio Regional de Lyon. Su coach vocal principal es la soprano Isabel Germain.</p>
         </div>
       </li>
       <li class="tl-item">
         <div class="tl-when"><span class="tl-year">2014</span><span class="tl-place">Oaxaca</span></div>
         <div class="tl-body">
           <h3 data-i18n="tl.2.h">Primer papel protagónico</h3>
-          <p data-i18n="tl.2.p">En el Bachillerato de Artes y Humanidades del CEDART Miguel Cabrera consolida su formación escénica. A los 17 años interpreta a Bastiana en la ópera <em>Bastien y Bastiana</em> de Mozart, en una producción del Instituto de Formación Musical Maurice Ravel.</p>
+          <p data-i18n="tl.2.p" data-clamp>En el Bachillerato de Artes y Humanidades del CEDART Miguel Cabrera consolida su formación escénica. A los 17 años interpreta a Bastiana en la ópera <em>Bastien y Bastiana</em> de Mozart, en una producción del Instituto de Formación Musical Maurice Ravel.</p>
         </div>
       </li>
       <li class="tl-item">
         <div class="tl-when"><span class="tl-year" data-i18n="tl.1.y">A los 8 años</span><span class="tl-place">Oaxaca · Ciudad de México</span></div>
         <div class="tl-body">
           <h3 data-i18n="tl.1.h">El origen de la voz</h3>
-          <p data-i18n="tl.1.p">Inicia su formación musical en el CIMO y en Esperanza Azteca. Estudia bel canto con Felipe Espinoza y Gabriel Mijares, en la Ciudad de México, y con Verónica Murúa, docente de la Facultad de Música de la UNAM.</p>
+          <p data-i18n="tl.1.p" data-clamp>Inicia su formación musical en el CIMO y en Esperanza Azteca. Estudia bel canto con Felipe Espinoza y Gabriel Mijares, en la Ciudad de México, y con Verónica Murúa, docente de la Facultad de Música de la UNAM.</p>
           <figure class="tall">
             <img src="img/naomi-tradicional.jpg" width="427" height="1468" loading="lazy" alt="Naomi Luna con traje tradicional oaxaqueño y falda bordada" data-i18n-alt="tl.1.alt">
             <figcaption class="cap" data-i18n="tl.1.cap">Raíces oaxaqueñas</figcaption>
@@ -763,7 +951,7 @@ h2 em { font-style: italic; color: var(--accent); }
     <div class="ref-cols">
       <div class="ref-col">
         <h3 data-i18n="ref.c1">En Oaxaca</h3>
-        <ul>
+        <ul class="ref-chips">
           <li>Pitiona</li>
           <li>Humito</li>
           <li>El Sol y la Luna</li>
@@ -827,7 +1015,7 @@ h2 em { font-style: italic; color: var(--accent); }
     </div>
     <p class="live-more"><a class="link-arrow" href="https://www.youtube.com/@corazonantequera" target="_blank" rel="noopener" data-i18n="live.more">Más videos en YouTube</a></p>
 
-    <div class="gallery" id="gallery">
+    <div class="gallery m-rail" id="gallery">
       <a class="g-item w2 h2" href="img/vivo-huipil.jpg"><img src="img/vivo-huipil.jpg" width="1280" height="852" loading="lazy" alt=""><span class="g-cap" data-i18n="g.1">Con Corazón Antequera · Oaxaca</span></a>
       <a class="g-item h2" href="img/naomi-tradicional.jpg"><img src="img/naomi-tradicional.jpg" width="427" height="1468" loading="lazy" alt="" style="object-position:50% 10%"><span class="g-cap" data-i18n="g.2">Traje tradicional oaxaqueño</span></a>
       <a class="g-item" href="img/vivo-cerca.jpg"><img src="img/vivo-cerca.jpg" width="1280" height="960" loading="lazy" alt=""><span class="g-cap" data-i18n="g.3">Bolero en vivo</span></a>
@@ -849,7 +1037,7 @@ h2 em { font-style: italic; color: var(--accent); }
       <div class="svc-intro">
         <p class="eyebrow" data-i18n="svc.eyebrow">Servicios</p>
         <h2 data-i18n="svc.h2">Música en vivo <em>a la medida</em> de tu evento</h2>
-        <p class="lead muted" data-i18n="svc.lead">Cada presentación se prepara según el espacio, el número de invitados y la atmósfera que buscas: desde un formato íntimo para una ceremonia hasta el quinteto completo para una gala.</p>
+        <p class="lead muted" data-i18n="svc.lead" data-clamp>Cada presentación se prepara según el espacio, el número de invitados y la atmósfera que buscas: desde un formato íntimo para una ceremonia hasta el quinteto completo para una gala.</p>
         <p><a class="btn btn-solid" href="#reservar" data-i18n="svc.cta">Consultar disponibilidad</a></p>
       </div>
       <ul class="svc-list">
@@ -880,7 +1068,7 @@ h2 em { font-style: italic; color: var(--accent); }
     <div class="svc-block">
       <h3 class="block-h" data-i18n="fmt.h">Formatos</h3>
       <p class="muted" data-i18n="fmt.lead">Cada alineación conserva la esencia, la calidad y la elegancia del ensamble. Elige según el tipo de celebración y el número de invitados.</p>
-      <div class="formats">
+      <div class="formats m-rail">
         <article class="fmt">
           <div class="fmt-top"><span class="fmt-n">2</span><span class="fmt-unit" data-i18n="fmt.unit">músicos</span></div>
           <h3 data-i18n="fmt.1.h">Dúo</h3>
@@ -940,7 +1128,7 @@ h2 em { font-style: italic; color: var(--accent); }
       </figure>
     </div>
 
-    <ul class="members">
+    <ul class="members m-rail">
       <li class="member lead-m"><img src="img/naomi-escenario.jpg" width="1248" height="832" loading="lazy" alt="Naomi Luna" style="object-position:42% 30%"><h3>Naomi Luna</h3><p data-i18n="m.voz">Voz y dirección</p></li>
       <li class="member"><img src="img/juan-cruz.jpg" width="272" height="273" loading="lazy" alt="Juan Cruz" style="object-position:50% 40%"><h3>Juan Cruz</h3><p>Piano</p></li>
       <li class="member"><img src="img/erick-avendano.jpg" width="1000" height="667" loading="lazy" alt="Erick Avendaño" style="object-position:58% 30%"><h3>Erick Avendaño</h3><p data-i18n="m.sax">Saxofón</p></li>
@@ -962,6 +1150,7 @@ h2 em { font-style: italic; color: var(--accent); }
     </div>
     <div class="tabs" role="tablist" aria-label="Estilos" id="repTabs"></div>
     <div id="repPanels"></div>
+    <button class="rep-all" id="repAll" type="button" aria-controls="repPanels"></button>
     <div class="rep-note">
       <p class="muted" data-i18n="rep.note">¿Tienes una canción especial en mente? Cuéntanos y la revisamos con el ensamble.</p>
       <a class="link-arrow" href="#reservar" data-i18n="rep.cta">Pedir una canción</a>
@@ -1034,11 +1223,11 @@ h2 em { font-style: italic; color: var(--accent); }
             <option value="otro" data-i18n="f.tipo.6">Otro</option>
           </select>
         </div>
-        <div class="field">
+        <div class="field half">
           <label for="f-fecha" data-i18n="f.fecha">Fecha del evento</label>
           <input id="f-fecha" name="fecha" type="date" required>
         </div>
-        <div class="field">
+        <div class="field half">
           <label for="f-invitados"><span data-i18n="f.inv">Invitados</span> <span class="opt" data-i18n="f.aprox">(aprox.)</span></label>
           <input id="f-invitados" name="invitados" type="number" min="1" step="1" inputmode="numeric" placeholder="80">
         </div>
@@ -1143,6 +1332,14 @@ h2 em { font-style: italic; color: var(--accent); }
   <span class="wa-t">WhatsApp</span>
 </a>
 
+<div class="m-cta is-away" id="mCta">
+  <a class="btn" id="mCtaWa" href="https://wa.me/529511981444" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M20 11.5a8 8 0 0 1-11.8 7L4 20l1.5-4.1A8 8 0 1 1 20 11.5Z"/></svg>
+    WhatsApp
+  </a>
+  <a class="btn btn-solid" href="#reservar" data-i18n="nav.cta">Reservar fecha</a>
+</div>
+
 <dialog class="lb" id="lb" aria-label="Galería">
   <figure><img id="lbImg" src="" alt=""><figcaption id="lbCap"></figcaption></figure>
   <button class="lb-btn lb-close" type="button" id="lbClose" aria-label="Cerrar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
@@ -1197,7 +1394,7 @@ h2 em { font-style: italic; color: var(--accent); }
   const EN = {
     'skip': 'Skip to content',
     'nav.naomi': 'Naomi', 'nav.tray': 'Journey', 'nav.live': 'Live', 'nav.svc': 'Services', 'nav.ens': 'Ensemble', 'nav.rep': 'Repertoire',
-    'nav.contact': 'Contact', 'nav.cta': 'Book a date', 'nav.menu': 'Menu',
+    'nav.contact': 'Contact', 'nav.cta': 'Book a date', 'nav.menu': 'Menu', 'nav.ref': 'References', 'nav.faq': 'FAQ', 'nav.book': 'Book',
     'hero.eyebrow': 'Oaxacan singer · Mixtec roots',
     'hero.tag': 'A voice between two worlds',
     'hero.lead': 'Bolero, jazz and soul sung with bel canto technique. Live music for weddings, dinners and events in Oaxaca, as a soloist or with her ensemble Corazón Antequera.',
@@ -1306,11 +1503,13 @@ h2 em { font-style: italic; color: var(--accent); }
     es: { copied: 'Copiado', copyFail: 'Selecciona y copia', tabs: 'Estilos', songs: 'canciones', gallery: 'Galería', close: 'Cerrar', prev: 'Anterior', next: 'Siguiente',
       greet: 'Hola, Naomi y Corazón Antequera. Me gustaría consultar disponibilidad para un evento.', subj: 'Solicitud de reserva',
       lName: 'Nombre', lType: 'Tipo de evento', lDate: 'Fecha', lPlace: 'Lugar', lGuests: 'Invitados', lFormat: 'Formato', lPhone: 'WhatsApp / teléfono', lEmail: 'Correo', lDetails: 'Detalles',
-      waDefault: 'Hola, Naomi. Me gustaría información para un evento.', errFix: 'Revisa los campos marcados.' },
+      waDefault: 'Hola, Naomi. Me gustaría información para un evento.', errFix: 'Revisa los campos marcados.',
+      more: 'Leer más', less: 'Leer menos', repAll: 'Ver las {n} canciones', repLess: 'Ver menos' },
     en: { copied: 'Copied', copyFail: 'Select and copy', tabs: 'Styles', songs: 'songs', gallery: 'Gallery', close: 'Close', prev: 'Previous', next: 'Next',
       greet: 'Hello Naomi and Corazón Antequera, I would like to check your availability for an event.', subj: 'Booking request',
       lName: 'Name', lType: 'Event type', lDate: 'Date', lPlace: 'Venue', lGuests: 'Guests', lFormat: 'Format', lPhone: 'WhatsApp / phone', lEmail: 'Email', lDetails: 'Details',
-      waDefault: 'Hello Naomi, I would like information about an event.', errFix: 'Please check the highlighted fields.' }
+      waDefault: 'Hello Naomi, I would like information about an event.', errFix: 'Please check the highlighted fields.',
+      more: 'Read more', less: 'Show less', repAll: 'Show all {n} songs', repLess: 'Show fewer' }
   };
 
   let lang = 'es';
@@ -1334,6 +1533,7 @@ h2 em { font-style: italic; color: var(--accent); }
   function selectTab(t, focus) {
     tabs.forEach(x => { const on = x === t; x.setAttribute('aria-selected', on); x.tabIndex = on ? 0 : -1; $('#' + x.getAttribute('aria-controls')).hidden = !on; });
     if (focus) t.focus();
+    updRepAll();
   }
   tabs.forEach((t, i) => {
     t.addEventListener('click', () => selectTab(t));
@@ -1341,6 +1541,35 @@ h2 em { font-style: italic; color: var(--accent); }
       if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { e.preventDefault(); const n = tabs[(i + (e.key === 'ArrowRight' ? 1 : -1) + tabs.length) % tabs.length]; selectTab(n, true); }
     });
   });
+  /* ---------- Mobile: read more + repertoire show all ---------- */
+  const clamps = $$('[data-clamp]').map(p => {
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = 'more-btn'; b.setAttribute('aria-expanded', 'false'); b.hidden = true;
+    p.after(b);
+    b.addEventListener('click', () => { const open = p.classList.toggle('is-open'); b.setAttribute('aria-expanded', open); b.textContent = UI[lang][open ? 'less' : 'more']; });
+    return { p, b };
+  });
+  function checkClamps() {
+    clamps.forEach(({ p, b }) => {
+      const open = p.classList.contains('is-open');
+      b.textContent = UI[lang][open ? 'less' : 'more'];
+      b.hidden = !open && !(p.scrollHeight > p.clientHeight + 2);
+    });
+  }
+  const repAll = $('#repAll');
+  const curPanel = () => $$('.songs', panelsEl).find(x => !x.hidden);
+  function updRepAll() {
+    const pnl = curPanel(); if (!pnl) return;
+    const n = pnl.children.length, open = pnl.classList.contains('show-all');
+    repAll.hidden = n <= 8;
+    repAll.textContent = open ? UI[lang].repLess : UI[lang].repAll.replace('{n}', n);
+    repAll.setAttribute('aria-expanded', open);
+  }
+  repAll.addEventListener('click', () => { const pnl = curPanel(); pnl.classList.toggle('show-all'); updRepAll(); });
+  let rT; window.addEventListener('resize', () => { clearTimeout(rT); rT = setTimeout(checkClamps, 150); });
+  window.addEventListener('load', checkClamps);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(checkClamps);
+
   function renderTabLabels() { REP.forEach((g, i) => { tabs[i].querySelector('.tab-l').textContent = g[lang]; }); tabsEl.setAttribute('aria-label', UI[lang].tabs); }
 
   /* ---------- i18n ---------- */
@@ -1361,7 +1590,8 @@ h2 em { font-style: italic; color: var(--accent); }
     $('#lb').setAttribute('aria-label', UI[lang].gallery);
     $('#lbClose').setAttribute('aria-label', UI[lang].close); $('#lbPrev').setAttribute('aria-label', UI[lang].prev); $('#lbNext').setAttribute('aria-label', UI[lang].next);
     const waDefault = 'https://wa.me/' + PHONE + '?text=' + encodeURIComponent(UI[lang].waDefault);
-    $('#waFloat').href = waDefault; $('#telVal').href = waDefault;
+    $('#waFloat').href = waDefault; $('#telVal').href = waDefault; $('#mCtaWa').href = waDefault;
+    checkClamps(); updRepAll();
     if (!$('#result').hidden) buildResult();
     if (save) { try { localStorage.setItem('nl-lang', lang); } catch (e) {} }
   }
@@ -1381,6 +1611,26 @@ h2 em { font-style: italic; color: var(--accent); }
   onScroll(); window.addEventListener('scroll', onScroll, { passive: true });
   menuBtn.addEventListener('click', () => { const open = bar.classList.toggle('nav-open'); menuBtn.setAttribute('aria-expanded', open); });
   $$('#nav a').forEach(a => a.addEventListener('click', () => { bar.classList.remove('nav-open'); menuBtn.setAttribute('aria-expanded', 'false'); }));
+
+  /* ---------- Mobile: section chips (scrollspy) + bottom bar ---------- */
+  const subnav = $('#subnav'), spyLinks = $$('#subnav a');
+  const spy = new Map(spyLinks.map(a => [a.getAttribute('href').slice(1), a]));
+  function setActive(id) {
+    const a = spy.get(id); if (!a) return;
+    spyLinks.forEach(x => x.classList.toggle('is-active', x === a));
+    if (subnav.offsetParent) subnav.scrollTo({ left: Math.max(0, a.offsetLeft - 16), behavior: 'smooth' });
+  }
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) setActive(e.target.id); }), { rootMargin: '-45% 0px -50% 0px' });
+    spy.forEach((a, id) => { const el = document.getElementById(id); if (el) io.observe(el); });
+  }
+  const heroEl = $('#inicio'), bookEl = $('#reservar'), mCta = $('#mCta');
+  function updCta() {
+    const r = bookEl.getBoundingClientRect();
+    const inBook = r.top < window.innerHeight * .8 && r.bottom > 0;
+    mCta.classList.toggle('is-away', window.scrollY < heroEl.offsetHeight * .6 || inBook);
+  }
+  updCta(); window.addEventListener('scroll', updCta, { passive: true });
 
   /* ---------- Lightbox ---------- */
   const lb = $('#lb'), lbImg = $('#lbImg'), lbCap = $('#lbCap');
