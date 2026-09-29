@@ -292,11 +292,41 @@ h2 em { font-style: italic; color: var(--accent); }
 .tl-body figure img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; }
 .tl-body figure.tall img { aspect-ratio: 4 / 5; max-width: 300px; object-position: 50% 12%; }
 .tl-body .cap { margin-top: .7rem; }
+/* Featured: Embassy of Mexico */
+.tl-item.is-feature .tl-year { color: var(--oro-claro); }
+.tl-item.is-feature .tl-body::before, .tl-item.is-feature .tl-when::before { width: 15px; height: 15px; background: var(--oro); box-shadow: 0 0 0 6px rgba(201, 160, 99, .16); }
+.tl-item.is-feature .tl-body::before { left: -8px; top: .6rem; }
+.tl-feature { position: relative; margin: .2rem 6px 0 0; padding: clamp(26px, 3.6vw, 48px); border: 1px solid var(--oro); outline: 1px solid var(--linea-o2); outline-offset: 6px;
+  background: radial-gradient(120% 90% at 100% 0%, rgba(122, 31, 47, .6), transparent 62%), var(--noche-2); box-shadow: 0 30px 70px var(--sombra); }
+.tl-feature::before { content: ""; position: absolute; top: -7px; left: 50%; width: 12px; height: 12px; margin-left: -6px; background: var(--oro); transform: rotate(45deg); }
+.tl-kicker { display: flex; align-items: center; gap: .8rem; font: 500 .7rem/1.3 var(--f-text); letter-spacing: .26em; text-transform: uppercase; color: var(--oro); }
+.tl-kicker::before { content: ""; width: 32px; height: 1px; background: var(--oro); }
+.tl-feature h3 { font-size: clamp(1.9rem, 1.3rem + 1.8vw, 2.8rem); line-height: 1.08; margin-top: 1rem; color: var(--claro); }
+.tl-feature h3 em { font-style: italic; color: var(--oro); }
+.tl-body .tl-feature > p { color: var(--claro); max-width: 44em; margin-top: 1.1rem; }
+.emb-list { list-style: none; padding: 0; margin: 1.9rem 0 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: clamp(20px, 3vw, 40px); }
+.emb-list li { position: relative; padding: 1rem 0 1rem 1.6rem; border-top: 1px solid var(--linea-o); min-width: 0; }
+.emb-list li::before { content: ""; position: absolute; left: 1px; top: 1.5rem; width: 7px; height: 7px; background: var(--oro); transform: rotate(45deg); }
+.emb-list strong { display: block; font-family: var(--f-display); font-weight: 400; font-size: 1.22rem; line-height: 1.25; color: var(--claro); }
+.emb-list span { display: block; margin-top: .2rem; font-size: .9rem; color: var(--claro-2); }
+.emb-award { display: flex; align-items: center; gap: 1.3rem; margin-top: 1.6rem; padding: 1.2rem 1.4rem; border: 1px solid var(--linea-o2); background: rgba(201, 160, 99, .07); }
+.emb-award strong { display: block; font-family: var(--f-display); font-weight: 400; font-size: 1.3rem; color: var(--oro-claro); }
+.tl-body .emb-award p { margin-top: .25rem; font-size: .95rem; }
+.seal.seal-gold { flex: none; border-color: var(--oro); outline-color: var(--oro); color: var(--oro); }
+.emb-photos { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; margin-top: 1.8rem; }
+.tl-body .emb-photos figure { margin: 0; max-width: none; }
+.tl-body .emb-photos img { aspect-ratio: 4 / 3; }
+@media (max-width: 600px) {
+  .emb-list, .emb-photos { grid-template-columns: minmax(0, 1fr); }
+  .emb-award { align-items: flex-start; }
+}
 @media (max-width: 720px) {
   .tl-item { grid-template-columns: minmax(0, 1fr); border-left: 1px solid var(--linea-o); padding-left: 24px; margin-left: 6px; }
   .tl-item:last-child { border-left-color: transparent; }
   .tl-when { text-align: left; margin-bottom: .9rem; }
   .tl-when::before { display: block; left: -30px; top: .6rem; }
+  .tl-item.is-feature .tl-when::before { left: -32px; top: .5rem; }
+  .tl-feature { margin-left: 0; }
   .tl-body { border-left: 0; padding-left: 0; padding-bottom: 52px; }
   .tl-body::before { display: none; }
 }
@@ -577,7 +607,7 @@ h2 em { font-style: italic; color: var(--accent); }
       <p class="eyebrow" data-i18n="about.eyebrow">Perfil artístico</p>
       <h2 data-i18n="about.h2">Oaxaca como raíz. <em>Europa como horizonte.</em></h2>
       <p class="lead" data-i18n="about.p1">Naomi Fernanda Villegas Luna, conocida artísticamente como Naomi Luna, es una cantante oaxaqueña de raíces mixtecas. Su voz, de tesitura mixta, encuentra su casa en el bolero y se enriquece con matices de jazz, soul y la técnica del bel canto.</p>
-      <p data-i18n="about.p2">Se formó desde niña entre Oaxaca y la Ciudad de México, continuó su preparación en Lyon, Francia, y vivió varios años en Praga, donde promovió la música mexicana y oaxaqueña junto a la Embajada de México, festivales y organizaciones culturales. De regreso en Oaxaca fundó el ensamble Corazón Antequera y hoy canta en bodas, cenas privadas, hoteles y eventos culturales.</p>
+      <p data-i18n="about.p2">Se formó desde niña entre Oaxaca y la Ciudad de México y continuó su preparación en Lyon, Francia. Durante sus años en Praga cantó en los actos oficiales de la Embajada de México, del Día de la Independencia a recepciones diplomáticas, y llevó la música oaxaqueña a festivales y organizaciones culturales. De regreso en Oaxaca fundó el ensamble Corazón Antequera y hoy canta en bodas, cenas privadas, hoteles y eventos culturales.</p>
       <p class="quote" data-i18n="about.quote">La música como territorio de memoria, identidad y comunidad.</p>
       <dl class="facts">
         <dt data-i18n="facts.voz">Voz</dt><dd data-i18n="facts.voz.v">Tesitura mixta</dd>
@@ -596,45 +626,64 @@ h2 em { font-style: italic; color: var(--accent); }
     <div class="head-2">
       <div class="stack">
         <p class="eyebrow" data-i18n="tl.eyebrow">Trayectoria</p>
-        <h2 data-i18n="tl.h2">De Oaxaca a Europa, <em>y de vuelta a casa</em></h2>
+        <h2 data-i18n="tl.h2">Una trayectoria <em>entre dos continentes</em></h2>
       </div>
-      <p class="lead muted" data-i18n="tl.lead">Una formación clásica rigurosa y años de escenario en dos continentes, al servicio de una voz que hoy canta para Oaxaca.</p>
+      <p class="lead muted" data-i18n="tl.lead">Del presente a sus inicios: los escenarios, las instituciones y la formación clásica que respaldan su voz.</p>
     </div>
 
     <ol class="tl">
-      <li class="tl-item">
-        <div class="tl-when"><span class="tl-year" data-i18n="tl.1.y">A los 8 años</span><span class="tl-place">Oaxaca · Ciudad de México</span></div>
+      <li class="tl-item is-now">
+        <div class="tl-when"><span class="tl-year">2026</span><span class="tl-place">Oaxaca</span></div>
         <div class="tl-body">
-          <h3 data-i18n="tl.1.h">El origen de la voz</h3>
-          <p data-i18n="tl.1.p">Inicia su formación musical en el CIMO y en Esperanza Azteca. Estudia bel canto con Felipe Espinoza y Gabriel Mijares, en la Ciudad de México, y con Verónica Murúa, docente de la Facultad de Música de la UNAM.</p>
-          <figure class="tall">
-            <img src="img/naomi-tradicional.jpg" width="427" height="1468" loading="lazy" alt="Naomi Luna con traje tradicional oaxaqueño y falda bordada" data-i18n-alt="tl.1.alt">
-            <figcaption class="cap" data-i18n="tl.1.cap">Raíces oaxaqueñas</figcaption>
+          <h3 data-i18n="tl.7.h">De vuelta a casa</h3>
+          <p data-i18n="tl.7.p">Funda Corazón Antequera, un quinteto de músicos oaxaqueños que reinterpreta piezas tradicionales del estado con jazz, bossa nova y ritmos latinoamericanos. También forma parte del proyecto escénico Oaxaca Vive, con giras internacionales, principalmente en Estados Unidos y Latinoamérica.</p>
+          <figure>
+            <img src="img/ensamble.jpg" width="1248" height="832" loading="lazy" alt="Naomi Luna con los músicos de Corazón Antequera en el escenario" data-i18n-alt="tl.7.alt">
+            <figcaption class="cap">Corazón Antequera · Oaxaca</figcaption>
           </figure>
         </div>
       </li>
-      <li class="tl-item">
-        <div class="tl-when"><span class="tl-year">2014</span><span class="tl-place">Oaxaca</span></div>
+      <li class="tl-item is-feature">
+        <div class="tl-when"><span class="tl-year">2019–2025</span><span class="tl-place" data-i18n="tl.emb.pl">Praga · República Checa</span></div>
         <div class="tl-body">
-          <h3 data-i18n="tl.2.h">Primer papel protagónico</h3>
-          <p data-i18n="tl.2.p">En el Bachillerato de Artes y Humanidades del CEDART Miguel Cabrera consolida su formación escénica. A los 17 años interpreta a Bastiana en la ópera <em>Bastien y Bastiana</em> de Mozart, en una producción del Instituto de Formación Musical Maurice Ravel.</p>
+          <article class="tl-feature">
+            <p class="tl-kicker" data-i18n="tl.emb.k">Colaboración destacada</p>
+            <h3 data-i18n="tl.emb.h">Con la <em>Embajada de México</em> en la República Checa</h3>
+            <p data-i18n="tl.emb.p">Durante sus años en Praga, Naomi colaboró con la Embajada de México cantando en sus actos oficiales y celebraciones: las conmemoraciones del Día de la Independencia, aniversarios y fechas patrias, recepciones diplomáticas privadas y eventos abiertos al público. Su voz acompañó a diplomáticos, invitados de honor y a la comunidad mexicana en Europa.</p>
+            <ul class="emb-list">
+              <li><strong data-i18n="tl.emb.l1.h">Día de la Independencia</strong><span data-i18n="tl.emb.l1.p">Conmemoraciones oficiales de las fiestas patrias</span></li>
+              <li><strong data-i18n="tl.emb.l2.h">Aniversarios y fechas patrias</strong><span data-i18n="tl.emb.l2.p">Actos solemnes de la Embajada</span></li>
+              <li><strong data-i18n="tl.emb.l3.h">Recepciones privadas</strong><span data-i18n="tl.emb.l3.p">Actos oficiales y encuentros diplomáticos</span></li>
+              <li><strong data-i18n="tl.emb.l4.h">Eventos abiertos al público</strong><span data-i18n="tl.emb.l4.p">Celebraciones de la cultura mexicana en Praga</span></li>
+            </ul>
+            <div class="emb-award">
+              <div class="seal seal-gold" aria-hidden="true">2019</div>
+              <div>
+                <strong data-i18n="tl.emb.aw.h">Mención honorífica</strong>
+                <p data-i18n="tl.emb.aw.p">Otorgada por la Embajada de México por las actividades conmemorativas del 209.º aniversario de la Independencia de México.</p>
+              </div>
+            </div>
+            <div class="emb-photos">
+              <figure>
+                <img src="img/embajada.jpg" width="706" height="729" loading="lazy" alt="Naomi Luna en un acto conmemorativo en Praga, junto a las banderas de México y la República Checa" data-i18n-alt="tl.emb.a1">
+                <figcaption class="cap" data-i18n="tl.emb.c1">Acto conmemorativo · Praga</figcaption>
+              </figure>
+              <figure>
+                <img src="img/embajada-teatro.jpg" width="521" height="358" loading="lazy" alt="Celebración patria mexicana en un teatro de Praga" data-i18n-alt="tl.emb.a2">
+                <figcaption class="cap" data-i18n="tl.emb.c2">Celebración patria · Praga</figcaption>
+              </figure>
+            </div>
+          </article>
         </div>
       </li>
       <li class="tl-item">
-        <div class="tl-when"><span class="tl-year" data-i18n="tl.3.y">A los 18 años</span><span class="tl-place" data-i18n="tl.3.pl">Lyon, Francia</span></div>
+        <div class="tl-when"><span class="tl-year">2020–2025</span><span class="tl-place" data-i18n="tl.6.pl">Festivales culturales</span></div>
         <div class="tl-body">
-          <h3 data-i18n="tl.3.h">Preparación en Europa</h3>
-          <p data-i18n="tl.3.p">Llega a Lyon con un intercambio cultural, dentro de un programa de preparación para ingresar al Conservatorio Regional de Lyon. Su coach vocal principal es la soprano Isabel Germain.</p>
-        </div>
-      </li>
-      <li class="tl-item">
-        <div class="tl-when"><span class="tl-year">2019</span><span class="tl-place" data-i18n="tl.4.pl">Praga, República Checa</span></div>
-        <div class="tl-body">
-          <h3 data-i18n="tl.4.h">Praga: escenario y encuentro</h3>
-          <p data-i18n="tl.4.p">Se integra al coro de la Universidad Carlos. Ese año, el Club México CZ reconoce su participación musical en el Sexto Congreso de Asociaciones Mexicanas en Europa, y la Embajada de México en la República Checa le otorga una mención honorífica por las actividades del 209.º aniversario de la Independencia de México.</p>
+          <h3 data-i18n="tl.6.h">México vivo en Europa</h3>
+          <p data-i18n="tl.6.p">Participa de forma constante en La Calle Mexicana y en el Festival de Día de Muertos del Museo Náprstek de las Culturas de Asia, África y América, y promueve la música mexicana y oaxaqueña junto a festivales culturales y organizaciones sin fines de lucro.</p>
           <figure>
-            <img src="img/embajada.jpg" width="706" height="729" loading="lazy" alt="Naomi Luna en un acto cultural mexicano en Praga, junto a las banderas de México y la República Checa" data-i18n-alt="tl.4.alt">
-            <figcaption class="cap" data-i18n="tl.4.cap">Acto cultural mexicano en Praga</figcaption>
+            <img src="img/dia-de-muertos.jpg" width="1280" height="735" loading="lazy" alt="Desfile de Día de Muertos en la Plaza de la Ciudad Vieja de Praga" data-i18n-alt="tl.6.alt">
+            <figcaption class="cap" data-i18n="tl.6.cap">Día de Muertos en Praga</figcaption>
           </figure>
         </div>
       </li>
@@ -646,24 +695,34 @@ h2 em { font-style: italic; color: var(--accent); }
         </div>
       </li>
       <li class="tl-item">
-        <div class="tl-when"><span class="tl-year">2020–2025</span><span class="tl-place" data-i18n="tl.6.pl">Diplomacia cultural</span></div>
+        <div class="tl-when"><span class="tl-year">2019</span><span class="tl-place" data-i18n="tl.4.pl">Praga, República Checa</span></div>
         <div class="tl-body">
-          <h3 data-i18n="tl.6.h">México vivo en Europa</h3>
-          <p data-i18n="tl.6.p">Participa de forma constante en La Calle Mexicana y en el Festival de Día de Muertos del Museo Náprstek de las Culturas de Asia, África y América, y promueve la música mexicana y oaxaqueña junto a embajadas, festivales culturales y organizaciones sin fines de lucro.</p>
-          <figure>
-            <img src="img/dia-de-muertos.jpg" width="1280" height="735" loading="lazy" alt="Desfile de Día de Muertos en la Plaza de la Ciudad Vieja de Praga" data-i18n-alt="tl.6.alt">
-            <figcaption class="cap" data-i18n="tl.6.cap">Día de Muertos en Praga</figcaption>
-          </figure>
+          <h3 data-i18n="tl.4.h">Llegada a Praga</h3>
+          <p data-i18n="tl.4.p">Se integra al coro de la Universidad Carlos. Ese mismo año, el Club México CZ reconoce su participación musical en el Sexto Congreso de Asociaciones Mexicanas en Europa.</p>
         </div>
       </li>
-      <li class="tl-item is-now">
-        <div class="tl-when"><span class="tl-year">2026</span><span class="tl-place">Oaxaca</span></div>
+      <li class="tl-item">
+        <div class="tl-when"><span class="tl-year" data-i18n="tl.3.y">A los 18 años</span><span class="tl-place" data-i18n="tl.3.pl">Lyon, Francia</span></div>
         <div class="tl-body">
-          <h3 data-i18n="tl.7.h">De vuelta a casa</h3>
-          <p data-i18n="tl.7.p">Funda Corazón Antequera, un quinteto de músicos oaxaqueños que reinterpreta piezas tradicionales del estado con jazz, bossa nova y ritmos latinoamericanos. También forma parte del proyecto escénico Oaxaca Vive, con giras internacionales, principalmente en Estados Unidos y Latinoamérica.</p>
-          <figure>
-            <img src="img/ensamble.jpg" width="1248" height="832" loading="lazy" alt="Naomi Luna con los músicos de Corazón Antequera en el escenario" data-i18n-alt="tl.7.alt">
-            <figcaption class="cap">Corazón Antequera · Oaxaca</figcaption>
+          <h3 data-i18n="tl.3.h">Preparación en Europa</h3>
+          <p data-i18n="tl.3.p">Llega a Lyon con un intercambio cultural, dentro de un programa de preparación para ingresar al Conservatorio Regional de Lyon. Su coach vocal principal es la soprano Isabel Germain.</p>
+        </div>
+      </li>
+      <li class="tl-item">
+        <div class="tl-when"><span class="tl-year">2014</span><span class="tl-place">Oaxaca</span></div>
+        <div class="tl-body">
+          <h3 data-i18n="tl.2.h">Primer papel protagónico</h3>
+          <p data-i18n="tl.2.p">En el Bachillerato de Artes y Humanidades del CEDART Miguel Cabrera consolida su formación escénica. A los 17 años interpreta a Bastiana en la ópera <em>Bastien y Bastiana</em> de Mozart, en una producción del Instituto de Formación Musical Maurice Ravel.</p>
+        </div>
+      </li>
+      <li class="tl-item">
+        <div class="tl-when"><span class="tl-year" data-i18n="tl.1.y">A los 8 años</span><span class="tl-place">Oaxaca · Ciudad de México</span></div>
+        <div class="tl-body">
+          <h3 data-i18n="tl.1.h">El origen de la voz</h3>
+          <p data-i18n="tl.1.p">Inicia su formación musical en el CIMO y en Esperanza Azteca. Estudia bel canto con Felipe Espinoza y Gabriel Mijares, en la Ciudad de México, y con Verónica Murúa, docente de la Facultad de Música de la UNAM.</p>
+          <figure class="tall">
+            <img src="img/naomi-tradicional.jpg" width="427" height="1468" loading="lazy" alt="Naomi Luna con traje tradicional oaxaqueño y falda bordada" data-i18n-alt="tl.1.alt">
+            <figcaption class="cap" data-i18n="tl.1.cap">Raíces oaxaqueñas</figcaption>
           </figure>
         </div>
       </li>
@@ -716,7 +775,7 @@ h2 em { font-style: italic; color: var(--accent); }
       <div class="ref-col">
         <h3 data-i18n="ref.c2">En Europa</h3>
         <ul>
-          <li><span data-i18n="ref.e1">Embajada de México</span><small data-i18n="ref.e1s">República Checa</small></li>
+          <li><span data-i18n="ref.e1">Embajada de México</span><small data-i18n="ref.e1s">Día de la Independencia, aniversarios, recepciones y eventos públicos</small></li>
           <li><span data-i18n="ref.e2">Coro de la Universidad Carlos</span><small data-i18n="ref.e2s">Praga · giras por Europa del Este</small></li>
           <li><span data-i18n="ref.e3">Museo Náprstek</span><small data-i18n="ref.e3s">Festival de Día de Muertos, Praga</small></li>
           <li>La Calle Mexicana<small data-i18n="ref.e4s">Festival de cultura mexicana</small></li>
@@ -1150,12 +1209,12 @@ h2 em { font-style: italic; color: var(--accent); }
     'about.cap': 'Prague, Czech Republic', 'about.eyebrow': 'Artist profile',
     'about.h2': 'Oaxaca as her roots. <em>Europe as her horizon.</em>',
     'about.p1': 'Naomi Fernanda Villegas Luna, known on stage as Naomi Luna, is a singer from Oaxaca with Mixtec roots. Her voice, a mixed tessitura, is at home in the bolero and draws on jazz, soul and bel canto technique.',
-    'about.p2': 'She trained from childhood between Oaxaca and Mexico City, continued her studies in Lyon, France, and spent several years in Prague, promoting Mexican and Oaxacan music with the Embassy of Mexico, festivals and cultural organizations. Back in Oaxaca she founded the ensemble Corazón Antequera, and today she sings at weddings, private dinners, hotels and cultural events.',
+    'about.p2': 'She trained from childhood between Oaxaca and Mexico City and continued her studies in Lyon, France. During her years in Prague she sang at official events of the Embassy of Mexico, from Independence Day to diplomatic receptions, and brought Oaxacan music to festivals and cultural organizations. Back in Oaxaca she founded the ensemble Corazón Antequera, and today she sings at weddings, private dinners, hotels and cultural events.',
     'about.quote': 'Music as a territory of memory, identity and community.',
     'facts.voz': 'Voice', 'facts.voz.v': 'Mixed tessitura', 'facts.est': 'Styles', 'facts.raiz': 'Roots', 'facts.raiz.v': 'Mixtec · Oaxaca, Mexico',
     'facts.idi': 'Sings in', 'facts.idi.v': 'Spanish, English, French and Italian', 'facts.base': 'Based in',
-    'tl.eyebrow': 'Journey', 'tl.h2': 'From Oaxaca to Europe, <em>and back home</em>',
-    'tl.lead': 'Rigorous classical training and years on stage across two continents, in service of a voice that now sings for Oaxaca.',
+    'tl.eyebrow': 'Journey', 'tl.h2': 'A career across <em>two continents</em>',
+    'tl.lead': 'From today back to where it began: the stages, institutions and classical training behind her voice.',
     'tl.1.y': 'Age 8', 'tl.1.h': 'Where the voice began',
     'tl.1.p': 'She begins her musical training at CIMO and Esperanza Azteca. She studies bel canto with Felipe Espinoza and Gabriel Mijares in Mexico City, and with Verónica Murúa, faculty member at the UNAM School of Music.',
     'tl.1.alt': 'Naomi Luna in traditional Oaxacan dress with an embroidered skirt', 'tl.1.cap': 'Oaxacan roots',
@@ -1163,13 +1222,19 @@ h2 em { font-style: italic; color: var(--accent); }
     'tl.2.p': 'At the CEDART Miguel Cabrera arts high school she builds her stage training. At 17 she sings the title role in Mozart’s opera <em>Bastien and Bastienne</em>, produced by the Instituto de Formación Musical Maurice Ravel.',
     'tl.3.y': 'Age 18', 'tl.3.pl': 'Lyon, France', 'tl.3.h': 'Training in Europe',
     'tl.3.p': 'She arrives in Lyon on a cultural exchange, in a program that prepares students to enter the Lyon Regional Conservatory. Her main vocal coach is soprano Isabel Germain.',
-    'tl.4.pl': 'Prague, Czech Republic', 'tl.4.h': 'Prague: a stage and a meeting place',
-    'tl.4.p': 'She joins the Charles University choir. That year, Club México CZ recognizes her musical contribution to the Sixth Congress of Mexican Associations in Europe, and the Embassy of Mexico in the Czech Republic awards her an honorable mention for the 209th anniversary of Mexican Independence.',
-    'tl.4.alt': 'Naomi Luna at a Mexican cultural event in Prague, beside the flags of Mexico and the Czech Republic', 'tl.4.cap': 'Mexican cultural event in Prague',
+    'tl.4.pl': 'Prague, Czech Republic', 'tl.4.h': 'Arriving in Prague',
+    'tl.4.p': 'She joins the Charles University choir. That same year, Club México CZ recognizes her musical contribution to the Sixth Congress of Mexican Associations in Europe.',
+    'tl.emb.pl': 'Prague · Czech Republic', 'tl.emb.k': 'Featured collaboration', 'tl.emb.h': 'With the <em>Embassy of Mexico</em> in the Czech Republic',
+    'tl.emb.p': 'During her years in Prague, Naomi worked with the Embassy of Mexico, singing at its official ceremonies and celebrations: Independence Day commemorations, national anniversaries, private diplomatic receptions and events open to the public. Her voice accompanied diplomats, guests of honor and the Mexican community in Europe.',
+    'tl.emb.l1.h': 'Independence Day', 'tl.emb.l1.p': 'Official national holiday commemorations', 'tl.emb.l2.h': 'Anniversaries and national dates', 'tl.emb.l2.p': 'Formal Embassy ceremonies',
+    'tl.emb.l3.h': 'Private receptions', 'tl.emb.l3.p': 'Official functions and diplomatic gatherings', 'tl.emb.l4.h': 'Public events', 'tl.emb.l4.p': 'Celebrations of Mexican culture in Prague',
+    'tl.emb.aw.h': 'Honorable mention', 'tl.emb.aw.p': 'Awarded by the Embassy of Mexico for the events commemorating the 209th anniversary of Mexican Independence.',
+    'tl.emb.a1': 'Naomi Luna at a commemorative ceremony in Prague, beside the flags of Mexico and the Czech Republic', 'tl.emb.c1': 'Commemorative ceremony · Prague',
+    'tl.emb.a2': 'Mexican national celebration in a Prague theater', 'tl.emb.c2': 'National celebration · Prague',
     'tl.5.pl': 'Central and Eastern Europe', 'tl.5.h': 'Touring with the choir',
     'tl.5.p': 'With the Charles University choir she performs across the Czech Republic and in other Eastern European countries.',
-    'tl.6.pl': 'Cultural diplomacy', 'tl.6.h': 'Mexico alive in Europe',
-    'tl.6.p': 'She performs regularly at La Calle Mexicana and at the Day of the Dead Festival of the Náprstek Museum of Asian, African and American Cultures, promoting Mexican and Oaxacan music with embassies, cultural festivals and non-profit organizations.',
+    'tl.6.pl': 'Cultural festivals', 'tl.6.h': 'Mexico alive in Europe',
+    'tl.6.p': 'She performs regularly at La Calle Mexicana and at the Day of the Dead Festival of the Náprstek Museum of Asian, African and American Cultures, promoting Mexican and Oaxacan music with cultural festivals and non-profit organizations.',
     'tl.6.alt': 'Day of the Dead parade on Prague’s Old Town Square', 'tl.6.cap': 'Day of the Dead in Prague',
     'tl.7.h': 'Back home',
     'tl.7.p': 'She founds Corazón Antequera, a quintet of Oaxacan musicians reimagining traditional music from the state through jazz, bossa nova and Latin American rhythms. She is also part of the stage project Oaxaca Vive, touring internationally, mainly in the United States and Latin America.',
@@ -1180,7 +1245,7 @@ h2 em { font-style: italic; color: var(--accent); }
     'ref.a1.p': 'For her part in the events commemorating the 209th anniversary of Mexican Independence.',
     'ref.a2.meta': 'Prague · Recognition', 'ref.a2.p': 'For her musical performance at the Sixth Congress of Mexican Associations in Europe.',
     'ref.c1': 'In Oaxaca', 'ref.c2': 'In Europe', 'ref.c3': 'Projects',
-    'ref.e1': 'Embassy of Mexico', 'ref.e1s': 'Czech Republic', 'ref.e2': 'Charles University Choir', 'ref.e2s': 'Prague · tours in Eastern Europe',
+    'ref.e1': 'Embassy of Mexico', 'ref.e1s': 'Independence Day, anniversaries, receptions and public events', 'ref.e2': 'Charles University Choir', 'ref.e2s': 'Prague · tours in Eastern Europe',
     'ref.e3': 'Náprstek Museum', 'ref.e3s': 'Day of the Dead Festival, Prague', 'ref.e4s': 'Mexican culture festival', 'ref.e5s': 'Congress of Mexican Associations in Europe',
     'ref.p1s': 'International tours in the United States and Latin America', 'ref.p2s': 'More than 50 performances in Oaxaca',
     'live.eyebrow': 'Portfolio', 'live.h2': 'Hear her <em>live</em>',
