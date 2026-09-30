@@ -493,6 +493,7 @@ h2 em { font-style: italic; color: var(--accent); }
 .result h3 { font-size: 1.8rem; }
 .result h3:focus { outline: none; }
 .result > p { margin-top: .5rem; color: var(--claro-2); }
+.result > p.send-status { color: var(--oro-claro); border-left: 2px solid var(--oro); padding-left: .9rem; }
 .result pre { white-space: pre-wrap; word-break: break-word; font: 400 .95rem/1.6 var(--f-text); background: var(--noche-3); border: 1px solid var(--linea-o); padding: 1.1rem 1.2rem; margin: 1.2rem 0; max-height: 340px; overflow: auto; color: var(--claro); }
 .result-actions { display: flex; flex-wrap: wrap; gap: .7rem; }
 .btn-plain { border-color: transparent; color: var(--claro-2); padding-inline: .4em; }
@@ -536,6 +537,74 @@ h2 em { font-style: italic; color: var(--accent); }
 .wa-float:hover { background: var(--oro-claro); transform: translateY(-2px); }
 .wa-float svg { width: 20px; height: 20px; }
 @media (max-width: 560px) { .wa-float .wa-t { display: none; } .wa-float { padding: .95rem; } }
+
+/* ---------- Trust band ---------- */
+.trust { background: var(--noche-3); border-block: 1px solid var(--linea-o); padding-block: 1.6rem; }
+.trust-in { display: flex; align-items: baseline; gap: .8rem 2rem; flex-wrap: wrap; }
+.trust-label { font: 500 .68rem/1.3 var(--f-text); letter-spacing: .24em; text-transform: uppercase; color: var(--oro); flex: none; }
+.trust-list { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: .3rem 0; }
+.trust-list li { font-family: var(--f-display); font-style: italic; font-size: 1.08rem; color: var(--claro-2); }
+.trust-list li + li::before { content: "·"; color: var(--oro); font-style: normal; margin: 0 .75rem; }
+
+/* ---------- Experiences ---------- */
+.fmt-meta { font: 500 .7rem/1.3 var(--f-text); letter-spacing: .2em; text-transform: uppercase; color: var(--accent); }
+.fmt h3 { font-size: clamp(1.8rem, 1.4rem + 1vw, 2.2rem); line-height: 1.1; }
+.fmt-price { font-family: var(--f-display); font-style: italic; font-size: 1rem; color: var(--fg-2); border-top: 1px solid var(--line); padding-top: .8rem; margin-top: .2rem; }
+
+/* ---------- Moments (repertoire) ---------- */
+.moments { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(14px, 2vw, 22px); margin-top: clamp(32px, 4vw, 48px); }
+.moment { background: var(--papel); border: 1px solid var(--line); padding: clamp(22px, 2.6vw, 30px); display: flex; flex-direction: column; gap: .7rem; min-width: 0; }
+.moment h3 { font-size: 1.6rem; line-height: 1.1; }
+.moment > p { font-family: var(--f-display); font-style: italic; color: var(--fg-2); font-size: 1rem; line-height: 1.45; }
+.moment ul { list-style: none; margin: .3rem 0 0; padding: 0; border-top: 1px solid var(--line); }
+.moment li { display: flex; justify-content: space-between; gap: .8rem; align-items: baseline; padding: .5rem 0; border-bottom: 1px solid var(--line); font-size: .92rem; }
+.moment li span:last-child { color: var(--fg-2); font-size: .8rem; text-align: right; }
+.moment.oax { background: var(--noche); color: var(--claro); border-color: var(--noche); --fg-2: var(--claro-2); --line: var(--linea-o); }
+.moment.oax h3 { color: var(--oro); }
+.rep-full { margin-top: clamp(36px, 4vw, 52px); border-top: 1px solid var(--line); }
+.rep-full > summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 1.2rem 0; font: 500 .76rem/1.3 var(--f-text); letter-spacing: .18em; text-transform: uppercase; color: var(--vino); }
+.rep-full > summary::-webkit-details-marker { display: none; }
+.rep-full > summary::after { content: "+"; font: 300 1.6rem/1 var(--f-text); transition: transform .25s ease; }
+.rep-full[open] > summary::after { transform: rotate(45deg); }
+.rep-full .tabs { margin-top: 0; }
+
+/* ---------- Testimonials (hidden until real quotes exist) ---------- */
+.tst-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(16px, 2.4vw, 28px); margin-top: clamp(32px, 4vw, 48px); }
+.tst { margin: 0; padding: clamp(22px, 2.6vw, 32px); border: 1px solid var(--line); display: flex; flex-direction: column; justify-content: space-between; gap: 1.4rem; }
+.tst blockquote { margin: 0; font-family: var(--f-display); font-style: italic; font-size: 1.18rem; line-height: 1.45; }
+.tst figcaption strong { display: block; font-weight: 500; }
+.tst figcaption span { font-size: .85rem; color: var(--fg-2); }
+
+/* ---------- Planners ---------- */
+.pl-grid { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, .75fr); gap: clamp(40px, 6vw, 88px); align-items: start; }
+.pl-copy { display: flex; flex-direction: column; gap: 1.1rem; min-width: 0; }
+.pl-benefits { list-style: none; padding: 0; margin: 1rem 0 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 clamp(20px, 3vw, 36px); }
+.pl-benefits li { padding: 1.1rem 0 1.2rem; border-top: 1px solid var(--linea-o); }
+.pl-benefits h3 { font-size: 1.3rem; line-height: 1.2; }
+.pl-benefits p { margin-top: .35rem; color: var(--claro-2); font-size: .95rem; }
+.pl-kit { margin-top: 1.2rem; border: 1px solid var(--oro); outline: 1px solid var(--linea-o2); outline-offset: 5px; padding: clamp(22px, 3vw, 34px);
+  background: radial-gradient(120% 90% at 100% 0%, rgba(122, 31, 47, .5), transparent 62%), var(--noche-2); }
+.pl-kit h3 { font-size: 1.6rem; }
+.pl-kit > p { color: var(--claro-2); margin-top: .4rem; max-width: 40em; }
+.pl-kit-actions { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1.3rem; }
+.pl-video { position: relative; margin: 0; justify-self: end; width: 100%; max-width: 340px; }
+.pl-video::before { content: ""; position: absolute; inset: -12px 12px 12px -12px; border: 1px solid var(--linea-o2); }
+.pl-video video { position: relative; width: 100%; aspect-ratio: 9 / 16; object-fit: cover; background: var(--noche-3); display: block; }
+.pl-video .cap { margin-top: 1rem; }
+@media (max-width: 900px) {
+  .pl-grid { grid-template-columns: minmax(0, 1fr); }
+  .pl-video { display: none; }
+  .tst-grid, .moments { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 760px) {
+  .trust { padding-block: 1.1rem; }
+  .trust-list li { font-size: .95rem; }
+  .pl-benefits { grid-template-columns: minmax(0, 1fr); }
+  .pl-benefits li { padding: .8rem 0 .9rem; }
+  .pl-kit-actions .btn { flex: 1 1 100%; }
+  .moments.m-rail > .moment { flex: 0 0 82%; }
+  .tst-grid { gap: 12px; }
+}
 
 /* ---------- Mobile helpers (hidden on desktop) ---------- */
 .subnav { display: none; position: relative; gap: .35rem; overflow-x: auto; scrollbar-width: none; padding: .5rem var(--gut); border-top: 1px solid var(--linea-o); }
@@ -734,9 +803,9 @@ h2 em { font-style: italic; color: var(--accent); }
       <a href="#trayectoria" data-i18n="nav.tray">Trayectoria</a>
       <a href="#envivo" data-i18n="nav.live">En vivo</a>
       <a href="#servicios" data-i18n="nav.svc">Servicios</a>
+      <a href="#planners" data-i18n="nav.pl">Planners</a>
       <a href="#ensamble" data-i18n="nav.ens">Ensamble</a>
       <a href="#repertorio" data-i18n="nav.rep">Repertorio</a>
-      <a href="#reservar" data-i18n="nav.contact">Contacto</a>
       <a class="only-m" href="#reservar" data-i18n="nav.cta">Reservar fecha</a>
     </nav>
     <div class="bar-actions">
@@ -757,6 +826,7 @@ h2 em { font-style: italic; color: var(--accent); }
     <a href="#referencias" data-i18n="nav.ref">Referencias</a>
     <a href="#envivo" data-i18n="nav.live">En vivo</a>
     <a href="#servicios" data-i18n="nav.svc">Servicios</a>
+    <a href="#planners" data-i18n="nav.pl">Planners</a>
     <a href="#ensamble" data-i18n="nav.ens">Ensamble</a>
     <a href="#repertorio" data-i18n="nav.rep">Repertorio</a>
     <a href="#preguntas" data-i18n="nav.faq">Preguntas</a>
@@ -786,11 +856,26 @@ h2 em { font-style: italic; color: var(--accent); }
       </figure>
     </div>
     <div class="proof">
-      <div><strong>+50</strong><span data-i18n="proof.1">presentaciones en Oaxaca con Corazón Antequera</span></div>
+      <div><strong>2019</strong><span data-i18n="proof.1">mención honorífica de la Embajada de México en la República Checa</span></div>
       <div><strong>+5</strong><span data-i18n="proof.2">años en escenarios de Europa</span></div>
       <div><strong>4</strong><span data-i18n="proof.3">idiomas en su repertorio: español, inglés, francés e italiano</span></div>
-      <div><strong>3</strong><span data-i18n="proof.4">formatos: dúo, trío y quinteto</span></div>
+      <div><strong>3</strong><span data-i18n="proof.4">experiencias en vivo, de dúo a quinteto</span></div>
     </div>
+  </div>
+</section>
+
+<!-- ================= TRUST ================= -->
+<section class="trust" aria-label="Han confiado en Naomi">
+  <div class="wrap trust-in">
+    <p class="trust-label" data-i18n="trust.label">Han confiado en Naomi</p>
+    <ul class="trust-list">
+      <li data-i18n="trust.1">Embajada de México en la República Checa</li>
+      <li>Casa Oaxaca</li>
+      <li>Spira Hotel</li>
+      <li>Pitiona</li>
+      <li data-i18n="trust.2">Museo Náprstek, Praga</li>
+      <li>Oaxaca Vive</li>
+    </ul>
   </div>
 </section>
 
@@ -998,6 +1083,25 @@ h2 em { font-style: italic; color: var(--accent); }
   </div>
 </section>
 
+<!-- ================= TESTIMONIOS · oculto hasta tener citas reales =================
+  Para activarla:
+  1) Sustituye cada texto entre corchetes por una cita REAL, con el permiso de la persona.
+  2) Borra el atributo "hidden" de <section id="testimonios">.
+-->
+<section class="sec sec-paper" id="testimonios" hidden>
+  <div class="wrap">
+    <div class="stack" style="display:flex;flex-direction:column;gap:1rem">
+      <p class="eyebrow" data-i18n="tst.eyebrow">Testimonios</p>
+      <h2 data-i18n="tst.h2">Lo que dicen <em>quienes la han escuchado</em></h2>
+    </div>
+    <div class="tst-grid">
+      <figure class="tst"><blockquote>[Cita real del cliente]</blockquote><figcaption><strong>[Nombre]</strong><span>[Tipo de evento · lugar · año]</span></figcaption></figure>
+      <figure class="tst"><blockquote>[Cita real del cliente]</blockquote><figcaption><strong>[Nombre]</strong><span>[Tipo de evento · lugar · año]</span></figcaption></figure>
+      <figure class="tst"><blockquote>[Cita real del cliente]</blockquote><figcaption><strong>[Nombre]</strong><span>[Tipo de evento · lugar · año]</span></figcaption></figure>
+    </div>
+  </div>
+</section>
+
 <!-- ================= LIVE / PORTFOLIO ================= -->
 <section class="sec sec-dark" id="envivo">
   <div class="wrap">
@@ -1085,27 +1189,29 @@ h2 em { font-style: italic; color: var(--accent); }
     </div>
 
     <div class="svc-block">
-      <h3 class="block-h" data-i18n="fmt.h">Formatos</h3>
-      <p class="muted" data-i18n="fmt.lead">Cada alineación conserva la esencia, la calidad y la elegancia del ensamble. Elige según el tipo de celebración y el número de invitados.</p>
+      <h3 class="block-h" data-i18n="fmt.h">Experiencias</h3>
+      <p class="muted" data-i18n="fmt.lead">Tres formas de llevar la música en vivo a tu evento. Cada propuesta se ajusta al lugar, al horario y al número de invitados.</p>
       <div class="formats m-rail">
         <article class="fmt">
-          <div class="fmt-top"><span class="fmt-n">2</span><span class="fmt-unit" data-i18n="fmt.unit">músicos</span></div>
-          <h3 data-i18n="fmt.1.h">Dúo</h3>
-          <p data-i18n="fmt.1.p">La opción más íntima. Ideal para ceremonias, cenas privadas y cócteles.</p>
-          <a class="btn" href="#reservar" data-format="duo" data-i18n="fmt.btn">Consultar este formato</a>
+          <p class="fmt-meta" data-i18n="exp.1.m">Dúo o trío</p>
+          <h3 data-i18n="exp.1.h">Ceremonia</h3>
+          <p data-i18n="exp.1.p">Música para la entrada, los votos y la salida, con canciones elegidas junto con la pareja.</p>
+          <p class="fmt-price" data-i18n="exp.price">Tarifa a solicitud</p>
+          <a class="btn" href="#reservar" data-format="ceremonia" data-i18n="exp.btn">Consultar esta experiencia</a>
         </article>
         <article class="fmt">
-          <div class="fmt-top"><span class="fmt-n">3</span><span class="fmt-unit" data-i18n="fmt.unit">músicos</span></div>
-          <h3 data-i18n="fmt.2.h">Trío</h3>
-          <p data-i18n="fmt.2.p">Equilibrio entre ritmo y melodía. Para recepciones, eventos sociales y corporativos.</p>
-          <a class="btn" href="#reservar" data-format="trio" data-i18n="fmt.btn">Consultar este formato</a>
+          <p class="fmt-meta" data-i18n="exp.2.m">Trío o quinteto</p>
+          <h3 data-i18n="exp.2.h">Cóctel y cena</h3>
+          <p data-i18n="exp.2.p">Jazz, bolero y bossa nova para recibir a los invitados, cenar y brindar, con un repertorio a la medida.</p>
+          <p class="fmt-price" data-i18n="exp.price">Tarifa a solicitud</p>
+          <a class="btn" href="#reservar" data-format="coctel" data-i18n="exp.btn">Consultar esta experiencia</a>
         </article>
         <article class="fmt feat">
-          <div class="fmt-top"><span class="fmt-n">5</span><span class="fmt-unit" data-i18n="fmt.unit">músicos</span></div>
-          <h3 data-i18n="fmt.3.h">Quinteto</h3>
-          <p data-i18n="fmt.3.p">La experiencia completa: voz, piano, saxofón, batería y bajo. Para bodas, galas y eventos de gran formato.</p>
-          <p class="fmt-flag" data-i18n="fmt.3.flag">La experiencia completa</p>
-          <a class="btn btn-solid" href="#reservar" data-format="quinteto" data-i18n="fmt.btn">Consultar este formato</a>
+          <p class="fmt-meta" data-i18n="exp.3.m">Quinteto</p>
+          <h3 data-i18n="exp.3.h">Experiencia completa</h3>
+          <p data-i18n="exp.3.p">Voz, piano, saxofón, batería y bajo acompañan todo el evento, de la ceremonia al primer baile, en coordinación con tu wedding planner.</p>
+          <p class="fmt-price" data-i18n="exp.price">Tarifa a solicitud</p>
+          <a class="btn btn-solid" href="#reservar" data-format="completa" data-i18n="exp.btn">Consultar esta experiencia</a>
         </article>
       </div>
     </div>
@@ -1119,6 +1225,38 @@ h2 em { font-style: italic; color: var(--accent); }
         <li><h4 data-i18n="steps.4.h">Disfrútala en vivo</h4><p data-i18n="steps.4.p">El día del evento, la música en vivo se encarga del ambiente y tú de disfrutar.</p></li>
       </ol>
     </div>
+  </div>
+</section>
+
+<!-- ================= PLANNERS ================= -->
+<section class="sec sec-dark" id="planners">
+  <div class="wrap pl-grid">
+    <div class="pl-copy">
+      <p class="eyebrow" data-i18n="pl.eyebrow">Para profesionales</p>
+      <h2 data-i18n="pl.h2">Wedding planners, hoteles <em>y agencias</em></h2>
+      <p class="lead muted" data-i18n="pl.lead">Una artista confiable para los eventos más importantes de tus clientes. Nos integramos a tu producción con la misma exigencia que tú.</p>
+      <ul class="pl-benefits">
+        <li><h3 data-i18n="pl.b1.h">Coordinación impecable</h3><p data-i18n="pl.b1.p">Un solo contacto, horarios confirmados, prueba de sonido y apego total al programa del evento.</p></li>
+        <li><h3 data-i18n="pl.b2.h">Repertorio a la medida</h3><p data-i18n="pl.b2.p">Canciones elegidas para cada momento, en español, inglés, francés e italiano.</p></li>
+        <li><h3 data-i18n="pl.b3.h">Formatos flexibles</h3><p data-i18n="pl.b3.p">De dúo a quinteto, con equipo de sonido propio o del proveedor del evento, según lo acordado.</p></li>
+        <li><h3 data-i18n="pl.b4.h">Condiciones para socios</h3><p data-i18n="pl.b4.p">Condiciones preferentes para planners, hoteles y agencias, y una presentación privada para tu equipo.</p></li>
+      </ul>
+      <div class="pl-kit">
+        <h3 data-i18n="pl.kit.h">Kit para profesionales</h3>
+        <p data-i18n="pl.kit.p">Trayectoria, experiencias, repertorio por momentos, requerimientos técnicos y condiciones de colaboración, en un PDF de dos páginas.</p>
+        <div class="pl-kit-actions">
+          <a class="btn btn-solid" href="kit/Naomi_Luna_Kit_Profesional_ES.pdf" target="_blank" rel="noopener">Descargar kit · Español</a>
+          <a class="btn" href="kit/Naomi_Luna_Professional_Kit_EN.pdf" target="_blank" rel="noopener">Download kit · English</a>
+          <a class="btn btn-plain" id="plWa" href="https://wa.me/529511981444" target="_blank" rel="noopener" data-i18n="pl.kit.wa">Solicitar presentación privada</a>
+        </div>
+      </div>
+    </div>
+    <figure class="pl-video">
+      <video id="plLoop" muted loop playsinline preload="none" poster="img/poster-loop.jpg" width="432" height="768" aria-hidden="true">
+        <source src="video/loop-saxofon.mp4" type="video/mp4">
+      </video>
+      <figcaption class="cap" data-i18n="pl.cap">Voz y saxofón · en vivo</figcaption>
+    </figure>
   </div>
 </section>
 
@@ -1165,11 +1303,46 @@ h2 em { font-style: italic; color: var(--accent); }
         <p class="eyebrow" data-i18n="rep.eyebrow">Repertorio</p>
         <h2 data-i18n="rep.h2">Una canción para <em>cada momento</em></h2>
       </div>
-      <p class="lead muted" data-i18n="rep.lead">Una selección de 119 canciones en seis estilos y cuatro idiomas, del bolero clásico al pop actual.</p>
+      <p class="lead muted" data-i18n="rep.lead">Cada momento de tu evento tiene su música. Esta es una muestra; el repertorio completo reúne 119 canciones en cuatro idiomas.</p>
     </div>
-    <div class="tabs" role="tablist" aria-label="Estilos" id="repTabs"></div>
-    <div id="repPanels"></div>
-    <button class="rep-all" id="repAll" type="button" aria-controls="repPanels"></button>
+    <div class="moments m-rail">
+      <article class="moment">
+        <h3 data-i18n="rep.m1.h">Ceremonia</h3>
+        <p data-i18n="rep.m1.p">Entrada, votos y salida: piezas que emocionan sin robar protagonismo.</p>
+        <ul><li><span>A Thousand Years</span><span>Christina Perri</span></li><li><span>Perfect</span><span>Ed Sheeran</span></li><li><span>Hallelujah</span><span>Leonard Cohen</span></li><li><span>La vie en rose</span><span>Édith Piaf</span></li><li><span>Somewhere Over the Rainbow</span><span>Israel Kamakawiwoʻole</span></li><li><span>Contigo aprendí</span><span>Armando Manzanero</span></li></ul>
+      </article>
+      <article class="moment">
+        <h3 data-i18n="rep.m2.h">Cóctel</h3>
+        <p data-i18n="rep.m2.p">Jazz, bossa nova y bolero para recibir a los invitados.</p>
+        <ul><li><span>Fly Me to the Moon</span><span>Frank Sinatra</span></li><li><span>The Girl from Ipanema</span><span>João Gilberto & Stan Getz</span></li><li><span>Bésame mucho</span><span>Consuelo Velázquez</span></li><li><span>Quizás, quizás, quizás</span><span>Osvaldo Farrés</span></li><li><span>C’est si bon</span><span>Yves Montand</span></li><li><span>Just the Two of Us</span><span>Grover Washington Jr.</span></li></ul>
+      </article>
+      <article class="moment">
+        <h3 data-i18n="rep.m3.h">Cena</h3>
+        <p data-i18n="rep.m3.p">Boleros y clásicos a media luz, para conversar y brindar.</p>
+        <ul><li><span>Sabor a mí</span><span>Álvaro Carrillo</span></li><li><span>Historia de un amor</span><span>Carlos Almarán</span></li><li><span>La gloria eres tú</span><span>José Antonio Méndez</span></li><li><span>Moon River</span><span>Carla Bruni</span></li><li><span>Autumn Leaves</span><span>Joseph Kosma</span></li><li><span>Contigo en la distancia</span><span>César Portillo de la Luz</span></li></ul>
+      </article>
+      <article class="moment">
+        <h3 data-i18n="rep.m4.h">Primer baile</h3>
+        <p data-i18n="rep.m4.p">La canción de su historia, preparada con cuidado.</p>
+        <ul><li><span>All of Me</span><span>John Legend</span></li><li><span>Thinking Out Loud</span><span>Ed Sheeran</span></li><li><span>The Way You Look Tonight</span><span>Frank Sinatra</span></li><li><span>Make You Feel My Love</span><span>Adele</span></li><li><span>Por debajo de la mesa</span><span>Armando Manzanero</span></li><li><span>Cien años</span><span>Rubén Fuentes</span></li></ul>
+      </article>
+      <article class="moment oax">
+        <h3 data-i18n="rep.m5.h">Momento oaxaqueño</h3>
+        <p data-i18n="rep.m5.p">Canciones de esta tierra: el detalle que sus invitados recordarán.</p>
+        <ul><li><span>Canción mixteca</span><span>José López Alavés</span></li><li><span>Dios nunca muere</span><span>Macedonio Alcalá</span></li><li><span>La llorona</span><span>Andrés Henestrosa</span></li><li><span>Sandunga</span><span>Máximo Ramón Ortiz</span></li><li><span>Naila</span><span>Jesús Rasgado</span></li><li><span>Pinotepa</span><span>Álvaro Carrillo</span></li></ul>
+      </article>
+      <article class="moment">
+        <h3 data-i18n="rep.m6.h">Fiesta</h3>
+        <p data-i18n="rep.m6.p">Pop, swing y ritmos latinos para abrir la pista.</p>
+        <ul><li><span>Can’t Take My Eyes Off You</span><span>Frankie Valli</span></li><li><span>Crazy Little Thing Called Love</span><span>Queen</span></li><li><span>Marry You</span><span>Bruno Mars</span></li><li><span>Oye como va</span><span>Santana</span></li><li><span>Bailar contigo</span><span>Monsieur Periné</span></li><li><span>Sugar</span><span>Maroon 5</span></li></ul>
+      </article>
+    </div>
+    <details class="rep-full">
+      <summary data-i18n="rep.full">Ver el repertorio completo · 119 canciones por estilo</summary>
+      <div class="tabs" role="tablist" aria-label="Estilos" id="repTabs"></div>
+      <div id="repPanels"></div>
+      <button class="rep-all" id="repAll" type="button" aria-controls="repPanels"></button>
+    </details>
     <div class="rep-note">
       <p class="muted" data-i18n="rep.note">¿Tienes una canción especial en mente? Cuéntanos y la revisamos con el ensamble.</p>
       <a class="link-arrow" href="#reservar" data-i18n="rep.cta">Pedir una canción</a>
@@ -1186,8 +1359,8 @@ h2 em { font-style: italic; color: var(--accent); }
     </div>
     <div class="faq-list">
       <details open>
-        <summary data-i18n="faq.1.q">¿Qué formato me conviene?</summary>
-        <p data-i18n="faq.1.a">Como referencia: dúo para ceremonias, cenas privadas y cócteles; trío para recepciones y eventos sociales o corporativos; quinteto para bodas, galas y eventos de gran formato. Si nos cuentas el espacio y el número de invitados, te recomendamos la mejor opción.</p>
+        <summary data-i18n="faq.1.q">¿Qué experiencia me conviene?</summary>
+        <p data-i18n="faq.1.a">Como referencia: Ceremonia (dúo o trío) para ceremonias íntimas; Cóctel y cena (trío o quinteto) para recepciones y cenas; Experiencia completa (quinteto) para bodas y galas con música de principio a fin. Si nos cuentas el espacio y el número de invitados, te recomendamos la mejor opción.</p>
       </details>
       <details>
         <summary data-i18n="faq.2.q">¿Cuánto cuesta?</summary>
@@ -1223,6 +1396,16 @@ h2 em { font-style: italic; color: var(--accent); }
           <input id="f-nombre" name="nombre" type="text" autocomplete="name" required data-i18n-ph="f.nombre.ph" placeholder="Tu nombre">
         </div>
         <div class="field">
+          <label for="f-soy" data-i18n="f.soy">Soy</label>
+          <select id="f-soy" name="soy">
+            <option value="pareja" data-i18n="f.soy.1">Novia, novio o anfitrión</option>
+            <option value="planner" data-i18n="f.soy.2">Wedding planner</option>
+            <option value="hotel" data-i18n="f.soy.3">Hotel o venue</option>
+            <option value="empresa" data-i18n="f.soy.4">Empresa o institución</option>
+            <option value="otro" data-i18n="f.soy.5">Otro</option>
+          </select>
+        </div>
+        <div class="field">
           <label for="f-tel" data-i18n="f.tel">WhatsApp o teléfono</label>
           <input id="f-tel" name="telefono" type="tel" autocomplete="tel" required placeholder="+52 951 …">
         </div>
@@ -1250,16 +1433,38 @@ h2 em { font-style: italic; color: var(--accent); }
           <label for="f-invitados"><span data-i18n="f.inv">Invitados</span> <span class="opt" data-i18n="f.aprox">(aprox.)</span></label>
           <input id="f-invitados" name="invitados" type="number" min="1" step="1" inputmode="numeric" placeholder="80">
         </div>
-        <div class="field full">
+        <div class="field">
+          <label for="f-presu"><span data-i18n="f.bud">Presupuesto para la música</span> <span class="opt" data-i18n="f.opt">(opcional)</span></label>
+          <select id="f-presu" name="presupuesto">
+            <option value="" data-i18n="f.bud.0">Prefiero comentarlo</option>
+            <option value="1" data-i18n="f.bud.1">Hasta US$1,500</option>
+            <option value="2" data-i18n="f.bud.2">US$1,500 – 3,000</option>
+            <option value="3" data-i18n="f.bud.3">US$3,000 – 5,000</option>
+            <option value="4" data-i18n="f.bud.4">Más de US$5,000</option>
+          </select>
+        </div>
+        <div class="field">
           <label for="f-lugar" data-i18n="f.lugar">Lugar o ciudad</label>
           <input id="f-lugar" name="lugar" type="text" placeholder="Ej. Oaxaca de Juárez" data-i18n-ph="f.lugar.ph">
         </div>
+        <div class="field">
+          <label for="f-origen"><span data-i18n="f.src">¿Cómo nos conociste?</span> <span class="opt" data-i18n="f.opt">(opcional)</span></label>
+          <select id="f-origen" name="origen">
+            <option value="" data-i18n="f.src.0">Selecciona una opción</option>
+            <option value="planner" data-i18n="f.src.1">Mi wedding planner</option>
+            <option value="hotel" data-i18n="f.src.2">Un hotel o venue</option>
+            <option value="instagram">Instagram</option>
+            <option value="google">Google</option>
+            <option value="recomendacion" data-i18n="f.src.3">Recomendación</option>
+            <option value="otro" data-i18n="f.src.4">Otro</option>
+          </select>
+        </div>
         <fieldset class="field full">
-          <legend data-i18n="f.formato">Formato</legend>
+          <legend data-i18n="f.formato">Experiencia</legend>
           <div class="radios">
-            <input type="radio" id="fo-duo" name="formato" value="duo"><label for="fo-duo" data-i18n="fmt.1.h">Dúo</label>
-            <input type="radio" id="fo-trio" name="formato" value="trio"><label for="fo-trio" data-i18n="fmt.2.h">Trío</label>
-            <input type="radio" id="fo-quinteto" name="formato" value="quinteto"><label for="fo-quinteto" data-i18n="fmt.3.h">Quinteto</label>
+            <input type="radio" id="fo-ceremonia" name="formato" value="ceremonia"><label for="fo-ceremonia" data-i18n="exp.1.h">Ceremonia</label>
+            <input type="radio" id="fo-coctel" name="formato" value="coctel"><label for="fo-coctel" data-i18n="exp.2.h">Cóctel y cena</label>
+            <input type="radio" id="fo-completa" name="formato" value="completa"><label for="fo-completa" data-i18n="exp.3.h">Experiencia completa</label>
             <input type="radio" id="fo-nose" name="formato" value="nose" checked><label for="fo-nose" data-i18n="f.nose">Aún no lo sé</label>
           </div>
         </fieldset>
@@ -1267,6 +1472,7 @@ h2 em { font-style: italic; color: var(--accent); }
           <label for="f-msg" data-i18n="f.msg">Cuéntanos más</label>
           <textarea id="f-msg" name="mensaje" data-i18n-ph="f.msg.ph" placeholder="Horario, momentos del evento, canciones especiales…"></textarea>
         </div>
+        <input type="checkbox" name="botcheck" id="f-bot" tabindex="-1" autocomplete="off" hidden>
         <div class="form-actions">
           <button class="btn btn-solid" type="submit" data-i18n="f.submit">Preparar mi solicitud</button>
           <p class="privacy" data-i18n="f.privacy">Tus datos solo se usan para responder a tu solicitud.</p>
@@ -1276,6 +1482,7 @@ h2 em { font-style: italic; color: var(--accent); }
       <div class="result" id="result" hidden>
         <h3 tabindex="-1" id="resultTitle" data-i18n="r.h">Tu solicitud está lista</h3>
         <p data-i18n="r.p">Envíala por WhatsApp o por correo: se abrirá la aplicación con el mensaje ya escrito y solo tendrás que confirmar el envío.</p>
+        <p class="send-status" id="sendStatus" role="status" aria-live="polite" hidden></p>
         <pre id="resultText"></pre>
         <div class="result-actions">
           <a class="btn btn-solid" id="waLink" href="https://wa.me/529511981444" target="_blank" rel="noopener">
@@ -1330,6 +1537,7 @@ h2 em { font-style: italic; color: var(--accent); }
       <a href="#naomi" data-i18n="nav.naomi">Naomi</a>
       <a href="#trayectoria" data-i18n="nav.tray">Trayectoria</a>
       <a href="#servicios" data-i18n="nav.svc">Servicios</a>
+      <a href="#planners" data-i18n="nav.pl">Planners</a>
       <a href="#ensamble" data-i18n="nav.ens">Ensamble</a>
       <a href="#repertorio" data-i18n="nav.rep">Repertorio</a>
       <a href="#reservar" data-i18n="nav.cta">Reservar fecha</a>
@@ -1345,11 +1553,6 @@ h2 em { font-style: italic; color: var(--accent); }
     </div>
   </div>
 </footer>
-
-<a class="wa-float" id="waFloat" href="https://wa.me/529511981444" target="_blank" rel="noopener" aria-label="WhatsApp">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M20 11.5a8 8 0 0 1-11.8 7L4 20l1.5-4.1A8 8 0 1 1 20 11.5Z"/><path d="M8.5 11.5h.01M12 11.5h.01M15.5 11.5h.01" stroke-width="2.4" stroke-linecap="round"/></svg>
-  <span class="wa-t">WhatsApp</span>
-</a>
 
 <div class="m-cta is-away" id="mCta">
   <a class="btn" id="mCtaWa" href="https://wa.me/529511981444" target="_blank" rel="noopener">
@@ -1370,6 +1573,9 @@ h2 em { font-style: italic; color: var(--accent); }
 (() => {
   const PHONE = '529511981444';
   const EMAIL = 'corazonantequera.music@gmail.com';
+  /* Web3Forms access key (https://web3forms.com). Vacío = el formulario solo prepara el mensaje para WhatsApp o correo.
+     Con una clave, cada solicitud llega además automáticamente al correo registrado en Web3Forms. */
+  const W3F_KEY = '';
 
   /* ---------- Always open at the top: in-page links never write #section into the address ---------- */
   try { if ('scrollRestoration' in history) history.scrollRestoration = 'manual'; } catch (e) {}
@@ -1431,14 +1637,16 @@ h2 em { font-style: italic; color: var(--accent); }
   const EN = {
     'skip': 'Skip to content',
     'nav.naomi': 'Naomi', 'nav.tray': 'Journey', 'nav.live': 'Live', 'nav.svc': 'Services', 'nav.ens': 'Ensemble', 'nav.rep': 'Repertoire',
-    'nav.contact': 'Contact', 'nav.cta': 'Book a date', 'nav.menu': 'Menu', 'nav.ref': 'References', 'nav.faq': 'FAQ', 'nav.book': 'Book',
+    'nav.pl': 'Planners', 'nav.cta': 'Book a date', 'nav.menu': 'Menu', 'nav.ref': 'References', 'nav.faq': 'FAQ', 'nav.book': 'Book',
     'hero.eyebrow': 'Oaxacan singer · Mixtec roots',
     'hero.tag': 'A voice between two worlds',
     'hero.lead': 'Bolero, jazz and soul sung with bel canto technique. Live music for weddings, dinners and events in Oaxaca, as a soloist or with her ensemble Corazón Antequera.',
     'hero.cta1': 'Book a date', 'hero.cta2': 'Watch her live',
     'hero.alt': 'Naomi Luna singing in concert in a burgundy dress',
-    'proof.1': 'performances in Oaxaca with Corazón Antequera', 'proof.2': 'years on European stages',
-    'proof.3': 'languages in her repertoire: Spanish, English, French and Italian', 'proof.4': 'formats: duo, trio and quintet',
+    'proof.1': 'honorable mention from the Embassy of Mexico in the Czech Republic', 'proof.2': 'years on European stages',
+    'proof.3': 'languages in her repertoire: Spanish, English, French and Italian', 'proof.4': 'live experiences, from duo to quintet',
+    'trust.label': 'Trusted by', 'trust.1': 'Embassy of Mexico in the Czech Republic', 'trust.2': 'Náprstek Museum, Prague',
+    'tst.eyebrow': 'Testimonials', 'tst.h2': 'What <em>listeners say</em>',
     'about.alt': 'Naomi Luna in an Oaxacan huipil between the flags of Mexico and the Czech Republic',
     'about.cap': 'Prague, Czech Republic', 'about.eyebrow': 'Artist profile',
     'about.h2': 'Oaxaca as her roots. <em>Europe as her horizon.</em>',
@@ -1496,11 +1704,19 @@ h2 em { font-style: italic; color: var(--accent); }
     'svc.3.h': 'Private dinners and celebrations', 'svc.3.p': 'Anniversaries, birthdays and intimate gatherings with boleros, jazz and the songs that mean something to you.',
     'svc.4.h': 'Hotels and restaurants', 'svc.4.p': 'Bolero and jazz nights for guests and diners, with experience at venues such as Pitiona, Casa Oaxaca and Spira Hotel.',
     'svc.5.h': 'Cultural and institutional events', 'svc.5.p': 'Official ceremonies, festivals and celebrations of Mexican culture, backed by years of work with the Embassy of Mexico in Europe.',
-    'fmt.h': 'Formats', 'fmt.lead': 'Every line-up keeps the ensemble’s character, quality and elegance. Choose by the type of celebration and the number of guests.',
-    'fmt.unit': 'musicians', 'fmt.btn': 'Ask about this format',
-    'fmt.1.h': 'Duo', 'fmt.1.p': 'The most intimate option. Ideal for ceremonies, private dinners and cocktail hours.',
-    'fmt.2.h': 'Trio', 'fmt.2.p': 'A balance of rhythm and melody. For receptions, social and corporate events.',
-    'fmt.3.h': 'Quintet', 'fmt.3.p': 'The full experience: vocals, piano, saxophone, drums and bass. For weddings, galas and large events.', 'fmt.3.flag': 'The full experience',
+    'fmt.h': 'Experiences', 'fmt.lead': 'Three ways to bring live music to your event. Every proposal is tailored to the venue, the schedule and the number of guests.',
+    'exp.price': 'Rates on request', 'exp.btn': 'Ask about this experience',
+    'exp.1.m': 'Duo or trio', 'exp.1.h': 'Ceremony', 'exp.1.p': 'Music for the processional, the vows and the recessional, with songs chosen together with the couple.',
+    'exp.2.m': 'Trio or quintet', 'exp.2.h': 'Cocktail & dinner', 'exp.2.p': 'Jazz, bolero and bossa nova to welcome guests, dine and toast, with a tailored repertoire.',
+    'exp.3.m': 'Quintet', 'exp.3.h': 'The full experience', 'exp.3.p': 'Vocals, piano, saxophone, drums and bass accompany the whole event, from the ceremony to the first dance, in coordination with your wedding planner.',
+    'pl.eyebrow': 'For professionals', 'pl.h2': 'Wedding planners, hotels <em>and agencies</em>',
+    'pl.lead': 'A reliable artist for your clients’ most important events. We fit into your production with the same standards you hold.',
+    'pl.b1.h': 'Seamless coordination', 'pl.b1.p': 'One point of contact, confirmed timings, a sound check and full respect for the event’s run of show.',
+    'pl.b2.h': 'Tailored repertoire', 'pl.b2.p': 'Songs chosen for every moment, in Spanish, English, French and Italian.',
+    'pl.b3.h': 'Flexible formats', 'pl.b3.p': 'From duo to quintet, with our own sound system or the event’s audio provider, as agreed.',
+    'pl.b4.h': 'Partner terms', 'pl.b4.p': 'Preferred terms for planners, hotels and agencies, plus a private showcase for your team.',
+    'pl.kit.h': 'Professional kit', 'pl.kit.p': 'Background, experiences, repertoire by moment, technical requirements and partnership terms, in a two-page PDF.',
+    'pl.kit.wa': 'Request a private showcase', 'pl.cap': 'Vocals and saxophone · live',
     'steps.h': 'How booking works',
     'steps.1.h': 'Tell us about your event', 'steps.1.p': 'Date, venue, guest count and the mood you have in mind, through the form or on WhatsApp.',
     'steps.2.h': 'Get a proposal', 'steps.2.p': 'We suggest a format, set length and repertoire, with a tailored quote.',
@@ -1513,21 +1729,31 @@ h2 em { font-style: italic; color: var(--accent); }
     'gen.trad': 'Traditional Oaxacan', 'gen.latino': 'Latin pop', 'gen.fusion': 'Pop fusion', 'gen.fr': 'French songs',
     'm.voz': 'Vocals and direction', 'm.sax': 'Saxophone', 'm.bat': 'Drums', 'm.bajo': 'Bass and double bass',
     'rep.eyebrow': 'Repertoire', 'rep.h2': 'A song for <em>every moment</em>',
-    'rep.lead': 'A selection of 119 songs in six styles and four languages, from classic bolero to today’s pop.',
+    'rep.lead': 'Every moment of your event has its music. This is a sample; the full repertoire holds 119 songs in four languages.',
+    'rep.m1.h': 'Ceremony', 'rep.m1.p': 'Processional, vows and recessional: pieces that move without stealing the moment.',
+    'rep.m2.h': 'Cocktail hour', 'rep.m2.p': 'Jazz, bossa nova and bolero to welcome your guests.',
+    'rep.m3.h': 'Dinner', 'rep.m3.p': 'Boleros and classics by candlelight, for conversation and toasts.',
+    'rep.m4.h': 'First dance', 'rep.m4.p': 'The song of your story, prepared with care.',
+    'rep.m5.h': 'Oaxacan moment', 'rep.m5.p': 'Songs of this land: the detail your guests will remember.',
+    'rep.m6.h': 'Party', 'rep.m6.p': 'Pop, swing and Latin rhythms to open the dance floor.',
+    'rep.full': 'See the full repertoire · 119 songs by style',
     'rep.note': 'Have a special song in mind? Tell us and we will review it with the ensemble.', 'rep.cta': 'Request a song',
     'faq.eyebrow': 'Frequently asked questions', 'faq.h2': 'Before you <em>book</em>',
-    'faq.1.q': 'Which format is right for me?', 'faq.1.a': 'As a guide: duo for ceremonies, private dinners and cocktail hours; trio for receptions and social or corporate events; quintet for weddings, galas and large events. Tell us about the venue and guest count and we will recommend the best option.',
+    'faq.1.q': 'Which experience is right for me?', 'faq.1.a': 'As a guide: Ceremony (duo or trio) for intimate ceremonies; Cocktail & dinner (trio or quintet) for receptions and dinners; The full experience (quintet) for weddings and galas with music from start to finish. Tell us about the venue and guest count and we will recommend the best option.',
     'faq.2.q': 'How much does it cost?', 'faq.2.a': 'Every quote is tailored to the date, venue, length and format. Send us your event details and we will send you a proposal.',
     'faq.3.q': 'Do you sing in English and French?', 'faq.3.a': 'Yes. The repertoire includes songs in Spanish, English, French and Italian, ideal for destination weddings and events with international guests.',
     'faq.4.q': 'Can we request a song that is not on the list?', 'faq.4.a': 'The published repertoire is a selection. Tell us which song you have in mind and we will review it with the ensemble.',
     'faq.5.q': 'Do you perform outside Oaxaca City?', 'faq.5.a': 'We are based in Oaxaca de Juárez. For events elsewhere, write to us with the date and place so we can check availability and logistics.',
     'book.eyebrow': 'Bookings', 'book.h2': 'Book <em>your date</em>',
     'book.lead': 'Tell us about your event and we will prepare a personalized proposal. Get in touch early to secure your date.',
+    'f.soy': 'I am', 'f.soy.1': 'Bride, groom or host', 'f.soy.2': 'Wedding planner', 'f.soy.3': 'Hotel or venue', 'f.soy.4': 'Company or institution', 'f.soy.5': 'Other',
+    'f.bud': 'Music budget', 'f.bud.0': 'I’d rather discuss it', 'f.bud.1': 'Up to US$1,500', 'f.bud.2': 'US$1,500 – 3,000', 'f.bud.3': 'US$3,000 – 5,000', 'f.bud.4': 'Over US$5,000',
+    'f.src': 'How did you find us?', 'f.src.0': 'Choose an option', 'f.src.1': 'My wedding planner', 'f.src.2': 'A hotel or venue', 'f.src.3': 'Recommendation', 'f.src.4': 'Other',
     'f.nombre': 'Name', 'f.nombre.ph': 'Your name', 'f.tel': 'WhatsApp or phone', 'f.email': 'Email', 'f.opt': '(optional)', 'f.email.ph': 'name@email.com',
     'f.tipo': 'Event type', 'f.tipo.0': 'Choose an option', 'f.tipo.1': 'Wedding', 'f.tipo.2': 'Corporate event or gala', 'f.tipo.3': 'Private dinner or celebration',
     'f.tipo.4': 'Hotel or restaurant', 'f.tipo.5': 'Cultural or institutional event', 'f.tipo.6': 'Other',
     'f.fecha': 'Event date', 'f.inv': 'Guests', 'f.aprox': '(approx.)', 'f.lugar': 'Venue or city', 'f.lugar.ph': 'E.g. Oaxaca City',
-    'f.formato': 'Format', 'f.nose': 'Not sure yet', 'f.msg': 'Tell us more', 'f.msg.ph': 'Schedule, key moments, special songs…',
+    'f.formato': 'Experience', 'f.nose': 'Not sure yet', 'f.msg': 'Tell us more', 'f.msg.ph': 'Schedule, key moments, special songs…',
     'f.submit': 'Prepare my request', 'f.privacy': 'Your details are only used to reply to your request.',
     'r.h': 'Your request is ready', 'r.p': 'Send it via WhatsApp or email: the app opens with the message already written, and you only need to confirm sending it.',
     'r.wa': 'Send via WhatsApp', 'r.mail': 'Send by email', 'r.copy': 'Copy message', 'r.edit': 'Edit request',
@@ -1539,12 +1765,16 @@ h2 em { font-style: italic; color: var(--accent); }
   const UI = {
     es: { copied: 'Copiado', copyFail: 'Selecciona y copia', tabs: 'Estilos', songs: 'canciones', gallery: 'Galería', close: 'Cerrar', prev: 'Anterior', next: 'Siguiente',
       greet: 'Hola, Naomi y Corazón Antequera. Me gustaría consultar disponibilidad para un evento.', subj: 'Solicitud de reserva',
-      lName: 'Nombre', lType: 'Tipo de evento', lDate: 'Fecha', lPlace: 'Lugar', lGuests: 'Invitados', lFormat: 'Formato', lPhone: 'WhatsApp / teléfono', lEmail: 'Correo', lDetails: 'Detalles',
+      lName: 'Nombre', lSoy: 'Soy', lType: 'Tipo de evento', lDate: 'Fecha', lPlace: 'Lugar', lGuests: 'Invitados', lFormat: 'Experiencia', lBudget: 'Presupuesto', lSource: 'Nos conoció por', lPhone: 'WhatsApp / teléfono', lEmail: 'Correo', lDetails: 'Detalles',
+      sending: 'Enviando tu solicitud…', sent: 'Recibimos tu solicitud por correo. Te responderemos lo antes posible; si lo prefieres, escríbenos también por WhatsApp.', sendFail: 'No pudimos enviar el formulario automáticamente. Envíalo por WhatsApp o por correo con los botones de abajo.',
+      plWa: 'Hola, Naomi. Trabajo como wedding planner / en un hotel y me gustaría conocer tu propuesta para mis clientes.',
       waDefault: 'Hola, Naomi. Me gustaría información para un evento.', errFix: 'Revisa los campos marcados.',
       more: 'Leer más', less: 'Leer menos', repAll: 'Ver las {n} canciones', repLess: 'Ver menos' },
     en: { copied: 'Copied', copyFail: 'Select and copy', tabs: 'Styles', songs: 'songs', gallery: 'Gallery', close: 'Close', prev: 'Previous', next: 'Next',
       greet: 'Hello Naomi and Corazón Antequera, I would like to check your availability for an event.', subj: 'Booking request',
-      lName: 'Name', lType: 'Event type', lDate: 'Date', lPlace: 'Venue', lGuests: 'Guests', lFormat: 'Format', lPhone: 'WhatsApp / phone', lEmail: 'Email', lDetails: 'Details',
+      lName: 'Name', lSoy: 'I am', lType: 'Event type', lDate: 'Date', lPlace: 'Venue', lGuests: 'Guests', lFormat: 'Experience', lBudget: 'Budget', lSource: 'Found us through', lPhone: 'WhatsApp / phone', lEmail: 'Email', lDetails: 'Details',
+      sending: 'Sending your request…', sent: 'We received your request by email and will reply as soon as possible. You can also message us on WhatsApp.', sendFail: 'We could not send the form automatically. Please send it via WhatsApp or email using the buttons below.',
+      plWa: 'Hello Naomi, I am a wedding planner / work at a hotel and would like to learn about your proposal for my clients.',
       waDefault: 'Hello Naomi, I would like information about an event.', errFix: 'Please check the highlighted fields.',
       more: 'Read more', less: 'Show less', repAll: 'Show all {n} songs', repLess: 'Show fewer' }
   };
@@ -1627,7 +1857,8 @@ h2 em { font-style: italic; color: var(--accent); }
     $('#lb').setAttribute('aria-label', UI[lang].gallery);
     $('#lbClose').setAttribute('aria-label', UI[lang].close); $('#lbPrev').setAttribute('aria-label', UI[lang].prev); $('#lbNext').setAttribute('aria-label', UI[lang].next);
     const waDefault = 'https://wa.me/' + PHONE + '?text=' + encodeURIComponent(UI[lang].waDefault);
-    $('#waFloat').href = waDefault; $('#telVal').href = waDefault; $('#mCtaWa').href = waDefault;
+    $('#telVal').href = waDefault; $('#mCtaWa').href = waDefault;
+    $('#plWa').href = 'https://wa.me/' + PHONE + '?text=' + encodeURIComponent(UI[lang].plWa);
     checkClamps(); updRepAll();
     if (!$('#result').hidden) buildResult();
     if (save) { try { localStorage.setItem('nl-lang', lang); } catch (e) {} }
@@ -1688,6 +1919,14 @@ h2 em { font-style: italic; color: var(--accent); }
   }
   $$('.copy').forEach(b => b.addEventListener('click', () => copyText(b.dataset.copy, b, b.previousElementSibling)));
 
+  /* ---------- Planner loop video ---------- */
+  const loop = $('#plLoop');
+  if (loop && 'IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) { loop.preload = 'auto'; const pr = loop.play(); if (pr && pr.catch) pr.catch(() => {}); } else { loop.pause(); }
+    }), { threshold: .25 }).observe(loop);
+  }
+
   /* ---------- Booking form ---------- */
   const form = $('#bookForm'), result = $('#result'), resultText = $('#resultText');
   $$('[data-format]').forEach(a => a.addEventListener('click', () => { const r = $('#fo-' + a.dataset.format); if (r) r.checked = true; }));
@@ -1704,8 +1943,10 @@ h2 em { font-style: italic; color: var(--accent); }
     const sel = f.tipo.selectedIndex > 0 ? f.tipo.options[f.tipo.selectedIndex].textContent.trim() : '';
     const radio = form.querySelector('input[name="formato"]:checked');
     const fmt = radio ? form.querySelector('label[for="' + radio.id + '"]').textContent.trim() : '';
-    add('lName', f.nombre.value.trim()); add('lType', sel); add('lDate', fmtDate(f.fecha.value)); add('lPlace', f.lugar.value.trim());
-    add('lGuests', f.invitados.value.trim()); add('lFormat', fmt); add('lPhone', f.telefono.value.trim()); add('lEmail', f.email.value.trim());
+    const opt = el => el.value ? el.options[el.selectedIndex].textContent.trim() : '';
+    add('lName', f.nombre.value.trim()); add('lSoy', opt(f.soy)); add('lType', sel); add('lDate', fmtDate(f.fecha.value)); add('lPlace', f.lugar.value.trim());
+    add('lGuests', f.invitados.value.trim()); add('lFormat', fmt); add('lBudget', opt(f.presupuesto)); add('lPhone', f.telefono.value.trim()); add('lEmail', f.email.value.trim());
+    add('lSource', opt(f.origen));
     const d = f.mensaje.value.trim(); if (d) lines.push('', L.lDetails + ':', d);
     return { text: lines.join('\n'), subject: L.subj + (sel ? ' · ' + sel : '') + (f.fecha.value ? ' · ' + fmtDate(f.fecha.value) : '') };
   }
@@ -1721,7 +1962,20 @@ h2 em { font-style: italic; color: var(--accent); }
     buildResult();
     form.hidden = true; result.hidden = false;
     $('#resultTitle').focus();
+    sendAuto();
   });
+  function sendAuto() {
+    const st = $('#sendStatus');
+    if (!W3F_KEY || $('#f-bot').checked) { st.hidden = true; return; }
+    const m = buildMessage(), f = form.elements;
+    st.hidden = false; st.textContent = UI[lang].sending;
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify({ access_key: W3F_KEY, subject: m.subject, from_name: 'naomilunavoz.com', name: f.nombre.value.trim(),
+        email: f.email.value.trim() || undefined, phone: f.telefono.value.trim(), message: m.text })
+    }).then(r => r.json()).then(j => { st.textContent = j && j.success ? UI[lang].sent : UI[lang].sendFail; })
+      .catch(() => { st.textContent = UI[lang].sendFail; });
+  }
   $('#editMsg').addEventListener('click', () => { result.hidden = true; form.hidden = false; $('#f-nombre').focus(); });
   $('#copyMsg').addEventListener('click', e => copyText(resultText.textContent, e.currentTarget, resultText));
   const today = new Date(); today.setMinutes(today.getMinutes() - today.getTimezoneOffset());

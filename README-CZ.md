@@ -20,3 +20,16 @@ Pokud chcete poptávky dostávat rovnou do e-mailu bez klepnutí klienta, lze na
 - **Recenze klientů** — v `index.html` je v sekci Referencias připravená zakomentovaná šablona; vložte jen skutečné citace se souhlasem autorů.
 - **Ceník** — na webu je „cotización a la medida“; pokud chcete orientační ceny, doplňte je do FAQ.
 - **Názvy videí/místa** — popisky „Quinteto en terraza · Oaxaca“ a „En vivo · Oaxaca“ upravte podle skutečného místa.
+
+## Automatické odesílání formuláře e-mailem (Web3Forms)
+1. Na https://web3forms.com zadejte e-mail kapely a získáte „Access Key“.
+2. V `index.html` najděte řádek `const W3F_KEY = '';` a mezi apostrofy vložte klíč.
+3. Nahrajte `index.html` na GitHub. Každá poptávka pak přijde automaticky e-mailem; WhatsApp tlačítko zůstává.
+
+## Zapnutí sekce s referencemi
+1. V `index.html` najděte `<section class="sec sec-paper" id="testimonios" hidden>`.
+2. Texty v hranatých závorkách nahraďte skutečnými citacemi (se souhlasem klientů).
+3. Smažte slovo `hidden` a nahrajte soubor.
+
+## Kit pro plannery
+Složka `kit/` obsahuje PDF ve španělštině a angličtině, na které odkazuje sekce „Planners“.
