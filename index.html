@@ -540,11 +540,27 @@ h2 em { font-style: italic; color: var(--accent); }
 
 /* ---------- Trust band ---------- */
 .trust { background: var(--noche-3); border-block: 1px solid var(--linea-o); padding-block: 1.6rem; }
-.trust-in { display: flex; align-items: baseline; gap: .8rem 2rem; flex-wrap: wrap; }
+.trust-in { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: baseline; gap: .7rem 2rem; }
 .trust-label { font: 500 .68rem/1.3 var(--f-text); letter-spacing: .24em; text-transform: uppercase; color: var(--oro); flex: none; }
 .trust-list { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: .3rem 0; }
-.trust-list li { font-family: var(--f-display); font-style: italic; font-size: 1.08rem; color: var(--claro-2); }
-.trust-list li + li::before { content: "·"; color: var(--oro); font-style: normal; margin: 0 .75rem; }
+.trust-list li { font-family: var(--f-display); font-style: italic; font-size: 1.04rem; color: var(--claro-2); white-space: nowrap; }
+.trust-list li + li::before { content: "·"; color: var(--oro); font-style: normal; margin: 0 .6rem; }
+
+.trust-link { grid-column: 2; justify-self: start; font: 500 .68rem/1.3 var(--f-text); letter-spacing: .16em; text-transform: uppercase; color: var(--claro-2); text-decoration: none; white-space: nowrap; }
+.trust-link span { color: var(--oro); border-bottom: 1px solid currentColor; padding-bottom: .15em; white-space: nowrap; }
+.trust-link:hover span { color: var(--oro-claro); }
+.svc-ctas { display: flex; flex-wrap: wrap; align-items: center; gap: .9rem 1.6rem; }
+.pl-note { grid-column: 1 / -1; margin: -.2rem 0 0; font-size: .92rem; line-height: 1.55; color: var(--claro-2); border-left: 2px solid var(--oro); padding: .55rem 0 .55rem .95rem; }
+.pl-note a { color: var(--oro); }
+.pl-note a:hover { color: var(--oro-claro); }
+.foot-social { flex-wrap: wrap; }
+@media (max-width: 760px) {
+  .trust-in { grid-template-columns: minmax(0, 1fr); gap: .8rem; }
+  .trust-link { grid-column: 1; white-space: normal; }
+  .trust-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .35rem 1rem; }
+  .trust-list li:first-child { grid-column: 1 / -1; }
+  .trust-list li + li::before { display: none; }
+}
 
 /* ---------- Experiences ---------- */
 .fmt-meta { font: 500 .7rem/1.3 var(--f-text); letter-spacing: .2em; text-transform: uppercase; color: var(--accent); }
@@ -869,13 +885,14 @@ h2 em { font-style: italic; color: var(--accent); }
   <div class="wrap trust-in">
     <p class="trust-label" data-i18n="trust.label">Han confiado en Naomi</p>
     <ul class="trust-list">
-      <li data-i18n="trust.1">Embajada de México en la República Checa</li>
+      <li data-i18n="trust.1">Embajada de México en Praga</li>
       <li>Casa Oaxaca</li>
       <li>Spira Hotel</li>
       <li>Pitiona</li>
       <li data-i18n="trust.2">Museo Náprstek, Praga</li>
       <li>Oaxaca Vive</li>
     </ul>
+    <a class="trust-link" href="#planners" data-i18n="trust.pl">¿Planner, hotel o agencia? <span>Kit profesional →</span></a>
   </div>
 </section>
 
@@ -1160,7 +1177,7 @@ h2 em { font-style: italic; color: var(--accent); }
         <p class="eyebrow" data-i18n="svc.eyebrow">Servicios</p>
         <h2 data-i18n="svc.h2">Música en vivo <em>a la medida</em> de tu evento</h2>
         <p class="lead muted" data-i18n="svc.lead" data-clamp>Cada presentación se prepara según el espacio, el número de invitados y la atmósfera que buscas: desde un formato íntimo para una ceremonia hasta el quinteto completo para una gala.</p>
-        <p><a class="btn btn-solid" href="#reservar" data-i18n="svc.cta">Consultar disponibilidad</a></p>
+        <p class="svc-ctas"><a class="btn btn-solid" href="#reservar" data-i18n="svc.cta">Consultar disponibilidad</a><a class="link-arrow" href="#planners" data-i18n="svc.pl">Para planners, hoteles y agencias</a></p>
         <figure class="svc-photo"><img src="img/vivo-blanco-mirada.jpg" width="1500" height="1000" loading="lazy" alt="Naomi Luna sonriendo al público durante una presentación en vivo" data-i18n-alt="svc.alt"></figure>
       </div>
       <ul class="svc-list">
@@ -1405,6 +1422,7 @@ h2 em { font-style: italic; color: var(--accent); }
             <option value="otro" data-i18n="f.soy.5">Otro</option>
           </select>
         </div>
+        <p class="pl-note" id="plNote" hidden data-i18n="f.plnote">¿Trabajas en eventos? Descarga el <a href="kit/Naomi_Luna_Kit_Profesional_ES.pdf" target="_blank" rel="noopener">kit para profesionales</a> (<a href="kit/Naomi_Luna_Professional_Kit_EN.pdf" target="_blank" rel="noopener">English</a>) con nuestras condiciones de colaboración, o visita la <a href="#planners">sección para planners</a>.</p>
         <div class="field">
           <label for="f-tel" data-i18n="f.tel">WhatsApp o teléfono</label>
           <input id="f-tel" name="telefono" type="tel" autocomplete="tel" required placeholder="+52 951 …">
@@ -1546,6 +1564,7 @@ h2 em { font-style: italic; color: var(--accent); }
       <a href="https://www.instagram.com/corazon_antequera_music/" target="_blank" rel="noopener">Instagram</a>
       <a href="https://www.youtube.com/@corazonantequera" target="_blank" rel="noopener">YouTube</a>
       <a href="https://wa.me/529511981444" target="_blank" rel="noopener">WhatsApp</a>
+      <a id="footKit" href="kit/Naomi_Luna_Kit_Profesional_ES.pdf" target="_blank" rel="noopener" data-i18n="foot.kit">Kit profesional (PDF)</a>
     </div>
     <div class="foot-copy">
       <span>© 2026 Naomi Luna &amp; Corazón Antequera</span>
@@ -1645,7 +1664,7 @@ h2 em { font-style: italic; color: var(--accent); }
     'hero.alt': 'Naomi Luna singing in concert in a burgundy dress',
     'proof.1': 'honorable mention from the Embassy of Mexico in the Czech Republic', 'proof.2': 'years on European stages',
     'proof.3': 'languages in her repertoire: Spanish, English, French and Italian', 'proof.4': 'live experiences, from duo to quintet',
-    'trust.label': 'Trusted by', 'trust.1': 'Embassy of Mexico in the Czech Republic', 'trust.2': 'Náprstek Museum, Prague',
+    'trust.label': 'Trusted by', 'trust.pl': 'Planner, hotel or agency? <span>Professional kit →</span>', 'trust.1': 'Embassy of Mexico in Prague', 'trust.2': 'Náprstek Museum, Prague',
     'tst.eyebrow': 'Testimonials', 'tst.h2': 'What <em>listeners say</em>',
     'about.alt': 'Naomi Luna in an Oaxacan huipil between the flags of Mexico and the Czech Republic',
     'about.cap': 'Prague, Czech Republic', 'about.eyebrow': 'Artist profile',
@@ -1698,7 +1717,7 @@ h2 em { font-style: italic; color: var(--accent); }
     'g.9': 'Stage lights', 'g.10': 'On stage · Oaxaca', 'g.11': 'Mexican culture festival · Europe', 'g.12': 'Connecting with the audience',
     'svc.eyebrow': 'Services', 'svc.h2': 'Live music <em>tailored</em> to your event',
     'svc.lead': 'Each performance is shaped around the venue, the guest count and the atmosphere you want, from an intimate format for a ceremony to the full quintet for a gala.',
-    'svc.cta': 'Check availability', 'svc.alt': 'Naomi Luna smiling at the audience during a live performance',
+    'svc.cta': 'Check availability', 'svc.pl': 'For planners, hotels and agencies', 'svc.alt': 'Naomi Luna smiling at the audience during a live performance',
     'svc.1.h': 'Weddings', 'svc.1.p': 'Ceremony, cocktail hour and reception. Music for every moment, from “I do” to the last dance.', 'svc.1.t': 'Bilingual repertoire for destination weddings',
     'svc.2.h': 'Corporate events and galas', 'svc.2.p': 'Receptions, gala dinners, launches and conventions with an elegant musical presence that complements without interrupting.',
     'svc.3.h': 'Private dinners and celebrations', 'svc.3.p': 'Anniversaries, birthdays and intimate gatherings with boleros, jazz and the songs that mean something to you.',
@@ -1749,6 +1768,7 @@ h2 em { font-style: italic; color: var(--accent); }
     'f.soy': 'I am', 'f.soy.1': 'Bride, groom or host', 'f.soy.2': 'Wedding planner', 'f.soy.3': 'Hotel or venue', 'f.soy.4': 'Company or institution', 'f.soy.5': 'Other',
     'f.bud': 'Music budget', 'f.bud.0': 'I’d rather discuss it', 'f.bud.1': 'Up to US$1,500', 'f.bud.2': 'US$1,500 – 3,000', 'f.bud.3': 'US$3,000 – 5,000', 'f.bud.4': 'Over US$5,000',
     'f.src': 'How did you find us?', 'f.src.0': 'Choose an option', 'f.src.1': 'My wedding planner', 'f.src.2': 'A hotel or venue', 'f.src.3': 'Recommendation', 'f.src.4': 'Other',
+    'f.plnote': 'Work in events? Download our <a href="kit/Naomi_Luna_Professional_Kit_EN.pdf" target="_blank" rel="noopener">professional kit</a> (<a href="kit/Naomi_Luna_Kit_Profesional_ES.pdf" target="_blank" rel="noopener">español</a>) with our partnership terms, or visit the <a href="#planners">planners section</a>.',
     'f.nombre': 'Name', 'f.nombre.ph': 'Your name', 'f.tel': 'WhatsApp or phone', 'f.email': 'Email', 'f.opt': '(optional)', 'f.email.ph': 'name@email.com',
     'f.tipo': 'Event type', 'f.tipo.0': 'Choose an option', 'f.tipo.1': 'Wedding', 'f.tipo.2': 'Corporate event or gala', 'f.tipo.3': 'Private dinner or celebration',
     'f.tipo.4': 'Hotel or restaurant', 'f.tipo.5': 'Cultural or institutional event', 'f.tipo.6': 'Other',
@@ -1759,6 +1779,7 @@ h2 em { font-style: italic; color: var(--accent); }
     'r.wa': 'Send via WhatsApp', 'r.mail': 'Send by email', 'r.copy': 'Copy message', 'r.edit': 'Edit request',
     'c.h': 'Direct contact', 'c.tel': 'Phone and WhatsApp', 'c.mail': 'Email', 'c.copy': 'Copy', 'c.base': 'Based in',
     'c.qr1': 'Scan · Instagram', 'c.qr2': 'Scan · YouTube', 'c.qr1alt': 'Corazón Antequera Instagram QR code', 'c.qr2alt': 'Corazón Antequera YouTube channel QR code',
+    'foot.kit': 'Professional kit (PDF)',
     'foot.sub': 'and Corazón Antequera · Live music in Oaxaca'
   };
 
@@ -1858,6 +1879,7 @@ h2 em { font-style: italic; color: var(--accent); }
     $('#lbClose').setAttribute('aria-label', UI[lang].close); $('#lbPrev').setAttribute('aria-label', UI[lang].prev); $('#lbNext').setAttribute('aria-label', UI[lang].next);
     const waDefault = 'https://wa.me/' + PHONE + '?text=' + encodeURIComponent(UI[lang].waDefault);
     $('#telVal').href = waDefault; $('#mCtaWa').href = waDefault;
+    $('#footKit').href = lang === 'en' ? 'kit/Naomi_Luna_Professional_Kit_EN.pdf' : 'kit/Naomi_Luna_Kit_Profesional_ES.pdf';
     $('#plWa').href = 'https://wa.me/' + PHONE + '?text=' + encodeURIComponent(UI[lang].plWa);
     checkClamps(); updRepAll();
     if (!$('#result').hidden) buildResult();
@@ -1930,6 +1952,9 @@ h2 em { font-style: italic; color: var(--accent); }
   /* ---------- Booking form ---------- */
   const form = $('#bookForm'), result = $('#result'), resultText = $('#resultText');
   $$('[data-format]').forEach(a => a.addEventListener('click', () => { const r = $('#fo-' + a.dataset.format); if (r) r.checked = true; }));
+  const soy = $('#f-soy'), plNote = $('#plNote');
+  const updSoy = () => { plNote.hidden = !['planner', 'hotel', 'empresa'].includes(soy.value); };
+  soy.addEventListener('change', updSoy); updSoy();
 
   function fmtDate(v) {
     if (!v) return '';
