@@ -496,6 +496,17 @@ h2 em { font-style: italic; color: var(--accent); }
 .result > p.send-status { color: var(--oro-claro); border-left: 2px solid var(--oro); padding-left: .9rem; }
 .result pre { white-space: pre-wrap; word-break: break-word; font: 400 .95rem/1.6 var(--f-text); background: var(--noche-3); border: 1px solid var(--linea-o); padding: 1.1rem 1.2rem; margin: 1.2rem 0; max-height: 340px; overflow: auto; color: var(--claro); }
 .result-actions { display: flex; flex-wrap: wrap; gap: .7rem; }
+/* Estados del panel: manual (WhatsApp/correo), sending (Web3Forms en curso), sent (enviado). */
+.result { scroll-margin-top: calc(var(--bar) + 24px); }
+@media (max-width: 760px) { .result { scroll-margin-top: calc(var(--bar) + 60px); } }
+.result .r-ok { display: none; width: 46px; height: 46px; color: var(--oro); margin-bottom: .9rem; }
+.result[data-state="sent"] .r-ok { display: block; }
+.result[data-state="sending"] h3::after { content: ''; display: inline-block; width: .9em; height: .9em; margin-left: .6rem; vertical-align: -.08em; border: 1.5px solid var(--oro); border-right-color: transparent; border-radius: 50%; animation: r-spin .8s linear infinite; }
+@keyframes r-spin { to { transform: rotate(360deg); } }
+.result[data-state="sending"] #resultIntro, .result[data-state="sending"] pre, .result[data-state="sending"] .result-actions,
+.result[data-state="sent"] pre, .result[data-state="sent"] #mailLink, .result[data-state="sent"] #copyMsg, .result[data-state="sent"] #editMsg { display: none; }
+.result[data-state="sent"] .result-actions { margin-top: 1.4rem; }
+@media (prefers-reduced-motion: reduce) { .result[data-state="sending"] h3::after { animation: none; } }
 .btn-plain { border-color: transparent; color: var(--claro-2); padding-inline: .4em; }
 .btn-plain:hover { background: none; color: var(--oro); }
 .contact { border: 1px solid var(--linea-o); background: var(--noche-2); padding: clamp(22px, 3vw, 34px); min-width: 0; }
@@ -1497,15 +1508,16 @@ h2 em { font-style: italic; color: var(--accent); }
         </div>
       </form>
 
-      <div class="result" id="result" hidden>
-        <h3 tabindex="-1" id="resultTitle" data-i18n="r.h">Tu solicitud está lista</h3>
-        <p data-i18n="r.p">Envíala por WhatsApp o por correo: se abrirá la aplicación con el mensaje ya escrito y solo tendrás que confirmar el envío.</p>
+      <div class="result" id="result" data-state="manual" hidden>
+        <svg class="r-ok" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="24" cy="24" r="22"/><path d="m15 24.5 6.2 6.2L33.5 18"/></svg>
+        <h3 tabindex="-1" id="resultTitle">Tu solicitud está lista</h3>
+        <p id="resultIntro">Envíala por WhatsApp o por correo: se abrirá la aplicación con el mensaje ya escrito y solo tendrás que confirmar el envío.</p>
         <p class="send-status" id="sendStatus" role="status" aria-live="polite" hidden></p>
         <pre id="resultText"></pre>
         <div class="result-actions">
           <a class="btn btn-solid" id="waLink" href="https://wa.me/529511981444" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M20 11.5a8 8 0 0 1-11.8 7L4 20l1.5-4.1A8 8 0 1 1 20 11.5Z"/></svg>
-            <span data-i18n="r.wa">Enviar por WhatsApp</span>
+            <span id="waLabel">Enviar por WhatsApp</span>
           </a>
           <a class="btn" id="mailLink" href="mailto:corazonantequera.music@gmail.com" data-i18n="r.mail">Enviar por correo</a>
           <button class="btn" type="button" id="copyMsg" data-i18n="r.copy">Copiar mensaje</button>
@@ -1777,8 +1789,7 @@ h2 em { font-style: italic; color: var(--accent); }
     'f.fecha': 'Event date', 'f.inv': 'Guests', 'f.aprox': '(approx.)', 'f.lugar': 'Venue or city', 'f.lugar.ph': 'E.g. Oaxaca City',
     'f.formato': 'Experience', 'f.nose': 'Not sure yet', 'f.msg': 'Tell us more', 'f.msg.ph': 'Schedule, key moments, special songs…',
     'f.submit': 'Prepare my request', 'f.privacy': 'Your details are only used to reply to your request.',
-    'r.h': 'Your request is ready', 'r.p': 'Send it via WhatsApp or email: the app opens with the message already written, and you only need to confirm sending it.',
-    'r.wa': 'Send via WhatsApp', 'r.mail': 'Send by email', 'r.copy': 'Copy message', 'r.edit': 'Edit request',
+    'f.send': 'Send request', 'r.mail': 'Send by email', 'r.copy': 'Copy message', 'r.edit': 'Edit request',
     'c.h': 'Direct contact', 'c.tel': 'Phone and WhatsApp', 'c.mail': 'Email', 'c.copy': 'Copy', 'c.base': 'Based in',
     'c.qr1': 'Scan · Instagram', 'c.qr2': 'Scan · YouTube', 'c.qr1alt': 'Corazón Antequera Instagram QR code', 'c.qr2alt': 'Corazón Antequera YouTube channel QR code',
     'foot.kit': 'Professional kit (PDF)',
@@ -1789,14 +1800,22 @@ h2 em { font-style: italic; color: var(--accent); }
     es: { copied: 'Copiado', copyFail: 'Selecciona y copia', tabs: 'Estilos', songs: 'canciones', gallery: 'Galería', close: 'Cerrar', prev: 'Anterior', next: 'Siguiente',
       greet: 'Hola, Naomi y Corazón Antequera. Me gustaría consultar disponibilidad para un evento.', subj: 'Solicitud de reserva',
       lName: 'Nombre', lSoy: 'Soy', lType: 'Tipo de evento', lDate: 'Fecha', lPlace: 'Lugar', lGuests: 'Invitados', lFormat: 'Experiencia', lBudget: 'Presupuesto', lSource: 'Nos conoció por', lPhone: 'WhatsApp / teléfono', lEmail: 'Correo', lDetails: 'Detalles',
-      sending: 'Enviando tu solicitud…', sent: 'Recibimos tu solicitud por correo. Te responderemos lo antes posible; si lo prefieres, escríbenos también por WhatsApp.', sendFail: 'No pudimos enviar el formulario automáticamente. Envíalo por WhatsApp o por correo con los botones de abajo.',
+      rReady: 'Tu solicitud está lista', rReadyP: 'Envíala por WhatsApp o por correo: se abrirá la aplicación con el mensaje ya escrito y solo tendrás que confirmar el envío.',
+      rSending: 'Enviando tu solicitud', rSent: 'Solicitud enviada',
+      rSentP: 'Gracias{n}. Recibimos los datos de tu evento y te responderemos pronto con una propuesta personalizada. Si lo prefieres, también puedes escribirnos por WhatsApp.',
+      waBtn: 'Enviar por WhatsApp', waBtnAfter: 'Escribir por WhatsApp', waAfter: 'Hola, Naomi. Soy {n} y acabo de enviar una solicitud desde naomilunavoz.com.',
+      sendFail: 'No pudimos enviar el formulario automáticamente. Envíalo por WhatsApp o por correo con los botones de abajo.',
       plWa: 'Hola, Naomi. Trabajo como wedding planner / en un hotel y me gustaría conocer tu propuesta para mis clientes.',
       waDefault: 'Hola, Naomi. Me gustaría información para un evento.', errFix: 'Revisa los campos marcados.',
       more: 'Leer más', less: 'Leer menos', repAll: 'Ver las {n} canciones', repLess: 'Ver menos' },
     en: { copied: 'Copied', copyFail: 'Select and copy', tabs: 'Styles', songs: 'songs', gallery: 'Gallery', close: 'Close', prev: 'Previous', next: 'Next',
       greet: 'Hello Naomi and Corazón Antequera, I would like to check your availability for an event.', subj: 'Booking request',
       lName: 'Name', lSoy: 'I am', lType: 'Event type', lDate: 'Date', lPlace: 'Venue', lGuests: 'Guests', lFormat: 'Experience', lBudget: 'Budget', lSource: 'Found us through', lPhone: 'WhatsApp / phone', lEmail: 'Email', lDetails: 'Details',
-      sending: 'Sending your request…', sent: 'We received your request by email and will reply as soon as possible. You can also message us on WhatsApp.', sendFail: 'We could not send the form automatically. Please send it via WhatsApp or email using the buttons below.',
+      rReady: 'Your request is ready', rReadyP: 'Send it via WhatsApp or email: the app opens with the message already written, and you only need to confirm sending it.',
+      rSending: 'Sending your request', rSent: 'Request sent',
+      rSentP: 'Thank you{n}. We have received your event details and will reply soon with a personalized proposal. If you prefer, you can also message us on WhatsApp.',
+      waBtn: 'Send via WhatsApp', waBtnAfter: 'Message us on WhatsApp', waAfter: 'Hello Naomi, I am {n} and I just sent a request from naomilunavoz.com.',
+      sendFail: 'We could not send the form automatically. Please send it via WhatsApp or email using the buttons below.',
       plWa: 'Hello Naomi, I am a wedding planner / work at a hotel and would like to learn about your proposal for my clients.',
       waDefault: 'Hello Naomi, I would like information about an event.', errFix: 'Please check the highlighted fields.',
       more: 'Read more', less: 'Show less', repAll: 'Show all {n} songs', repLess: 'Show fewer' }
@@ -1863,6 +1882,9 @@ h2 em { font-style: italic; color: var(--accent); }
   function renderTabLabels() { REP.forEach((g, i) => { tabs[i].querySelector('.tab-l').textContent = g[lang]; }); tabsEl.setAttribute('aria-label', UI[lang].tabs); }
 
   /* ---------- i18n ---------- */
+  /* En el sitio publicado el formulario se envía solo (Web3Forms): el botón dice «Enviar solicitud». */
+  const W3F_AUTO = !!W3F_KEY && W3F_LIVE;
+  if (W3F_AUTO) { const sb = $('#bookForm button[type="submit"]'); if (sb) { sb.dataset.i18n = 'f.send'; sb.textContent = 'Enviar solicitud'; } }
   const nodes = $$('[data-i18n]');
   nodes.forEach(n => { n.dataset.es = n.innerHTML; });
   const phNodes = $$('[data-i18n-ph]'); phNodes.forEach(n => { n.dataset.esPh = n.getAttribute('placeholder') || ''; });
@@ -1982,26 +2004,39 @@ h2 em { font-style: italic; color: var(--accent); }
     resultText.textContent = m.text;
     $('#waLink').href = 'https://wa.me/' + PHONE + '?text=' + encodeURIComponent(m.text);
     $('#mailLink').href = 'mailto:' + EMAIL + '?subject=' + encodeURIComponent(m.subject) + '&body=' + encodeURIComponent(m.text);
+    renderState();
   }
+  /* Panel de resultado: 'manual' (vista previa o fallo del envío), 'sending', 'sent'. */
+  var rState = 'manual', rFailed = false;
+  function renderState() {
+    const L = UI[lang], name = form.elements.nombre.value.trim();
+    result.dataset.state = rState;
+    $('#resultTitle').textContent = rState === 'sent' ? L.rSent : rState === 'sending' ? L.rSending : L.rReady;
+    $('#resultIntro').textContent = rState === 'sent' ? L.rSentP.replace('{n}', name ? ', ' + name : '') : L.rReadyP;
+    $('#waLabel').textContent = rState === 'sent' ? L.waBtnAfter : L.waBtn;
+    if (rState === 'sent') $('#waLink').href = 'https://wa.me/' + PHONE + '?text=' + encodeURIComponent(L.waAfter.replace('{n}', name));
+    const st = $('#sendStatus');
+    st.hidden = !(rState === 'manual' && rFailed);
+    if (!st.hidden) st.textContent = L.sendFail;
+  }
+  function setState(s, failed) { rState = s; rFailed = !!failed; buildResult(); $('#resultTitle').focus({ preventScroll: true }); }
   form.addEventListener('submit', e => {
     e.preventDefault();
     if (!form.checkValidity()) { form.reportValidity(); return; }
-    buildResult();
     form.hidden = true; result.hidden = false;
-    $('#resultTitle').focus();
-    sendAuto();
+    result.scrollIntoView({ block: 'start', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+    const bot = $('#f-bot').checked;
+    setState(W3F_AUTO && !bot ? 'sending' : 'manual');
+    if (W3F_AUTO && !bot) sendAuto();
   });
   function sendAuto() {
-    const st = $('#sendStatus');
-    if (!W3F_KEY || !W3F_LIVE || $('#f-bot').checked) { st.hidden = true; return; }
     const m = buildMessage(), f = form.elements;
-    st.hidden = false; st.textContent = UI[lang].sending;
     fetch('https://api.web3forms.com/submit', {
       method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
       body: JSON.stringify({ access_key: W3F_KEY, subject: m.subject, from_name: 'naomilunavoz.com', name: f.nombre.value.trim(),
         email: f.email.value.trim() || undefined, phone: f.telefono.value.trim(), message: m.text })
-    }).then(r => r.json()).then(j => { st.textContent = j && j.success ? UI[lang].sent : UI[lang].sendFail; })
-      .catch(() => { st.textContent = UI[lang].sendFail; });
+    }).then(r => r.json()).then(j => { if (j && j.success) setState('sent'); else setState('manual', true); })
+      .catch(() => setState('manual', true));
   }
   $('#editMsg').addEventListener('click', () => { result.hidden = true; form.hidden = false; $('#f-nombre').focus(); });
   $('#copyMsg').addEventListener('click', e => copyText(resultText.textContent, e.currentTarget, resultText));
