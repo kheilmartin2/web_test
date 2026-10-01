@@ -1594,7 +1594,9 @@ h2 em { font-style: italic; color: var(--accent); }
   const EMAIL = 'corazonantequera.music@gmail.com';
   /* Web3Forms access key (https://web3forms.com). Vacío = el formulario solo prepara el mensaje para WhatsApp o correo.
      Con una clave, cada solicitud llega además automáticamente al correo registrado en Web3Forms. */
-  const W3F_KEY = '';
+  const W3F_KEY = '03102995-6b9d-4827-8308-4d5602a346bd';
+  /* Solo se envía desde el sitio publicado (no desde vistas previas). */
+  const W3F_LIVE = /(^|\.)naomilunavoz\.com$|\.github\.io$/.test(location.hostname);
 
   /* ---------- Always open at the top: in-page links never write #section into the address ---------- */
   try { if ('scrollRestoration' in history) history.scrollRestoration = 'manual'; } catch (e) {}
@@ -1991,7 +1993,7 @@ h2 em { font-style: italic; color: var(--accent); }
   });
   function sendAuto() {
     const st = $('#sendStatus');
-    if (!W3F_KEY || $('#f-bot').checked) { st.hidden = true; return; }
+    if (!W3F_KEY || !W3F_LIVE || $('#f-bot').checked) { st.hidden = true; return; }
     const m = buildMessage(), f = form.elements;
     st.hidden = false; st.textContent = UI[lang].sending;
     fetch('https://api.web3forms.com/submit', {
