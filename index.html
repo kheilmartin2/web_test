@@ -3,6 +3,34 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!-- NL-CONFIG -->
+<!-- ===================== NASTAVENÍ WEBU – upravujte jen text mezi <template …> a </template> =====================
+
+  SESTAVA (nl-sestava): kdo hraje v Corazón Antequera. Jeden člen = jeden řádek:
+        Jméno | nástroj | fotka.jpg
+    · fotku nahrajte do složky img/ a napište její název přesně jak se soubor jmenuje (např. pedro-ruiz.jpg)
+    · nástroj: voz, piano, saxofon, bateria, bajo, guitarra, violin, trompeta, percusion, teclados, coros
+      (jiný nástroj napište normálně – zobrazí se tak, jak je napsaný)
+    · volné místo: místo jména pomlčka  →   - | saxofon
+      na webu zůstane jen nástroj a „Nuevo integrante · Próximamente“ (EN „New member · Coming soon“)
+    · pořadí řádků = pořadí karet na webu; první řádek je velká karta
+    · člen, který v sestavě není, zmizí i z medailonků a z dat pro Google;
+      na společných fotkách a videích zůstává, úvodní fotka sekce Ensamble se vymění za náhradní
+
+  SKRYTÉ FOTKY (nl-skryte-fotky): názvy souborů z img/ nebo video/, které se nikde na webu nemají ukázat,
+    i když ve složce zůstanou. Oddělujte čárkou. Např.: erick-avendano.jpg, saxofon.mp4
+
+  Na velkých/malých písmenech a diakritice v nástrojích a jménech nezáleží.
+=================================================================================================================== -->
+<template id="nl-sestava">
+Naomi Luna | voz | naomi-escenario.jpg
+Canek León | bajo | canek-leon.jpg
+Juan Cruz | piano | juan-cruz.jpg
+- | saxofon
+- | bateria
+</template>
+<template id="nl-skryte-fotky">erick-avendano.jpg, belem-vasquez.jpg</template>
+<!-- /NL-CONFIG -->
 <title>Naomi Luna | Cantante para bodas y eventos en Oaxaca</title>
 <meta name="description" content="Naomi Luna, cantante oaxaqueña de bolero, jazz y soul con formación en bel canto. Música en vivo para bodas y eventos en Oaxaca con su ensamble Corazón Antequera.">
 <meta name="theme-color" content="#150d0e">
@@ -83,14 +111,6 @@
         {
           "@type": "Person",
           "name": "Juan Cruz"
-        },
-        {
-          "@type": "Person",
-          "name": "Erick Avendaño"
-        },
-        {
-          "@type": "Person",
-          "name": "Belem Vásquez"
         },
         {
           "@type": "Person",
@@ -353,7 +373,7 @@ h2 em { font-style: italic; color: var(--accent); }
 @media (max-width: 420px) { .award { grid-template-columns: minmax(0, 1fr); } }
 
 /* ---------- Live / portfolio ---------- */
-.videos { display: grid; grid-template-columns: minmax(0, 256fr) minmax(0, 81fr) minmax(0, 81fr); gap: clamp(12px, 1.6vw, 20px); margin-top: clamp(40px, 5vw, 64px); align-items: start; }
+.videos { display: grid; grid-template-columns: var(--vid-cols, minmax(0, 256fr) minmax(0, 81fr) minmax(0, 81fr)); gap: clamp(12px, 1.6vw, 20px); margin-top: clamp(40px, 5vw, 64px); align-items: start; }
 .vid { margin: 0; min-width: 0; }
 .vid video { width: 100%; background: var(--noche-3); }
 .vid-h video { aspect-ratio: 16 / 9; }
@@ -445,6 +465,15 @@ h2 em { font-style: italic; color: var(--accent); }
 .member.has-bio::after { content: ""; position: absolute; z-index: 1; top: 10px; right: 10px; width: 30px; height: 30px; background: linear-gradient(var(--oro), var(--oro)) center / 1px 11px no-repeat; pointer-events: none; }
 .member.has-bio:hover img, .member.has-bio:focus-within img { filter: brightness(1.08); box-shadow: 0 0 0 1px var(--oro); }
 .member.has-bio:hover::before { background-color: rgba(21, 13, 14, .95); }
+/* Volné místo v sestavě (nl-sestava: „- | nástroj“) nebo člen bez fotky */
+.m-vacant { position: relative; width: 100%; aspect-ratio: 4 / 5; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .55rem; padding: 1rem; text-align: center;
+  background: radial-gradient(90% 70% at 50% 30%, rgba(201, 160, 99, .1), transparent 70%), var(--terciopelo-3); }
+.m-vacant::before { content: ""; position: absolute; inset: 10px; border: 1px solid var(--linea-o); pointer-events: none; }
+.m-vacant::after { content: ""; position: absolute; top: calc(50% - 3.1rem); width: 7px; height: 7px; background: var(--oro); transform: rotate(45deg); }
+.m-vac-t { font-family: var(--f-display); font-style: italic; font-size: clamp(1.05rem, .9rem + .5vw, 1.3rem); line-height: 1.2; color: var(--claro); }
+.m-vac-k { font: 500 .62rem/1.3 var(--f-text); letter-spacing: .22em; text-transform: uppercase; color: var(--oro-claro); }
+.member.lead-m .m-vacant { aspect-ratio: auto; height: 100%; min-height: 220px; }
+.member.is-vacant h3 { color: var(--claro-2); }
 .member .m-tag { margin-top: .55rem; font: 400 .9rem/1.5 var(--f-text); letter-spacing: 0; text-transform: none; color: var(--claro-2); }
 .m-more { display: inline-flex; align-items: center; gap: .5em; margin-top: .75rem; padding: 0 0 .25em; border: 0; border-bottom: 1px solid currentColor; background: none; cursor: pointer;
   font: 500 .66rem/1.3 var(--f-text); letter-spacing: .18em; text-transform: uppercase; color: var(--oro); }
@@ -465,6 +494,8 @@ html:has(dialog[open]) { overflow: hidden; }
 /* Doble filete dorado: el «rámeček» del programa de concierto */
 .bio-frame::before { content: ""; position: absolute; inset: 10px; border: 1px solid rgba(201, 160, 99, .22); pointer-events: none; z-index: 2; }
 .bio-photo { margin: 0; position: relative; overflow: hidden; background: var(--terciopelo-3); }
+.bio-frame.no-photo { grid-template-columns: minmax(0, 1fr); }
+.bio-frame.no-photo .bio-photo { display: none; }
 .bio-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .bio-photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, transparent 70%, rgba(31, 21, 22, .55)); }
 .bio-body { overflow-y: auto; overscroll-behavior: contain; padding: clamp(36px, 4.5vw, 60px) clamp(28px, 4.5vw, 60px) clamp(28px, 3.5vw, 44px); display: flex; flex-direction: column; scrollbar-width: thin; scrollbar-color: var(--linea-o2) transparent; }
@@ -1383,7 +1414,9 @@ html:has(dialog[open]) { overflow: hidden; }
         </ul>
       </div>
       <figure class="ens-photo">
-        <img src="img/ensamble.jpg" width="1248" height="832" loading="lazy" alt="Los cinco integrantes de Corazón Antequera" data-i18n-alt="ens.alt">
+        <img src="img/ensamble.jpg" width="1248" height="832" loading="lazy" alt="Los cinco integrantes de Corazón Antequera" data-i18n-alt="ens.alt"
+          data-people="Naomi Luna, Juan Cruz, Erick Avendaño, Belem Vásquez, Canek León"
+          data-fallback="img/vivo-banda.jpg" data-fallback-pos="50% 45%" data-fallback-alt="Naomi Luna con músicos de Corazón Antequera" data-fallback-i18n-alt="ens.alt2">
       </figure>
     </div>
 
@@ -1391,12 +1424,12 @@ html:has(dialog[open]) { overflow: hidden; }
       <li class="member lead-m has-bio"><img src="img/naomi-escenario.jpg" width="1248" height="832" loading="lazy" alt="Naomi Luna" style="object-position:42% 30%"><h3>Naomi Luna</h3><p data-i18n="m.voz">Voz y dirección</p>
         <p class="m-tag" data-i18n="m.naomi.tag">Bolero, jazz y soul con formación en bel canto.</p>
         <button class="m-more" type="button" data-bio="naomi" aria-haspopup="dialog"><span data-i18n="m.more">Ver semblanza</span><span class="sr-only"> · Naomi Luna</span></button></li>
-      <li class="member"><img src="img/juan-cruz.jpg" width="272" height="273" loading="lazy" alt="Juan Cruz" style="object-position:50% 40%"><h3>Juan Cruz</h3><p>Piano</p></li>
-      <li class="member"><img src="img/erick-avendano.jpg" width="1000" height="667" loading="lazy" alt="Erick Avendaño" style="object-position:58% 30%"><h3>Erick Avendaño</h3><p data-i18n="m.sax">Saxofón</p></li>
-      <li class="member"><img src="img/belem-vasquez.jpg" width="900" height="600" loading="lazy" alt="Belem Vásquez" style="object-position:38% 35%"><h3>Belem Vásquez</h3><p data-i18n="m.bat">Batería</p></li>
       <li class="member has-bio"><img src="img/canek-leon.jpg" width="800" height="1066" loading="lazy" alt="Canek León" style="object-position:35% 30%"><h3>Canek León</h3><p data-i18n="m.bajo">Bajo y contrabajo</p>
         <p class="m-tag" data-i18n="m.canek.tag">De la orquesta sinfónica al jazz: Bellas Artes, Cervantino y Camerata Oaxaca.</p>
         <button class="m-more" type="button" data-bio="canek" aria-haspopup="dialog"><span data-i18n="m.more">Ver semblanza</span><span class="sr-only"> · Canek León</span></button></li>
+      <li class="member"><img src="img/juan-cruz.jpg" width="272" height="273" loading="lazy" alt="Juan Cruz" style="object-position:50% 40%"><h3>Juan Cruz</h3><p data-i18n="m.piano">Piano</p></li>
+      <li class="member is-vacant"><div class="m-vacant"><span class="m-vac-t" data-i18n="m.vac.t">Nuevo integrante</span><span class="m-vac-k" data-i18n="m.vac.k">Próximamente</span></div><h3 data-i18n="m.sax">Saxofón</h3></li>
+      <li class="member is-vacant"><div class="m-vacant"><span class="m-vac-t" data-i18n="m.vac.t">Nuevo integrante</span><span class="m-vac-k" data-i18n="m.vac.k">Próximamente</span></div><h3 data-i18n="m.bat">Batería</h3></li>
     </ul>
   </div>
 </section>
@@ -1679,8 +1712,8 @@ html:has(dialog[open]) { overflow: hidden; }
 </dialog>
 
 <!-- Semblanzas del ensamble: un <article class="bio" data-bio="…"> por integrante.
-     Para añadir a otro músico: copia un artículo, cambia data-bio, data-img y textos,
-     y en su tarjeta (sección Ensamble) añade class="has-bio", la línea .m-tag y el botón .m-more con el mismo data-bio. -->
+     La tarjeta del integrante (generada desde nl-sestava) recibe sola el texto corto (.bio-tag) y el botón «Ver semblanza»
+     cuando el nombre en .bio-name coincide con el de la sestava. Para añadir otro: copia un artículo y cambia data-bio, data-img y textos. -->
 <dialog class="bio-dlg" id="bioDlg">
   <div class="bio-frame">
     <button class="bio-close" type="button" id="bioClose" aria-label="Cerrar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
@@ -1690,6 +1723,7 @@ html:has(dialog[open]) { overflow: hidden; }
       <article class="bio" data-bio="naomi" data-img="img/naomi-escenario.jpg" data-pos="42% 30%" hidden>
         <p class="eyebrow" data-i18n="m.voz">Voz y dirección</p>
         <h2 class="bio-name" id="bio-h-naomi">Naomi <em>Luna</em></h2>
+        <p class="bio-tag" data-i18n="m.naomi.tag" hidden>Bolero, jazz y soul con formación en bel canto.</p>
         <p class="bio-lead" data-i18n="bio.naomi.lead">Cantante oaxaqueña de raíces mixtecas: bolero, jazz y soul con la técnica del bel canto.</p>
         <p data-i18n="bio.naomi.p1">Comenzó su formación a los ocho años en el CIMO y en Esperanza Azteca, y estudió bel canto con Felipe Espinoza, Gabriel Mijares y Verónica Murúa. Continuó en el CEDART «Miguel Cabrera» de Oaxaca y en Lyon, Francia, con la soprano Isabel Germain. En Praga cantó en los actos oficiales de la Embajada de México y con el coro de la Universidad Carlos; de regreso en Oaxaca fundó Corazón Antequera.</p>
         <dl class="bio-facts">
@@ -1704,6 +1738,7 @@ html:has(dialog[open]) { overflow: hidden; }
       <article class="bio" data-bio="canek" data-img="img/canek-leon.jpg" data-pos="35% 30%" hidden>
         <p class="eyebrow" data-i18n="m.bajo">Bajo y contrabajo</p>
         <h2 class="bio-name" id="bio-h-canek">Canek <em>León</em></h2>
+        <p class="bio-tag" data-i18n="m.canek.tag" hidden>De la orquesta sinfónica al jazz: Bellas Artes, Cervantino y Camerata Oaxaca.</p>
         <p class="bio-lead" data-i18n="bio.canek.lead">Contrabajista oaxaqueño de formación clásica, con una trayectoria que va de la orquesta sinfónica a la música de cámara y el jazz.</p>
         <p data-i18n="bio.canek.p1">Originario de Oaxaca, forjó su carrera musical desde el bachillerato en el CEDART «Miguel Cabrera» y continuó su formación superior en la Escuela Superior de Música, en la Licenciatura de Instrumentista en Contrabajo. Formó parte de la Orquesta Escuela Carlos Chávez desde 2017 hasta culminar sus estudios en esa institución en 2024; ha participado con la Orquesta de la ESM y la Orquesta Sinfónica de Oaxaca, y es miembro activo de la Camerata Oaxaca.</p>
         <p data-i18n="bio.canek.p2">Su versatilidad va más allá del contrabajo clásico: ha formado parte de ensambles de jazz y de música de cámara en la escena nacional, con un repertorio que abarca música orquestal, jazz, tango y rock.</p>
@@ -1880,7 +1915,9 @@ html:has(dialog[open]) { overflow: hidden; }
     'ens.logoalt': 'Corazón Antequera logo', 'ens.eyebrow': 'The ensemble', 'ens.note': 'Antequera was the colonial name of Oaxaca City.',
     'ens.p1': 'An Oaxacan ensemble founded by Naomi Luna in 2026, blending the traditional music of Oaxaca with jazz, bossa nova, bolero, swing and contemporary pop.',
     'ens.p2': 'Each performance is designed to fit the setting, pace and personality of the celebration, with professionalism and attention to detail.',
-    'ens.alt': 'The five members of Corazón Antequera',
+    'ens.alt': 'The five members of Corazón Antequera', 'ens.alt2': 'Naomi Luna with musicians of Corazón Antequera',
+    'm.vac.t': 'New member', 'm.vac.k': 'Coming soon', 'm.vac.photo': 'Photo coming soon',
+    'm.piano': 'Piano', 'm.gtr': 'Guitar', 'm.vln': 'Violin', 'm.tpt': 'Trumpet', 'm.perc': 'Percussion', 'm.tecl': 'Keyboards', 'm.coros': 'Backing vocals',
     'gen.trad': 'Traditional Oaxacan', 'gen.latino': 'Latin pop', 'gen.fusion': 'Pop fusion', 'gen.fr': 'French songs',
     'm.voz': 'Vocals and direction', 'm.sax': 'Saxophone', 'm.bat': 'Drums', 'm.bajo': 'Bass and double bass',
     'm.more': 'Read bio', 'm.naomi.tag': 'Bolero, jazz and soul with bel canto training.',
@@ -1961,6 +1998,103 @@ html:has(dialog[open]) { overflow: hidden; }
   let lang = 'es';
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+
+  /* ---------- Sestava a skryté fotky (<template id="nl-sestava"> a "nl-skryte-fotky" na začátku souboru) ---------- */
+  const norm = v => String(v || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/\s+/g, ' ').trim();
+  const fileOf = u => { const f = String(u || '').split(/[?#]/)[0].split('/').pop(); try { return norm(decodeURIComponent(f)); } catch (e) { return norm(f); } };
+  const tplText = id => { const t = document.getElementById(id); return t ? (t.content ? t.content.textContent : t.textContent) : ''; };
+  const esc = v => String(v).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
+  const HIDE_FILES = tplText('nl-skryte-fotky').split(/[,;\n]/).map(fileOf).filter(Boolean);
+  const isHiddenFile = u => { const f = fileOf(u); return !!f && HIDE_FILES.some(h => h === f || h === f.replace(/\.[a-z0-9]+$/, '')); };
+  const VACANT = /^(?:-+|–|—|\?|volne|volny|volna|vacante|libre|proximamente|tbd)?$/;
+  const ROSTER = tplText('nl-sestava').split('\n').map(l => l.trim()).filter(l => l && !l.startsWith('#')).map(l => {
+    const [name = '', instr = '', photo = '', pos = ''] = l.split(/\s*[|;]\s*/).map(x => x.trim());
+    return { name: VACANT.test(norm(name)) ? '' : name, instr, photo, pos };
+  });
+  const ROSTER_NAMES = ROSTER.filter(m => m.name).map(m => norm(m.name));
+  const inBand = n => !ROSTER.length || ROSTER_NAMES.includes(norm(n));
+  const INSTR = { voz: 'm.voz', canto: 'm.voz', piano: 'm.piano', saxofon: 'm.sax', sax: 'm.sax', bateria: 'm.bat', bajo: 'm.bajo', contrabajo: 'm.bajo',
+    guitarra: 'm.gtr', violin: 'm.vln', trompeta: 'm.tpt', percusion: 'm.perc', percusiones: 'm.perc', teclados: 'm.tecl', coros: 'm.coros' };
+  const INSTR_ES = { 'm.voz': 'Voz y dirección', 'm.piano': 'Piano', 'm.sax': 'Saxofón', 'm.bat': 'Batería', 'm.bajo': 'Bajo y contrabajo', 'm.gtr': 'Guitarra',
+    'm.vln': 'Violín', 'm.tpt': 'Trompeta', 'm.perc': 'Percusiones', 'm.tecl': 'Teclados', 'm.coros': 'Coros' };
+  const PHOTO_POS = { 'naomi-escenario.jpg': '42% 30%', 'juan-cruz.jpg': '50% 40%', 'canek-leon.jpg': '35% 30%' };
+  (function applyBand() {
+    const ul = $('.members'), dlg = $('#bioDlg');
+    /* 1) Karty členů podle sestavy */
+    if (ROSTER.length && ul) {
+      const bioOf = n => $$('.bio', dlg || document).find(a => { const h = a.querySelector('.bio-name'); return h && norm(h.textContent) === norm(n); });
+      ul.innerHTML = '';
+      ROSTER.forEach((m, i) => {
+        const key = INSTR[norm(m.instr).replace(/\s+/g, '')];
+        const instr = (tag, cls) => '<' + tag + (cls ? ' class="' + cls + '"' : '') + (key ? ' data-i18n="' + key + '">' + INSTR_ES[key] : '>' + esc(m.instr)) + '</' + tag + '>';
+        const li = document.createElement('li');
+        li.className = 'member' + (i === 0 ? ' lead-m' : '');
+        if (!m.name) {
+          li.classList.add('is-vacant');
+          li.innerHTML = '<div class="m-vacant"><span class="m-vac-t" data-i18n="m.vac.t">Nuevo integrante</span><span class="m-vac-k" data-i18n="m.vac.k">Próximamente</span></div>' + instr('h3');
+          ul.appendChild(li); return;
+        }
+        const photoOk = m.photo && !isHiddenFile(m.photo);
+        let html = (photoOk ? '<img loading="lazy" alt="' + esc(m.name) + '">' : '<div class="m-vacant"><span class="m-vac-k" data-i18n="m.vac.photo">Fotografía próximamente</span></div>')
+          + '<h3>' + esc(m.name) + '</h3>' + instr('p');
+        const bio = bioOf(m.name);
+        if (bio) {
+          const tag = bio.querySelector('.bio-tag');
+          if (tag) html += '<p class="m-tag"' + (tag.dataset.i18n ? ' data-i18n="' + tag.dataset.i18n + '"' : '') + '>' + tag.innerHTML + '</p>';
+          html += '<button class="m-more" type="button" data-bio="' + esc(bio.dataset.bio) + '" aria-haspopup="dialog"><span data-i18n="m.more">Ver semblanza</span><span class="sr-only"> · ' + esc(m.name) + '</span></button>';
+          li.classList.add('has-bio');
+        }
+        li.innerHTML = html;
+        if (photoOk) { const im = li.querySelector('img'); im.src = m.photo.includes('/') ? m.photo : 'img/' + m.photo; im.style.objectPosition = m.pos || PHOTO_POS[fileOf(m.photo)] || '50% 30%'; }
+        ul.appendChild(li);
+      });
+      /* medailonky lidí, kteří v sestavě nejsou, zmizí */
+      $$('.bio', dlg || document).forEach(a => { const h = a.querySelector('.bio-name'); if (h && !inBand(h.textContent)) a.remove(); });
+    } else if (ul) {
+      $$('img', ul).forEach(im => { if (isHiddenFile(im.getAttribute('src'))) { const ph = document.createElement('div'); ph.className = 'm-vacant'; ph.innerHTML = '<span class="m-vac-k" data-i18n="m.vac.photo">Fotografía próximamente</span>'; im.replaceWith(ph); } });
+    }
+    /* 2) Ostatní fotky: úvodní fotka s náhradou (data-fallback) se vymění, když je na ní někdo mimo sestavu
+          nebo je v seznamu skrytých; galerie a ostatní figury ze seznamu zmizí. */
+    $$('img').forEach(img => {
+      if (!img.isConnected || img.closest('.members') || img.id === 'bioImg' || img.id === 'lbImg') return;
+      const people = (img.dataset.people || '').split(',').map(x => x.trim()).filter(Boolean);
+      const gone = isHiddenFile(img.getAttribute('src')) || (!!img.dataset.fallback && people.some(n => !inBand(n)));
+      if (!gone) return;
+      const fb = img.dataset.fallback;
+      if (fb && !isHiddenFile(fb)) {
+        img.src = fb; img.removeAttribute('srcset');
+        if (img.dataset.fallbackPos) img.style.objectPosition = img.dataset.fallbackPos;
+        if (img.dataset.fallbackAlt) img.alt = img.dataset.fallbackAlt;
+        if (img.dataset.fallbackI18nAlt) img.dataset.i18nAlt = img.dataset.fallbackI18nAlt;
+        return;
+      }
+      const box = img.closest('#gallery .g-item, figure');
+      if (box) box.remove(); else img.remove();
+    });
+    /* 3) Videa (soubor videa nebo jeho náhled v seznamu skrytých) */
+    $$('video').forEach(v => {
+      const srcs = [v.getAttribute('poster'), v.getAttribute('src'), ...$$('source', v).map(x => x.getAttribute('src'))];
+      if (!srcs.some(isHiddenFile)) return;
+      const box = v.closest('figure'); if (box) box.remove(); else v.remove();
+    });
+    const vg = $('.videos');
+    if (vg) vg.style.setProperty('--vid-cols', $$('.vid', vg).map(f => f.classList.contains('vid-h') ? 'minmax(0, 256fr)' : 'minmax(0, 81fr)').join(' ') || 'minmax(0, 1fr)');
+    /* 4) Strukturovaná data pro Google: členové podle sestavy */
+    if (!ROSTER.length) return;
+    $$('script[type="application/ld+json"]').forEach(sc => {
+      try {
+        const d = JSON.parse(sc.textContent), graph = d['@graph'] || [d];
+        const persons = graph.filter(x => x && x.name && /Person/.test(x['@type'])).map(x => norm(x.name));
+        graph.forEach(n => {
+          if (!Array.isArray(n.member)) return;
+          n.member = n.member.filter(e => e && (e['@id'] || inBand(e.name)));
+          const have = n.member.filter(e => e.name).map(e => norm(e.name));
+          ROSTER.filter(m => m.name && !persons.includes(norm(m.name)) && !have.includes(norm(m.name))).forEach(m => n.member.push({ '@type': 'Person', name: m.name }));
+        });
+        sc.textContent = JSON.stringify(d);
+      } catch (e) {}
+    });
+  })();
 
   /* ---------- Repertoire render ---------- */
   const tabsEl = $('#repTabs'), panelsEl = $('#repPanels');
@@ -2103,7 +2237,9 @@ html:has(dialog[open]) { overflow: hidden; }
     bioCur = (i + bios.length) % bios.length;
     bios.forEach((a, k) => { a.hidden = k !== bioCur; });
     const a = bios[bioCur], prev = $('#bioPrev'), next = $('#bioNext');
-    bioImg.src = a.dataset.img; bioImg.style.objectPosition = a.dataset.pos || ''; bioImg.alt = bioName(a);
+    const noPhoto = !a.dataset.img || isHiddenFile(a.dataset.img);
+    bioDlg.querySelector('.bio-frame').classList.toggle('no-photo', noPhoto);
+    if (!noPhoto) { bioImg.src = a.dataset.img; bioImg.style.objectPosition = a.dataset.pos || ''; bioImg.alt = bioName(a); }
     bioDlg.setAttribute('aria-labelledby', a.querySelector('.bio-name').id);
     $('#bioNav').hidden = bios.length < 2;
     prev.hidden = bios.length < 3;   /* con dos semblanzas basta «Siguiente» */
