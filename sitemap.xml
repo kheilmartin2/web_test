@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://naomilunavoz.com/</loc>
+    <lastmod>2026-10-03</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://naomilunavoz.com/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://naomilunavoz.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://naomilunavoz.com/"/>
+  </url>
+  <url>
+    <loc>https://naomilunavoz.com/en/</loc>
+    <lastmod>2026-10-03</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://naomilunavoz.com/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://naomilunavoz.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://naomilunavoz.com/"/>
+  </url>
+  <url>
+    <loc>https://naomilunavoz.com/kit/Naomi_Luna_Kit_Profesional_ES.pdf</loc>
+    <lastmod>2026-10-03</lastmod>
+  </url>
+  <url>
+    <loc>https://naomilunavoz.com/kit/Naomi_Luna_Professional_Kit_EN.pdf</loc>
+    <lastmod>2026-10-03</lastmod>
+  </url>
+</urlset>

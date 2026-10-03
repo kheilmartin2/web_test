@@ -45,34 +45,31 @@ Zatím: Naomi Luna a Canek León. Další člen:
    (stejně jako u Caneka).
 Anglické texty jsou ve slovníku `EN` pod klíči `bio.…` a `m.….tag`.
 
-## Nastavení fotek, videí a sestavy (začátek index.html)
-Hned na začátku `index.html` je blok NASTAVENÍ WEBU se seznamy pro jednotlivé části stránky.
-Upravujete jen text mezi `<template …>` a `</template>`. Řádek začínající `#` se nepoužije.
+## Nastavení fotek, videí a sestavy – soubor `nastaveni.js`
+Seznamy pro jednotlivé části stránky jsou v malém souboru `nastaveni.js` (platí pro španělskou i anglickou verzi).
+Upravujete jen text mezi zpětnými apostrofy ` … ` (apostrofy nemažte). Řádek začínající `#` se nepoužije.
 
-| Seznam | Část stránky | Formát řádku |
+| Položka | Část stránky | Formát řádku |
 |---|---|---|
-| `nl-videa` | Portafolio – videa | `video.mp4 \| popisek ES \| popisek EN` |
-| `nl-galerie` | Galerie fotek | `fotka.jpg \| popisek ES \| popisek EN \| tvar` (tvar: velka / siroka / vysoka, nepovinný) |
-| `nl-uvodni-fotka` | Velká fotka nahoře | jeden soubor |
-| `nl-fotka-ensamble` | Fotka u textu o Corazón Antequera | jeden soubor |
-| `nl-sestava` | Karty členů | `Jméno \| nástroj \| fotka.jpg`, volné místo `- \| saxofon` |
-| `nl-skryte-fotky` | Celý web | soubory oddělené čárkou, které se nikde nemají ukázat |
+| `videa` | Portafolio – videa | `video.mp4 \| popisek ES \| popisek EN` |
+| `galerie` | Galerie fotek | `fotka.jpg \| popisek ES \| popisek EN \| tvar` (tvar: velka / siroka / vysoka, nepovinný) |
+| `uvodni_fotka` | Velká fotka nahoře | jeden soubor |
+| `fotka_ensamble` | Fotka u textu o Corazón Antequera | jeden soubor |
+| `sestava` | Karty členů | `Jméno \| nástroj \| fotka.jpg`, volné místo `- \| saxofon` |
+| `skryte_fotky` | Celý web | soubory oddělené čárkou, které se nikde nemají ukázat |
 
-**Nové video**
-1. Video převeďte na MP4 (H.264), do 25 MB (větší soubor GitHub přes prohlížeč nenahraje) – nebo ho pošlete Claudovi ke zmenšení. Soubory z iPhonu (.MOV/HEVC)
-   v Chromu a na Androidu nehrají.
-2. Nahrajte ho do `video/` (např. `svatba-hacienda.mp4`).
-3. Do `nl-videa` přidejte řádek `svatba-hacienda.mp4 | Boda en hacienda | Wedding at a hacienda`.
-   Pořadí řádků = pořadí na webu; první video na šířku je velké přes celou šířku.
-4. Náhled (nepovinně): obrázek `img/poster-svatba-hacienda.jpg` se použije sám, jinak se ukáže první záběr.
+Kdyby se v souboru něco rozbilo (např. smazaný apostrof), web ukáže základní verzi obsahu – stačí chybu opravit.
 
-**Nová fotka do galerie**: nahrajte do `img/` a přidejte řádek do `nl-galerie`.
+**Nové video**: MP4 do 25 MB (větší soubor GitHub přes prohlížeč nenahraje; videa z iPhonu .MOV v Chromu nehrají – pošlete je
+Claudovi ke zmenšení), nahrát do `video/`, přidat řádek do `videa`. Náhled `img/poster-<název videa>.jpg` se použije sám.
+**Nová fotka do galerie**: nahrát do `img/`, přidat řádek do `galerie`.
+**Nový člen**: fotku do `img/`, v `sestava` přepsat `- | saxofon` na `Pedro Ruiz | saxofon | pedro-ruiz.jpg`.
 
-**Nový člen** (např. saxofonista Pedro Ruiz): fotku do `img/`, v `nl-sestava` přepište `- | saxofon`
-na `Pedro Ruiz | saxofon | pedro-ruiz.jpg`.
+Úprava z mobilu: GitHub → `nastaveni.js` → tužka (Edit) → upravit → Commit changes. Fotky do ~500 kB.
 
-Úvodní fotka sekce Ensamble se nepoužije, když je na ní někdo, kdo už není v sestavě (seznam lidí na fotce
-`ensamble.jpg` je v kódu `GROUP_PEOPLE`); pak se ukáže náhradní fotka.
-
-Úprava z mobilu: GitHub → `index.html` → tužka (Edit) → upravit seznam → Commit changes.
-Přes prohlížeč GitHub nahraje soubor do 25 MB; fotky držte kvůli rychlosti do ~500 kB.
+## Jazykové verze a vyhledávače
+- `naomilunavoz.com/` je španělsky, `naomilunavoz.com/en/` anglicky (anglický text je přímo v HTML, aby ho Google
+  našel např. při hledání „Oaxaca wedding singer“). Tlačítka ES/EN přepínají mezi těmito adresami.
+- `en/index.html` se vytváří z `index.html` (texty se mění u Clauda) – ručně stačí upravovat `nastaveni.js`.
+- `sitemap.xml` a `robots.txt` jsou pro vyhledávače; v Google Search Console a Bing Webmaster Tools zadejte
+  `https://naomilunavoz.com/sitemap.xml`.
