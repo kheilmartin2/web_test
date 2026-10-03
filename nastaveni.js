@@ -32,6 +32,8 @@ vivo-banda.jpg | Con su banda | With her band | siroka
 dia-de-muertos.jpg | Día de Muertos · Praga | Day of the Dead · Prague | siroka
 vivo-vino-perfil.jpg | En concierto | In concert
 vivo-vino-neon.jpg | Luces de escenario | Stage lights
+canek-leon-contrabajo.jpg | Canek León · contrabajo | Canek León · double bass | vysoka
+canek-leon-retrato.jpg | Canek León · Corazón Antequera | Canek León · Corazón Antequera | vysoka
 vivo-vino.jpg | En escena · Oaxaca | On stage · Oaxaca
 festival.jpg | Festival de cultura mexicana · Europa | Mexican culture festival · Europe
 vivo-blanco-sonrisa.jpg | Conexión con el público | Connecting with the audience | siroka
@@ -51,10 +53,19 @@ vivo-blanco-sonrisa.jpg | Conexión con el público | Connecting with the audien
      · kdo v sestavě není, zmizí z medailonků a z dat pro Google (na společných fotkách zůstává) */
   sestava: `
 Naomi Luna | voz | naomi-escenario.jpg
-Canek León | bajo | canek-leon.jpg
+Canek León | bajo | canek-leon-retrato.jpg
 Juan Cruz | piano | juan-cruz.jpg
 - | saxofon
 - | bateria
+`,
+
+  /* PORTFOLIO MUZIKANTŮ (fotky v okně „Ver semblanza“ po kliknutí na kartu): jeden řádek = jeden člen
+       Jméno | fotka1.jpg, fotka2.jpg, …
+     · jméno musí být stejné jako v sestavě; první fotka se ukáže hned, mezi dalšími se přepíná náhledy na fotce
+     · medailonek (text) mají zatím Naomi Luna a Canek León – u ostatních se fotky ukážou, až budou mít text */
+  portfolio: `
+Naomi Luna | naomi-escenario.jpg
+Canek León | canek-leon-contrabajo.jpg, canek-leon-retrato.jpg
 `,
 
   /* SKRYTÉ FOTKY A VIDEA: názvy souborů oddělené čárkou, které se nikde na webu nemají ukázat */

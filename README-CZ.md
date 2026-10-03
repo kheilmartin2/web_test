@@ -44,6 +44,8 @@ Zatím: Naomi Luna a Canek León. Další člen:
 2. V jeho kartě v sekci Ensamble přidejte `has-bio` do `class`, řádek `<p class="m-tag">` a tlačítko `<button class="m-more" data-bio="…">`
    (stejně jako u Caneka).
 Anglické texty jsou ve slovníku `EN` pod klíči `bio.…` a `m.….tag`.
+Fotky v okně medailonku se nastavují v `nastaveni.js` → `portfolio` (např. `Canek León | canek-leon-contrabajo.jpg, canek-leon-retrato.jpg`).
+Je-li fotek víc, ukážou se na fotce malé náhledy; přepíná se klepnutím na náhled nebo na velkou fotku.
 
 ## Nastavení fotek, videí a sestavy – soubor `nastaveni.js`
 Seznamy pro jednotlivé části stránky jsou v malém souboru `nastaveni.js` (platí pro španělskou i anglickou verzi).
@@ -56,6 +58,7 @@ Upravujete jen text mezi zpětnými apostrofy ` … ` (apostrofy nemažte). Řá
 | `uvodni_fotka` | Velká fotka nahoře | jeden soubor |
 | `fotka_ensamble` | Fotka u textu o Corazón Antequera | jeden soubor |
 | `sestava` | Karty členů | `Jméno \| nástroj \| fotka.jpg`, volné místo `- \| saxofon` |
+| `portfolio` | Fotky v okně „Ver semblanza“ | `Jméno \| fotka1.jpg, fotka2.jpg` (víc fotek = náhledy pro přepínání) |
 | `skryte_fotky` | Celý web | soubory oddělené čárkou, které se nikde nemají ukázat |
 
 Kdyby se v souboru něco rozbilo (např. smazaný apostrof), web ukáže základní verzi obsahu – stačí chybu opravit.
@@ -64,6 +67,7 @@ Kdyby se v souboru něco rozbilo (např. smazaný apostrof), web ukáže základ
 Claudovi ke zmenšení), nahrát do `video/`, přidat řádek do `videa`. Náhled `img/poster-<název videa>.jpg` se použije sám.
 **Nová fotka do galerie**: nahrát do `img/`, přidat řádek do `galerie`.
 **Nový člen**: fotku do `img/`, v `sestava` přepsat `- | saxofon` na `Pedro Ruiz | saxofon | pedro-ruiz.jpg`.
+**Další fotky muzikanta do medailonku**: nahrát do `img/`, v `portfolio` přidat název za čárku na řádek s jeho jménem.
 
 Úprava z mobilu: GitHub → `nastaveni.js` → tužka (Edit) → upravit → Commit changes. Fotky do ~500 kB.
 

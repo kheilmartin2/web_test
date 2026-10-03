@@ -552,8 +552,18 @@ html:has(dialog[open]) { overflow: hidden; }
 .bio-photo { margin: 0; position: relative; overflow: hidden; background: var(--terciopelo-3); }
 .bio-frame.no-photo { grid-template-columns: minmax(0, 1fr); }
 .bio-frame.no-photo .bio-photo { display: none; }
-.bio-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.bio-photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, transparent 70%, rgba(31, 21, 22, .55)); }
+.bio-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: opacity .3s ease; }
+.bio-photo img.is-swapping { opacity: 0; }
+.bio-photo.multi img { cursor: pointer; }
+.bio-photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, transparent 70%, rgba(31, 21, 22, .55)); pointer-events: none; }
+/* Portfolio del integrante: miniaturas sobre la foto (nastaveni.js → portfolio) */
+.bio-thumbs { position: absolute; z-index: 3; left: 24px; bottom: 24px; display: flex; gap: 8px; }
+.bio-thumbs[hidden] { display: none; }
+.bio-thumb { width: 54px; height: 54px; padding: 0; border: 1px solid rgba(240, 230, 214, .4); background: var(--noche-2) 50% 30% / cover no-repeat; cursor: pointer; opacity: .7;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, .45); transition: opacity .25s ease, border-color .25s ease, box-shadow .25s ease; }
+.bio-thumb:hover { opacity: 1; }
+.bio-thumb[aria-pressed="true"] { opacity: 1; border-color: var(--oro); box-shadow: 0 0 0 1px var(--oro), 0 6px 18px rgba(0, 0, 0, .45); }
+.bio-thumb:focus-visible { outline: 1px solid var(--oro-claro); outline-offset: 3px; }
 .bio-body { overflow-y: auto; overscroll-behavior: contain; padding: clamp(36px, 4.5vw, 60px) clamp(28px, 4.5vw, 60px) clamp(28px, 3.5vw, 44px); display: flex; flex-direction: column; scrollbar-width: thin; scrollbar-color: var(--linea-o2) transparent; }
 .bio-body { -webkit-mask-image: linear-gradient(180deg, transparent, #000 30px, #000 calc(100% - 44px), transparent); mask-image: linear-gradient(180deg, transparent, #000 30px, #000 calc(100% - 44px), transparent); }
 .bio { display: flex; flex-direction: column; gap: 1rem; }
@@ -589,6 +599,8 @@ html:has(dialog[open]) { overflow: hidden; }
   .bio-frame::before { display: none; }
   .bio-photo { height: 46vh; min-height: 260px; }
   .bio-photo::after { background: linear-gradient(180deg, transparent 55%, var(--noche-2)); }
+  .bio-thumbs { left: var(--gut); bottom: 14px; }
+  .bio-thumb { width: 46px; height: 46px; }
   .bio-body { -webkit-mask-image: none; mask-image: none; overflow: visible; padding: 4px var(--gut) calc(28px + env(safe-area-inset-bottom, 0px)); }
   .bio-close { position: fixed; top: calc(14px + env(safe-area-inset-top, 0px)); right: 14px; }
   .bio-facts { grid-template-columns: minmax(0, 1fr); }
@@ -1458,7 +1470,7 @@ html:has(dialog[open]) { overflow: hidden; }
 <li class="member lead-m has-bio"><img alt="Naomi Luna" height="832" loading="lazy" src="img/naomi-escenario.jpg" style="object-position:42% 30%" width="1248"/><h3>Naomi Luna</h3><p data-i18n="m.voz">Vocals and direction</p>
 <p class="m-tag" data-i18n="m.naomi.tag">Bolero, jazz and soul with bel canto training.</p>
 <button aria-haspopup="dialog" class="m-more" data-bio="naomi" type="button"><span data-i18n="m.more">Read bio</span><span class="sr-only"> · Naomi Luna</span></button></li>
-<li class="member has-bio"><img alt="Canek León" height="1066" loading="lazy" src="img/canek-leon.jpg" style="object-position:35% 30%" width="800"/><h3>Canek León</h3><p data-i18n="m.bajo">Bass and double bass</p>
+<li class="member has-bio"><img alt="Canek León" height="1400" loading="lazy" src="img/canek-leon-retrato.jpg" style="object-position:44% 50%" width="1400"/><h3>Canek León</h3><p data-i18n="m.bajo">Bass and double bass</p>
 <p class="m-tag" data-i18n="m.canek.tag">From symphony orchestra to jazz: Bellas Artes, Cervantino and Camerata Oaxaca.</p>
 <button aria-haspopup="dialog" class="m-more" data-bio="canek" type="button"><span data-i18n="m.more">Read bio</span><span class="sr-only"> · Canek León</span></button></li>
 <li class="member"><img alt="Juan Cruz" height="273" loading="lazy" src="img/juan-cruz.jpg" style="object-position:50% 40%" width="272"/><h3>Juan Cruz</h3><p data-i18n="m.piano">Piano</p></li>
@@ -1741,7 +1753,7 @@ html:has(dialog[open]) { overflow: hidden; }
 <dialog class="bio-dlg" id="bioDlg">
 <div class="bio-frame">
 <button aria-label="Cerrar" class="bio-close" id="bioClose" type="button"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" viewbox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"></path></svg></button>
-<figure class="bio-photo"><img alt="" id="bioImg" src=""/></figure>
+<figure class="bio-photo"><img alt="" id="bioImg" src=""/><div aria-label="Fotos" class="bio-thumbs" hidden="" id="bioThumbs" role="group"></div></figure>
 <div class="bio-body" id="bioBody">
 <article class="bio" data-bio="naomi" data-img="img/naomi-escenario.jpg" data-pos="42% 30%" hidden="">
 <p class="eyebrow" data-i18n="m.voz">Vocals and direction</p>
@@ -1757,7 +1769,7 @@ html:has(dialog[open]) { overflow: hidden; }
 </dl>
 <a class="link-arrow bio-cta" data-i18n="bio.naomi.cta" href="#trayectoria">See her full journey</a>
 </article>
-<article class="bio" data-bio="canek" data-img="img/canek-leon.jpg" data-pos="35% 30%" hidden="">
+<article class="bio" data-bio="canek" data-img="img/canek-leon-contrabajo.jpg, img/canek-leon-retrato.jpg" data-pos="40% 50%, 44% 50%" hidden="">
 <p class="eyebrow" data-i18n="m.bajo">Bass and double bass</p>
 <h2 class="bio-name" id="bio-h-canek">Canek <em>León</em></h2>
 <p class="bio-tag" data-i18n="m.canek.tag" hidden="">From symphony orchestra to jazz: Bellas Artes, Cervantino and Camerata Oaxaca.</p>
@@ -2022,7 +2034,7 @@ html:has(dialog[open]) { overflow: hidden; }
   /* ---------- Sestava a skryté fotky (<template id="nl-sestava"> a "nl-skryte-fotky" na začátku souboru) ---------- */
   const norm = v => String(v || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/\s+/g, ' ').trim();
   const fileOf = u => { const f = String(u || '').split(/[?#]/)[0].split('/').pop(); try { return norm(decodeURIComponent(f)); } catch (e) { return norm(f); } };
-  const CFG_KEYS = { 'nl-videa': 'videa', 'nl-galerie': 'galerie', 'nl-uvodni-fotka': 'uvodni_fotka', 'nl-fotka-ensamble': 'fotka_ensamble', 'nl-sestava': 'sestava', 'nl-skryte-fotky': 'skryte_fotky' };
+  const CFG_KEYS = { 'nl-videa': 'videa', 'nl-galerie': 'galerie', 'nl-uvodni-fotka': 'uvodni_fotka', 'nl-fotka-ensamble': 'fotka_ensamble', 'nl-sestava': 'sestava', 'nl-skryte-fotky': 'skryte_fotky', 'nl-portfolio': 'portfolio' };
   const tplText = id => {
     const c = window.NL_NASTAVENI; if (c && typeof c[CFG_KEYS[id]] === 'string') return c[CFG_KEYS[id]];
     const t = document.getElementById(id); return t ? (t.content ? t.content.textContent : t.textContent) : '';
@@ -2043,6 +2055,7 @@ html:has(dialog[open]) { overflow: hidden; }
     'm.vln': 'Violín', 'm.tpt': 'Trompeta', 'm.perc': 'Percusiones', 'm.tecl': 'Teclados', 'm.coros': 'Coros' };
   /* výřez známých fotek (object-position); nové fotky mají výchozí 50% 35% */
   const PHOTO_POS = { 'naomi-escenario.jpg': '42% 30%', 'juan-cruz.jpg': '50% 40%', 'canek-leon.jpg': '35% 30%',
+    'canek-leon-retrato.jpg': '44% 50%', 'canek-leon-contrabajo.jpg': '40% 50%',
     'vivo-blanco-canta.jpg': '55% 30%', 'naomi-tradicional.jpg': '50% 10%', 'vivo-blanco-risa.jpg': '62% 30%', 'vivo-vino-canta.jpg': '42% 35%',
     'vivo-huipil.jpg': '50% 35%', 'vivo-banda.jpg': '50% 45%', 'dia-de-muertos.jpg': '50% 50%', 'vivo-vino-perfil.jpg': '62% 35%',
     'ensamble-grupo.jpg': '50% 40%', 'vivo-vino-neon.jpg': '45% 30%', 'vivo-vino.jpg': '40% 50%', 'festival.jpg': '50% 20%', 'vivo-blanco-sonrisa.jpg': '50% 28%' };
@@ -2368,16 +2381,52 @@ html:has(dialog[open]) { overflow: hidden; }
   lb.addEventListener('keydown', e => { if (e.key === 'ArrowRight') show(cur + 1); if (e.key === 'ArrowLeft') show(cur - 1); });
 
   /* ---------- Semblanzas del ensamble ---------- */
-  const bioDlg = $('#bioDlg'), bios = $$('#bioDlg .bio'), bioImg = $('#bioImg');
-  let bioCur = 0, bioOpener = null;
+  const bioDlg = $('#bioDlg'), bios = $$('#bioDlg .bio'), bioImg = $('#bioImg'), bioThumbs = $('#bioThumbs');
+  let bioCur = 0, bioOpener = null, bioPh = [], bioPhCur = 0, bioSwapT = 0;
   const bioName = a => a.querySelector('.bio-name').textContent.trim();
+  /* Fotky v medailonku: seznam „portfolio“ v nastaveni.js (Jméno | fotka1.jpg, fotka2.jpg), jinak data-img článku */
+  const PORTFOLIO = {};
+  cfgLines('nl-portfolio').forEach(([n = '', f = '']) => { const l = f.split(/\s*,\s*/).filter(Boolean); if (n && l.length) PORTFOLIO[norm(n)] = l; });
+  const bioPhotos = a => {
+    const own = PORTFOLIO[norm(bioName(a))];
+    const files = own || (a.dataset.img || '').split(/\s*,\s*/).filter(Boolean);
+    const poss = own ? [] : (a.dataset.pos || '').split(/\s*,\s*/);
+    return files.map((f, k) => ({ src: mediaPath(f, 'img'), pos: poss[k] || PHOTO_POS[fileOf(f)] || '50% 30%' })).filter(p => !isHiddenFile(p.src));
+  };
+  function setBioPhoto(k, instant) {
+    if (!bioPh.length) return;
+    bioPhCur = (k + bioPh.length) % bioPh.length;
+    const p = bioPh[bioPhCur];
+    $$('.bio-thumb', bioThumbs).forEach((b, j) => b.setAttribute('aria-pressed', j === bioPhCur ? 'true' : 'false'));
+    const apply = () => { bioImg.src = p.src; bioImg.style.objectPosition = p.pos; };
+    clearTimeout(bioSwapT);
+    if (instant || matchMedia('(prefers-reduced-motion: reduce)').matches) { bioImg.classList.remove('is-swapping'); apply(); return; }
+    bioImg.classList.add('is-swapping');
+    bioSwapT = setTimeout(() => {
+      apply();
+      const done = () => bioImg.classList.remove('is-swapping');
+      if (bioImg.complete) done(); else { bioImg.addEventListener('load', done, { once: true }); bioImg.addEventListener('error', done, { once: true }); }
+    }, 220);
+  }
   function showBio(i) {
     bioCur = (i + bios.length) % bios.length;
     bios.forEach((a, k) => { a.hidden = k !== bioCur; });
     const a = bios[bioCur], prev = $('#bioPrev'), next = $('#bioNext');
-    const noPhoto = !a.dataset.img || isHiddenFile(a.dataset.img);
+    bioPh = bioPhotos(a);
+    const noPhoto = !bioPh.length, multi = bioPh.length > 1;
     bioDlg.querySelector('.bio-frame').classList.toggle('no-photo', noPhoto);
-    if (!noPhoto) { bioImg.src = a.dataset.img; bioImg.style.objectPosition = a.dataset.pos || ''; bioImg.alt = bioName(a); }
+    bioImg.parentNode.classList.toggle('multi', multi);
+    bioThumbs.innerHTML = ''; bioThumbs.hidden = !multi;
+    bioThumbs.setAttribute('aria-label', lang === 'en' ? 'Photos' : 'Fotos');
+    if (multi) bioPh.forEach((p, j) => {
+      const b = document.createElement('button');
+      b.type = 'button'; b.className = 'bio-thumb';
+      b.style.backgroundImage = 'url("' + encodeURI(p.src).replace(/"/g, '%22') + '")'; b.style.backgroundPosition = p.pos;
+      b.setAttribute('aria-label', (lang === 'en' ? 'Photo ' : 'Foto ') + (j + 1) + ' / ' + bioPh.length);
+      b.addEventListener('click', () => setBioPhoto(j));
+      bioThumbs.appendChild(b);
+    });
+    if (!noPhoto) { setBioPhoto(0, true); bioImg.alt = bioName(a); }
     bioDlg.setAttribute('aria-labelledby', a.querySelector('.bio-name').id);
     $('#bioNav').hidden = bios.length < 2;
     prev.hidden = bios.length < 3;   /* con dos semblanzas basta «Siguiente» */
@@ -2397,7 +2446,15 @@ html:has(dialog[open]) { overflow: hidden; }
     if (e.target === bioDlg) bioDlg.close();
     else if (e.target.closest('a[href^="#"]')) { bioOpener = null; bioDlg.close(); }   /* el enlace sigue a su sección */
   });
-  bioDlg.addEventListener('keydown', e => { if (bios.length < 2) return; if (e.key === 'ArrowRight') showBio(bioCur + 1); if (e.key === 'ArrowLeft') showBio(bioCur - 1); });
+  bioImg.addEventListener('click', () => { if (bioPh.length > 1) setBioPhoto(bioPhCur + 1); });
+  bioDlg.addEventListener('keydown', e => {
+    const d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+    if (!d) return;
+    if (e.target.closest && e.target.closest('.bio-thumbs')) {   /* šipky na náhledech přepínají fotky */
+      setBioPhoto(bioPhCur + d); const t = $$('.bio-thumb', bioThumbs)[bioPhCur]; if (t) t.focus(); return;
+    }
+    if (bios.length > 1) showBio(bioCur + d);
+  });
   bioDlg.addEventListener('close', () => { if (bioOpener) bioOpener.focus({ preventScroll: true }); bioOpener = null; });
 
   /* ---------- Copy helpers ---------- */
