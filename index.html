@@ -17,9 +17,9 @@
      · délka videa se doplní sama; video musí být MP4 a do 25 MB (větší GitHub přes prohlížeč nenahraje) -->
 <template id="nl-videa">
 con-banda.mp4 | En vivo con su banda | Live with her band
-terraza.mp4 | Quinteto en terraza · Oaxaca | Quintet on a terrace · Oaxaca
 saxofon.mp4 | Voz y saxofón | Vocals and saxophone
 jardin.mp4 | En vivo · Oaxaca | Live · Oaxaca
+# terraza.mp4 | Quinteto en terraza · Oaxaca | Quintet on a terrace · Oaxaca
 </template>
 
 <!-- GALERIE (fotky pod videi): jeden řádek = jedna fotka
@@ -44,7 +44,7 @@ vivo-blanco-sonrisa.jpg | Conexión con el público | Connecting with the audien
 <template id="nl-uvodni-fotka">hero.jpg</template>
 
 <!-- FOTKA SOUBORU (sekce Ensamble vedle textu o Corazón Antequera): jeden soubor, ideálně na šířku -->
-<template id="nl-fotka-ensamble">vivo-banda.jpg</template>
+<template id="nl-fotka-ensamble">ensamble-grupo.jpg</template>
 
 <!-- SESTAVA (karty členů v sekci Ensamble): jeden řádek = jeden člen
        Jméno | nástroj | fotka.jpg
@@ -127,7 +127,6 @@ Juan Cruz | piano | juan-cruz.jpg
         "Música tradicional oaxaqueña",
         "Pop latino"
       ],
-      "foundingDate": "2026",
       "foundingLocation": {
         "@type": "Place",
         "name": "Oaxaca, México"
@@ -1088,7 +1087,7 @@ html:has(dialog[open]) { overflow: hidden; }
 
     <ol class="tl">
       <li class="tl-item is-now">
-        <div class="tl-when"><span class="tl-year">2026</span><span class="tl-place">Oaxaca</span></div>
+        <div class="tl-when"><span class="tl-year" data-i18n="tl.now">Hoy</span><span class="tl-place">Oaxaca</span></div>
         <div class="tl-body">
           <h3 data-i18n="tl.7.h">De vuelta a casa</h3>
           <p data-i18n="tl.7.p" data-clamp>Funda Corazón Antequera, un quinteto de músicos oaxaqueños que reinterpreta piezas tradicionales del estado con jazz, bossa nova y ritmos latinoamericanos. También forma parte del proyecto escénico Oaxaca Vive, con giras internacionales, principalmente en Estados Unidos y Latinoamérica.</p>
@@ -1288,11 +1287,7 @@ html:has(dialog[open]) { overflow: hidden; }
     <div class="videos">
       <figure class="vid vid-h" data-ar="1.7778">
         <video controls preload="none" playsinline poster="img/poster-con-banda.jpg" width="1280" height="720"><source src="video/con-banda.mp4" type="video/mp4"></video>
-        <figcaption><span>En vivo con su banda</span><span class="dur">4:14</span></figcaption>
-      </figure>
-      <figure class="vid vid-h" data-ar="1.7778">
-        <video controls preload="none" playsinline poster="img/poster-terraza.jpg" width="960" height="540"><source src="video/terraza.mp4" type="video/mp4"></video>
-        <figcaption><span>Quinteto en terraza · Oaxaca</span><span class="dur">3:15</span></figcaption>
+        <figcaption><span>En vivo con su banda</span><span class="dur">3:32</span></figcaption>
       </figure>
       <figure class="vid vid-v" data-ar="0.5625">
         <video controls preload="none" playsinline poster="img/poster-saxofon.jpg" width="540" height="960"><source src="video/saxofon.mp4" type="video/mp4"></video>
@@ -1439,7 +1434,7 @@ html:has(dialog[open]) { overflow: hidden; }
         <p class="eyebrow" data-i18n="ens.eyebrow">El ensamble</p>
         <h2>Corazón <em>Antequera</em></h2>
         <p class="ens-note" data-i18n="ens.note">Antequera fue el nombre colonial de la ciudad de Oaxaca.</p>
-        <p class="lead" data-i18n="ens.p1">Un ensamble oaxaqueño fundado por Naomi Luna en 2026 que fusiona la música tradicional de Oaxaca con jazz, bossa nova, bolero, swing y pop contemporáneo.</p>
+        <p class="lead" data-i18n="ens.p1">Un ensamble oaxaqueño fundado por Naomi Luna que fusiona la música tradicional de Oaxaca con jazz, bossa nova, bolero, swing y pop contemporáneo.</p>
         <p class="muted" data-i18n="ens.p2">Cada presentación se diseña para integrarse con el ambiente, el ritmo y la personalidad de cada celebración, con profesionalismo y atención al detalle.</p>
         <ul class="chips">
           <li data-i18n="gen.trad">Tradicional oaxaqueño</li>
@@ -1451,7 +1446,7 @@ html:has(dialog[open]) { overflow: hidden; }
         </ul>
       </div>
       <figure class="ens-photo">
-        <img src="img/vivo-banda.jpg" width="1500" height="1000" loading="lazy" alt="Naomi Luna con músicos de Corazón Antequera" data-i18n-alt="ens.alt2" style="object-position:50% 45%"
+        <img src="img/ensamble-grupo.jpg" width="1490" height="993" loading="lazy" alt="Naomi Luna con músicos de Corazón Antequera" data-i18n-alt="ens.alt2" style="object-position:50% 40%"
           data-fallback="img/vivo-banda.jpg" data-fallback-pos="50% 45%" data-fallback-alt="Naomi Luna con músicos de Corazón Antequera" data-fallback-i18n-alt="ens.alt2">
       </figure>
     </div>
@@ -1904,7 +1899,7 @@ html:has(dialog[open]) { overflow: hidden; }
     'tl.6.pl': 'Cultural festivals', 'tl.6.h': 'Mexico alive in Europe',
     'tl.6.p': 'She performs regularly at La Calle Mexicana and at the Day of the Dead Festival of the Náprstek Museum of Asian, African and American Cultures, promoting Mexican and Oaxacan music with cultural festivals and non-profit organizations.',
     'tl.6.alt': 'Day of the Dead parade on Prague’s Old Town Square', 'tl.6.cap': 'Day of the Dead in Prague',
-    'tl.7.h': 'Back home',
+    'tl.now': 'Today', 'tl.7.h': 'Back home',
     'tl.7.p': 'She founds Corazón Antequera, a quintet of Oaxacan musicians reimagining traditional music from the state through jazz, bossa nova and Latin American rhythms. She is also part of the stage project Oaxaca Vive, touring internationally, mainly in the United States and Latin America.',
     'tl.7.alt': 'Naomi Luna with the musicians of Corazón Antequera on stage',
     'ref.eyebrow': 'References', 'ref.h2': 'Stages that have <em>trusted her voice</em>',
@@ -1949,7 +1944,7 @@ html:has(dialog[open]) { overflow: hidden; }
     'steps.3.h': 'Choose your music', 'steps.3.p': 'Together we pick the songs for each moment: entrance, cocktail hour, dinner or first dance.',
     'steps.4.h': 'Enjoy it live', 'steps.4.p': 'On the day, live music sets the mood so you can simply enjoy it.',
     'ens.logoalt': 'Corazón Antequera logo', 'ens.eyebrow': 'The ensemble', 'ens.note': 'Antequera was the colonial name of Oaxaca City.',
-    'ens.p1': 'An Oaxacan ensemble founded by Naomi Luna in 2026, blending the traditional music of Oaxaca with jazz, bossa nova, bolero, swing and contemporary pop.',
+    'ens.p1': 'An Oaxacan ensemble founded by Naomi Luna, blending the traditional music of Oaxaca with jazz, bossa nova, bolero, swing and contemporary pop.',
     'ens.p2': 'Each performance is designed to fit the setting, pace and personality of the celebration, with professionalism and attention to detail.',
     'ens.alt': 'The five members of Corazón Antequera', 'ens.alt2': 'Naomi Luna with musicians of Corazón Antequera',
     'm.vac.t': 'New member', 'm.vac.k': 'Coming soon', 'm.vac.photo': 'Photo coming soon',
@@ -2057,11 +2052,11 @@ html:has(dialog[open]) { overflow: hidden; }
   const PHOTO_POS = { 'naomi-escenario.jpg': '42% 30%', 'juan-cruz.jpg': '50% 40%', 'canek-leon.jpg': '35% 30%',
     'vivo-blanco-canta.jpg': '55% 30%', 'naomi-tradicional.jpg': '50% 10%', 'vivo-blanco-risa.jpg': '62% 30%', 'vivo-vino-canta.jpg': '42% 35%',
     'vivo-huipil.jpg': '50% 35%', 'vivo-banda.jpg': '50% 45%', 'dia-de-muertos.jpg': '50% 50%', 'vivo-vino-perfil.jpg': '62% 35%',
-    'vivo-vino-neon.jpg': '45% 30%', 'vivo-vino.jpg': '40% 50%', 'festival.jpg': '50% 20%', 'vivo-blanco-sonrisa.jpg': '50% 28%' };
+    'ensamble-grupo.jpg': '50% 40%', 'vivo-vino-neon.jpg': '45% 30%', 'vivo-vino.jpg': '40% 50%', 'festival.jpg': '50% 20%', 'vivo-blanco-sonrisa.jpg': '50% 28%' };
   /* kdo je na skupinových fotkách – úvodní fotka se nepoužije, když na ní je někdo mimo sestavu */
   const GROUP_PEOPLE = { 'ensamble.jpg': ['Naomi Luna', 'Juan Cruz', 'Erick Avendaño', 'Belem Vásquez', 'Canek León'] };
   const KNOWN_AR = { 'con-banda.mp4': 16 / 9, 'terraza.mp4': 16 / 9, 'saxofon.mp4': 9 / 16, 'jardin.mp4': 9 / 16 };
-  const KNOWN_DUR = { 'con-banda.mp4': '4:14', 'terraza.mp4': '3:15', 'saxofon.mp4': '0:57', 'jardin.mp4': '1:00' };
+  const KNOWN_DUR = { 'con-banda.mp4': '3:32', 'terraza.mp4': '3:15', 'saxofon.mp4': '0:57', 'jardin.mp4': '1:00' };
   const SHAPES = { velka: 'w2 h2', big: 'w2 h2', siroka: 'w2', wide: 'w2', vysoka: 'h2', tall: 'h2', normalni: '', normal: '' };
   const cfgLines = id => tplText(id).split('\n').map(l => l.trim()).filter(l => l && !l.startsWith('#')).map(l => l.split(/\s*\|\s*/).map(x => x.trim()));
   const cfgFirst = id => (tplText(id).split(/[,\n|]/).map(x => x.trim()).filter(x => x && !x.startsWith('#'))[0] || '');
@@ -2083,7 +2078,7 @@ html:has(dialog[open]) { overflow: hidden; }
     rows.forEach((r, ri) => {
       const row = document.createElement('div'); row.className = 'vrow';
       const s = r.reduce((t, f) => t + (+f.dataset.ar || 9 / 16), 0);
-      const sEff = (ri === 0 && r.length === 1 && s >= 1) ? s : Math.max(s, 2.6);
+      const sEff = (ri === 0 && r.length === 1 && s >= 1) ? s : Math.max(s, 2.2);
       r.forEach(f => { const ar = +f.dataset.ar || 9 / 16; f.style.setProperty('--ar', ar.toFixed(4)); f.style.setProperty('--n', r.length); f.style.setProperty('--f', (ar / sEff).toFixed(4)); row.appendChild(f); });
       vg.appendChild(row);
     });
