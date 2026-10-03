@@ -4,24 +4,55 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <!-- NL-CONFIG -->
-<!-- ===================== NASTAVENÍ WEBU – upravujte jen text mezi <template …> a </template> =====================
+<!-- ========================= NASTAVENÍ WEBU =========================
+  Upravujte jen text mezi <template …> a </template>. Fotky patří do složky img/, videa do video/.
+  Píšete jen název souboru, přesně jak se jmenuje (GitHub rozlišuje velká/malá písmena).
+  Řádek začínající # se nepoužije (hodí se na dočasné vypnutí).
+=================================================================== -->
 
-  SESTAVA (nl-sestava): kdo hraje v Corazón Antequera. Jeden člen = jeden řádek:
-        Jméno | nástroj | fotka.jpg
-    · fotku nahrajte do složky img/ a napište její název přesně jak se soubor jmenuje (např. pedro-ruiz.jpg)
-    · nástroj: voz, piano, saxofon, bateria, bajo, guitarra, violin, trompeta, percusion, teclados, coros
-      (jiný nástroj napište normálně – zobrazí se tak, jak je napsaný)
-    · volné místo: místo jména pomlčka  →   - | saxofon
-      na webu zůstane jen nástroj a „Nuevo integrante · Próximamente“ (EN „New member · Coming soon“)
-    · pořadí řádků = pořadí karet na webu; první řádek je velká karta
-    · člen, který v sestavě není, zmizí i z medailonků a z dat pro Google;
-      na společných fotkách a videích zůstává, úvodní fotka sekce Ensamble se vymění za náhradní
+<!-- VIDEA (sekce Portafolio): jeden řádek = jedno video
+       video.mp4 | popisek španělsky | popisek anglicky
+     · první video na šířku se ukáže velké přes celou šířku, ostatní se samy seřadí do řad
+     · náhled: když v img/ existuje poster-<název videa>.jpg, použije se; jinak první záběr videa
+     · délka videa se doplní sama; video musí být MP4 a do 25 MB (větší GitHub přes prohlížeč nenahraje) -->
+<template id="nl-videa">
+con-banda.mp4 | En vivo con su banda | Live with her band
+terraza.mp4 | Quinteto en terraza · Oaxaca | Quintet on a terrace · Oaxaca
+saxofon.mp4 | Voz y saxofón | Vocals and saxophone
+jardin.mp4 | En vivo · Oaxaca | Live · Oaxaca
+</template>
 
-  SKRYTÉ FOTKY (nl-skryte-fotky): názvy souborů z img/ nebo video/, které se nikde na webu nemají ukázat,
-    i když ve složce zůstanou. Oddělujte čárkou. Např.: erick-avendano.jpg, saxofon.mp4
+<!-- GALERIE (fotky pod videi): jeden řádek = jedna fotka
+       fotka.jpg | popisek španělsky | popisek anglicky | tvar
+     · tvar je nepovinný: velka (2×2), siroka (na šířku 2 políčka), vysoka (na výšku 2 políčka) -->
+<template id="nl-galerie">
+vivo-blanco-canta.jpg | Voz en vivo | Live vocals | velka
+naomi-tradicional.jpg | Traje tradicional oaxaqueño | Traditional Oaxacan dress | vysoka
+vivo-blanco-risa.jpg | Alegría en escena | Joy on stage
+vivo-vino-canta.jpg | Bolero en vivo | Bolero, live
+vivo-huipil.jpg | Con Corazón Antequera · Oaxaca | With Corazón Antequera · Oaxaca | siroka
+vivo-banda.jpg | Con su banda | With her band | siroka
+dia-de-muertos.jpg | Día de Muertos · Praga | Day of the Dead · Prague | siroka
+vivo-vino-perfil.jpg | En concierto | In concert
+vivo-vino-neon.jpg | Luces de escenario | Stage lights
+vivo-vino.jpg | En escena · Oaxaca | On stage · Oaxaca
+festival.jpg | Festival de cultura mexicana · Europa | Mexican culture festival · Europe
+vivo-blanco-sonrisa.jpg | Conexión con el público | Connecting with the audience | siroka
+</template>
 
-  Na velkých/malých písmenech a diakritice v nástrojích a jménech nezáleží.
-=================================================================================================================== -->
+<!-- ÚVODNÍ FOTKA (velká fotka nahoře vedle jména): jeden soubor, ideálně na výšku -->
+<template id="nl-uvodni-fotka">hero.jpg</template>
+
+<!-- FOTKA SOUBORU (sekce Ensamble vedle textu o Corazón Antequera): jeden soubor, ideálně na šířku -->
+<template id="nl-fotka-ensamble">vivo-banda.jpg</template>
+
+<!-- SESTAVA (karty členů v sekci Ensamble): jeden řádek = jeden člen
+       Jméno | nástroj | fotka.jpg
+     · nástroj: voz, piano, saxofon, bateria, bajo, guitarra, violin, trompeta, percusion, teclados, coros
+       (jiný nástroj se ukáže tak, jak je napsaný)
+     · volné místo = pomlčka místo jména:  - | saxofon  → „Nuevo integrante · Próximamente“
+     · pořadí řádků = pořadí karet; první řádek je velká karta
+     · kdo v sestavě není, zmizí z medailonků a z dat pro Google (na společných fotkách zůstává) -->
 <template id="nl-sestava">
 Naomi Luna | voz | naomi-escenario.jpg
 Canek León | bajo | canek-leon.jpg
@@ -29,6 +60,9 @@ Juan Cruz | piano | juan-cruz.jpg
 - | saxofon
 - | bateria
 </template>
+
+<!-- SKRYTÉ FOTKY A VIDEA: názvy souborů oddělené čárkou, které se nikde na webu nemají ukázat,
+     i když ve složce zůstanou nebo jsou v některém seznamu výše -->
 <template id="nl-skryte-fotky">erick-avendano.jpg, belem-vasquez.jpg</template>
 <!-- /NL-CONFIG -->
 <title>Naomi Luna | Cantante para bodas y eventos en Oaxaca</title>
@@ -373,22 +407,21 @@ h2 em { font-style: italic; color: var(--accent); }
 @media (max-width: 420px) { .award { grid-template-columns: minmax(0, 1fr); } }
 
 /* ---------- Live / portfolio ---------- */
-.videos { display: grid; grid-template-columns: var(--vid-cols, minmax(0, 256fr) minmax(0, 81fr) minmax(0, 81fr)); gap: clamp(12px, 1.6vw, 20px); margin-top: clamp(40px, 5vw, 64px); align-items: start; }
-.vid { margin: 0; min-width: 0; }
-.vid video { width: 100%; background: var(--noche-3); }
-.vid-h video { aspect-ratio: 16 / 9; }
-.vid-v video { aspect-ratio: 9 / 16; }
+/* Videa se skládají do řad (JS spočítá --n = počet v řadě a --f = podíl šířky podle poměru stran), všechna v řadě mají stejnou výšku */
+.videos { --vgap: clamp(12px, 1.6vw, 20px); display: flex; flex-direction: column; gap: var(--vgap); margin-top: clamp(40px, 5vw, 64px); }
+.vrow { display: flex; gap: var(--vgap); justify-content: center; align-items: flex-start; }
+.vid { margin: 0; min-width: 0; flex: none; width: calc((100% - (var(--n, 1) - 1) * var(--vgap)) * var(--f, 1)); }
+.videos > .vid { width: 100%; }
+.vid video { display: block; width: 100%; aspect-ratio: var(--ar, 1.7778); background: var(--noche-3); }
 .vid figcaption { display: flex; justify-content: space-between; gap: 1rem; margin-top: .8rem; font: 500 .7rem/1.4 var(--f-text); letter-spacing: .18em; text-transform: uppercase; color: var(--claro-2); }
 .vid figcaption .dur { font-family: var(--f-display); font-style: italic; letter-spacing: 0; text-transform: none; font-size: .95rem; color: var(--oro); font-variant-numeric: tabular-nums; }
 .live-more { margin-top: 1.6rem; }
-@media (max-width: 760px) {
-  .videos { grid-template-columns: minmax(0, 1fr); }
-  .vid-v { max-width: 340px; width: 100%; justify-self: center; }
-}
+
 .gallery { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); grid-auto-rows: clamp(150px, 17vw, 228px); grid-auto-flow: dense; gap: clamp(8px, 1vw, 12px); margin-top: clamp(56px, 7vw, 88px); }
 .g-item { position: relative; overflow: hidden; display: block; background: var(--noche-2); cursor: zoom-in; text-decoration: none; }
 .g-item img { width: 100%; height: 100%; object-fit: cover; transition: transform .7s cubic-bezier(.2,.7,.2,1); }
 .g-item:hover img { transform: scale(1.04); }
+.g-cap:empty { display: none; }
 .g-cap { position: absolute; left: 0; right: 0; bottom: 0; padding: 1.8rem .9rem .75rem; background: linear-gradient(transparent, rgba(13, 7, 8, .88)); font: 500 .66rem/1.35 var(--f-text); letter-spacing: .16em; text-transform: uppercase; color: var(--claro); }
 .w2 { grid-column: span 2; }
 .h2 { grid-row: span 2; }
@@ -839,9 +872,9 @@ html:has(dialog[open]) { overflow: hidden; }
 
   /* live */
   .videos { margin-top: 26px; gap: 20px; }
-  .videos { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 12px; }
-  .vid-h { grid-column: 1 / -1; }
-  .vid-v { max-width: none; justify-self: stretch; }
+  .vrow { flex-wrap: wrap; gap: 18px 12px; }
+  .vid { width: calc(50% - 6px); }
+  .vid.vid-h { width: 100%; }
   .vid figcaption { font-size: .6rem; letter-spacing: .12em; }
   .gallery { margin-top: 36px; }
   .gallery > .g-item { flex: 0 0 76%; aspect-ratio: 4 / 5; height: auto; }
@@ -985,6 +1018,12 @@ html:has(dialog[open]) { overflow: hidden; }
       </div>
       <figure class="hero-photo">
         <img src="img/hero.jpg" width="1200" height="1698" alt="Naomi Luna cantando en concierto con vestido color vino" data-i18n-alt="hero.alt" fetchpriority="high">
+        <script>/* úvodní fotka podle <template id="nl-uvodni-fotka"> */(function () {
+          var t = document.getElementById('nl-uvodni-fotka'), h = document.getElementById('nl-skryte-fotky'), i = document.currentScript.previousElementSibling;
+          var f = t ? (t.content ? t.content.textContent : t.textContent).split(/[,\n|]/).map(function (x) { return x.trim(); }).filter(function (x) { return x && x.charAt(0) !== '#'; })[0] : '';
+          var hidden = h ? (h.content ? h.content.textContent : h.textContent).toLowerCase() : '';
+          if (f && f !== 'hero.jpg' && hidden.indexOf(f.toLowerCase()) < 0) { i.removeAttribute('width'); i.removeAttribute('height'); i.src = f.indexOf('/') > -1 ? f : 'img/' + f; }
+        })();</script>
       </figure>
     </div>
     <div class="proof">
@@ -1247,23 +1286,21 @@ html:has(dialog[open]) { overflow: hidden; }
     </div>
 
     <div class="videos">
-      <figure class="vid vid-h">
-        <video controls preload="metadata" playsinline poster="img/poster-terraza.jpg" width="960" height="540">
-          <source src="video/terraza.mp4" type="video/mp4">
-        </video>
-        <figcaption><span data-i18n="live.v1">Quinteto en terraza · Oaxaca</span><span class="dur">3:15</span></figcaption>
+      <figure class="vid vid-h" data-ar="1.7778">
+        <video controls preload="none" playsinline poster="img/poster-con-banda.jpg" width="1280" height="720"><source src="video/con-banda.mp4" type="video/mp4"></video>
+        <figcaption><span>En vivo con su banda</span><span class="dur">4:14</span></figcaption>
       </figure>
-      <figure class="vid vid-v">
-        <video controls preload="metadata" playsinline poster="img/poster-saxofon.jpg" width="540" height="960">
-          <source src="video/saxofon.mp4" type="video/mp4">
-        </video>
-        <figcaption><span data-i18n="live.v3">Voz y saxofón</span><span class="dur">0:57</span></figcaption>
+      <figure class="vid vid-h" data-ar="1.7778">
+        <video controls preload="none" playsinline poster="img/poster-terraza.jpg" width="960" height="540"><source src="video/terraza.mp4" type="video/mp4"></video>
+        <figcaption><span>Quinteto en terraza · Oaxaca</span><span class="dur">3:15</span></figcaption>
       </figure>
-      <figure class="vid vid-v">
-        <video controls preload="metadata" playsinline poster="img/poster-jardin.jpg" width="540" height="960">
-          <source src="video/jardin.mp4" type="video/mp4">
-        </video>
-        <figcaption><span data-i18n="live.v2">En vivo · Oaxaca</span><span class="dur">1:00</span></figcaption>
+      <figure class="vid vid-v" data-ar="0.5625">
+        <video controls preload="none" playsinline poster="img/poster-saxofon.jpg" width="540" height="960"><source src="video/saxofon.mp4" type="video/mp4"></video>
+        <figcaption><span>Voz y saxofón</span><span class="dur">0:57</span></figcaption>
+      </figure>
+      <figure class="vid vid-v" data-ar="0.5625">
+        <video controls preload="none" playsinline poster="img/poster-jardin.jpg" width="540" height="960"><source src="video/jardin.mp4" type="video/mp4"></video>
+        <figcaption><span>En vivo · Oaxaca</span><span class="dur">1:00</span></figcaption>
       </figure>
     </div>
     <p class="live-more"><a class="link-arrow" href="https://www.youtube.com/@corazonantequera" target="_blank" rel="noopener" data-i18n="live.more">Más videos en YouTube</a></p>
@@ -1414,8 +1451,7 @@ html:has(dialog[open]) { overflow: hidden; }
         </ul>
       </div>
       <figure class="ens-photo">
-        <img src="img/ensamble.jpg" width="1248" height="832" loading="lazy" alt="Los cinco integrantes de Corazón Antequera" data-i18n-alt="ens.alt"
-          data-people="Naomi Luna, Juan Cruz, Erick Avendaño, Belem Vásquez, Canek León"
+        <img src="img/vivo-banda.jpg" width="1500" height="1000" loading="lazy" alt="Naomi Luna con músicos de Corazón Antequera" data-i18n-alt="ens.alt2" style="object-position:50% 45%"
           data-fallback="img/vivo-banda.jpg" data-fallback-pos="50% 45%" data-fallback-alt="Naomi Luna con músicos de Corazón Antequera" data-fallback-i18n-alt="ens.alt2">
       </figure>
     </div>
@@ -2017,7 +2053,41 @@ html:has(dialog[open]) { overflow: hidden; }
     guitarra: 'm.gtr', violin: 'm.vln', trompeta: 'm.tpt', percusion: 'm.perc', percusiones: 'm.perc', teclados: 'm.tecl', coros: 'm.coros' };
   const INSTR_ES = { 'm.voz': 'Voz y dirección', 'm.piano': 'Piano', 'm.sax': 'Saxofón', 'm.bat': 'Batería', 'm.bajo': 'Bajo y contrabajo', 'm.gtr': 'Guitarra',
     'm.vln': 'Violín', 'm.tpt': 'Trompeta', 'm.perc': 'Percusiones', 'm.tecl': 'Teclados', 'm.coros': 'Coros' };
-  const PHOTO_POS = { 'naomi-escenario.jpg': '42% 30%', 'juan-cruz.jpg': '50% 40%', 'canek-leon.jpg': '35% 30%' };
+  /* výřez známých fotek (object-position); nové fotky mají výchozí 50% 35% */
+  const PHOTO_POS = { 'naomi-escenario.jpg': '42% 30%', 'juan-cruz.jpg': '50% 40%', 'canek-leon.jpg': '35% 30%',
+    'vivo-blanco-canta.jpg': '55% 30%', 'naomi-tradicional.jpg': '50% 10%', 'vivo-blanco-risa.jpg': '62% 30%', 'vivo-vino-canta.jpg': '42% 35%',
+    'vivo-huipil.jpg': '50% 35%', 'vivo-banda.jpg': '50% 45%', 'dia-de-muertos.jpg': '50% 50%', 'vivo-vino-perfil.jpg': '62% 35%',
+    'vivo-vino-neon.jpg': '45% 30%', 'vivo-vino.jpg': '40% 50%', 'festival.jpg': '50% 20%', 'vivo-blanco-sonrisa.jpg': '50% 28%' };
+  /* kdo je na skupinových fotkách – úvodní fotka se nepoužije, když na ní je někdo mimo sestavu */
+  const GROUP_PEOPLE = { 'ensamble.jpg': ['Naomi Luna', 'Juan Cruz', 'Erick Avendaño', 'Belem Vásquez', 'Canek León'] };
+  const KNOWN_AR = { 'con-banda.mp4': 16 / 9, 'terraza.mp4': 16 / 9, 'saxofon.mp4': 9 / 16, 'jardin.mp4': 9 / 16 };
+  const KNOWN_DUR = { 'con-banda.mp4': '4:14', 'terraza.mp4': '3:15', 'saxofon.mp4': '0:57', 'jardin.mp4': '1:00' };
+  const SHAPES = { velka: 'w2 h2', big: 'w2 h2', siroka: 'w2', wide: 'w2', vysoka: 'h2', tall: 'h2', normalni: '', normal: '' };
+  const cfgLines = id => tplText(id).split('\n').map(l => l.trim()).filter(l => l && !l.startsWith('#')).map(l => l.split(/\s*\|\s*/).map(x => x.trim()));
+  const cfgFirst = id => (tplText(id).split(/[,\n|]/).map(x => x.trim()).filter(x => x && !x.startsWith('#'))[0] || '');
+  const mediaPath = (f, dir) => f.includes('/') ? f : dir + '/' + f;
+  const groupOut = f => (GROUP_PEOPLE[fileOf(f)] || []).some(n => !inBand(n));
+  /* Videa do řad: první video na šířku přes celou šířku, ostatní do řad se stejnou výškou */
+  function layoutVideos() {
+    const vg = $('.videos'); if (!vg) return;
+    const figs = $$('.vid', vg), rows = []; let cur = [], sum = 0;
+    figs.forEach((f, i) => {
+      const ar = +f.dataset.ar || 9 / 16;
+      f.classList.toggle('vid-h', ar >= 1); f.classList.toggle('vid-v', ar < 1);
+      if (i === 0 && ar >= 1) { rows.push([f]); return; }
+      if (cur.length && sum + ar > 3.6) { rows.push(cur); cur = []; sum = 0; }
+      cur.push(f); sum += ar;
+    });
+    if (cur.length) rows.push(cur);
+    vg.innerHTML = '';
+    rows.forEach((r, ri) => {
+      const row = document.createElement('div'); row.className = 'vrow';
+      const s = r.reduce((t, f) => t + (+f.dataset.ar || 9 / 16), 0);
+      const sEff = (ri === 0 && r.length === 1 && s >= 1) ? s : Math.max(s, 2.6);
+      r.forEach(f => { const ar = +f.dataset.ar || 9 / 16; f.style.setProperty('--ar', ar.toFixed(4)); f.style.setProperty('--n', r.length); f.style.setProperty('--f', (ar / sEff).toFixed(4)); row.appendChild(f); });
+      vg.appendChild(row);
+    });
+  }
   (function applyBand() {
     const ul = $('.members'), dlg = $('#bioDlg');
     /* 1) Karty členů podle sestavy */
@@ -2053,12 +2123,72 @@ html:has(dialog[open]) { overflow: hidden; }
     } else if (ul) {
       $$('img', ul).forEach(im => { if (isHiddenFile(im.getAttribute('src'))) { const ph = document.createElement('div'); ph.className = 'm-vacant'; ph.innerHTML = '<span class="m-vac-k" data-i18n="m.vac.photo">Fotografía próximamente</span>'; im.replaceWith(ph); } });
     }
-    /* 2) Ostatní fotky: úvodní fotka s náhradou (data-fallback) se vymění, když je na ní někdo mimo sestavu
-          nebo je v seznamu skrytých; galerie a ostatní figury ze seznamu zmizí. */
+    /* 2a) Galerie podle <template id="nl-galerie"> */
+    const gal = $('#gallery'), GAL = cfgLines('nl-galerie');
+    if (gal && GAL.length) {
+      gal.innerHTML = '';
+      GAL.forEach((f, i) => {
+        const file = f[0]; if (!file || isHiddenFile(file)) return;
+        let shape = '', pos = ''; const caps = [];
+        f.slice(1).forEach(x => { const k = norm(x).replace(/\s+/g, ''); if (k in SHAPES) shape = SHAPES[k]; else if (/^\d+%\s+\d+%$/.test(x)) pos = x; else if (x) caps.push(x); });
+        const key = 'cfg.g.' + i; EN[key] = caps[1] || caps[0] || '';
+        const a = document.createElement('a');
+        a.className = 'g-item' + (shape ? ' ' + shape : ''); a.href = mediaPath(file, 'img');
+        a.innerHTML = '<img loading="lazy" alt=""><span class="g-cap" data-i18n="' + key + '">' + esc(caps[0] || '') + '</span>';
+        const im = a.querySelector('img'); im.src = a.getAttribute('href'); im.style.objectPosition = pos || PHOTO_POS[fileOf(file)] || '50% 35%';
+        gal.appendChild(a);
+      });
+    }
+    /* 2b) Videa podle <template id="nl-videa"> */
+    const vg = $('.videos'), VIDS = cfgLines('nl-videa');
+    if (vg && VIDS.length) {
+      vg.innerHTML = '';
+      VIDS.forEach((f, i) => {
+        const file = f[0]; if (!file || isHiddenFile(file)) return;
+        let poster = ''; const caps = [];
+        f.slice(1).forEach(x => { if (/\.(jpe?g|png|webp)$/i.test(x)) poster = x; else if (x) caps.push(x); });
+        const key = 'cfg.v.' + i; EN[key] = caps[1] || caps[0] || '';
+        const src = mediaPath(file, 'video'), stem = file.split('/').pop().replace(/\.[^.]+$/, '');
+        const fig = document.createElement('figure');
+        fig.className = 'vid'; fig.dataset.ar = KNOWN_AR[fileOf(file)] || 9 / 16; fig.dataset.known = KNOWN_AR[fileOf(file)] ? '1' : '';
+        fig.innerHTML = '<video controls preload="metadata" playsinline></video><figcaption><span data-i18n="' + key + '">' + esc(caps[0] || '') + '</span><span class="dur">' + (KNOWN_DUR[fileOf(file)] || '') + '</span></figcaption>';
+        const v = fig.querySelector('video'), posterUrl = poster ? mediaPath(poster, 'img') : 'img/poster-' + stem + '.jpg';
+        v.src = src + '#t=0.1';   /* bez náhledu ukáže první záběr (i na iPhonu) */
+        if (!isHiddenFile(posterUrl)) {
+          const t = new Image();
+          t.onload = () => {
+            v.setAttribute('poster', posterUrl);
+            /* poměr stran nového videa podle náhledu (iPhone metadata načte až při přehrání) */
+            if (!fig.dataset.known && t.naturalWidth && t.naturalHeight) { fig.dataset.ar = t.naturalWidth / t.naturalHeight; fig.dataset.known = '1'; layoutVideos(); }
+          };
+          t.src = posterUrl;
+        }
+        v.addEventListener('loadedmetadata', () => {
+          const d = Math.round(v.duration || 0);
+          if (d) fig.querySelector('.dur').textContent = Math.floor(d / 60) + ':' + String(d % 60).padStart(2, '0');
+          if (!fig.dataset.known && v.videoWidth && v.videoHeight) { fig.dataset.ar = v.videoWidth / v.videoHeight; fig.dataset.known = '1'; layoutVideos(); }
+        });
+        vg.appendChild(fig);
+      });
+    } else if (vg) {
+      $$('video', vg).forEach(v => {
+        const srcs = [v.getAttribute('poster'), v.getAttribute('src'), ...$$('source', v).map(x => x.getAttribute('src'))];
+        if (srcs.some(isHiddenFile)) { const box = v.closest('figure'); if (box) box.remove(); else v.remove(); }
+      });
+    }
+    layoutVideos();
+    /* 2c) Fotka souboru podle <template id="nl-fotka-ensamble"> */
+    const ensImg = $('.ens-photo img'), ensCfg = cfgFirst('nl-fotka-ensamble');
+    if (ensImg && ensCfg && !isHiddenFile(ensCfg)) {
+      ensImg.src = mediaPath(ensCfg, 'img'); ensImg.removeAttribute('width'); ensImg.removeAttribute('height');
+      ensImg.style.objectPosition = PHOTO_POS[fileOf(ensCfg)] || '50% 40%';
+      if (fileOf(ensCfg) === 'ensamble.jpg') { ensImg.alt = 'Los cinco integrantes de Corazón Antequera'; ensImg.dataset.i18nAlt = 'ens.alt'; }
+    }
+    /* 2d) Ostatní fotky: úvodní fotka s náhradou (data-fallback) se vymění, když je na ní někdo mimo sestavu
+          nebo je v seznamu skrytých; ostatní figury ze seznamu skrytých zmizí. */
     $$('img').forEach(img => {
       if (!img.isConnected || img.closest('.members') || img.id === 'bioImg' || img.id === 'lbImg') return;
-      const people = (img.dataset.people || '').split(',').map(x => x.trim()).filter(Boolean);
-      const gone = isHiddenFile(img.getAttribute('src')) || (!!img.dataset.fallback && people.some(n => !inBand(n)));
+      const gone = isHiddenFile(img.getAttribute('src')) || (!!img.dataset.fallback && groupOut(img.getAttribute('src')));
       if (!gone) return;
       const fb = img.dataset.fallback;
       if (fb && !isHiddenFile(fb)) {
@@ -2071,14 +2201,6 @@ html:has(dialog[open]) { overflow: hidden; }
       const box = img.closest('#gallery .g-item, figure');
       if (box) box.remove(); else img.remove();
     });
-    /* 3) Videa (soubor videa nebo jeho náhled v seznamu skrytých) */
-    $$('video').forEach(v => {
-      const srcs = [v.getAttribute('poster'), v.getAttribute('src'), ...$$('source', v).map(x => x.getAttribute('src'))];
-      if (!srcs.some(isHiddenFile)) return;
-      const box = v.closest('figure'); if (box) box.remove(); else v.remove();
-    });
-    const vg = $('.videos');
-    if (vg) vg.style.setProperty('--vid-cols', $$('.vid', vg).map(f => f.classList.contains('vid-h') ? 'minmax(0, 256fr)' : 'minmax(0, 81fr)').join(' ') || 'minmax(0, 1fr)');
     /* 4) Strukturovaná data pro Google: členové podle sestavy */
     if (!ROSTER.length) return;
     $$('script[type="application/ld+json"]').forEach(sc => {
